@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input,
+  textarea,
+  select {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 16px), 16px);
+}
+
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 12px), 12px);
+}
+
+.glass-panel {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media print {
+  html, body, #root {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .no-print, nav, button, select, input, .fixed {
+    display: none !important;
+  }
+
+  /* Rendi tutti i testi scuri e nitidi su carta bianca */
+  .text-white, .text-slate-100, .text-slate-200, .text-slate-300 {
+    color: #0f172a !important;
+  }
+  .text-slate-400, .text-slate-500 {
+    color: #475569 !important;
+  }
+
+  /* Colori importi ad alto contrasto per la stampa */
+  .text-emerald-400, .text-emerald-500, .text-emerald-600 {
+    color: #047857 !important;
+    font-weight: 700 !important;
+  }
+  .text-rose-400, .text-rose-500, .text-rose-600 {
+    color: #b91c1c !important;
+    font-weight: 700 !important;
+  }
+  .text-indigo-300, .text-indigo-400, .text-indigo-500 {
+    color: #4338ca !important;
+    font-weight: 700 !important;
+  }
+
+  /* Schede e contenitori su sfondo bianco con bordo pulito */
+  .print-card,
+  div[class*="bg-slate-900"],
+  div[class*="bg-slate-950"],
+  section[class*="bg-slate-900"],
+  div[class*="bg-slate-850"] {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    border-radius: 8px !important;
+  }
+
+  .print-text-dark {
+    color: #0f172a !important;
+  }
+
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+}
+

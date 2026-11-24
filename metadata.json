@@ -1,0 +1,6 @@
+{
+  "name": "MyFinance Pro - Android Edition",
+  "description": "App di finanza personale mobile con tracciamento spese, budget, obiettivi di risparmio e installazione PWA / APK per Android.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

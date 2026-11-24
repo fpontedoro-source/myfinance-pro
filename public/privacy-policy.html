@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — MyFinance Pro</title>
+  <meta name="description" content="Informativa sulla Privacy di MyFinance Pro (Android Mobile Edition). Archiviazione locale dei dati, trasparenza su AI e permessi." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" type="image/png" href="/pwa-192x192.png" />
+  <style>
+    :root {
+      --bg: #020617;
+      --surface: #0f172a;
+      --surface-2: #1e293b;
+      --border: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.14);
+      --emerald: #34d399;
+      --emerald-soft: rgba(16, 185, 129, 0.12);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+      flex-shrink: 0;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .lang-bar {
+      display: inline-flex;
+      gap: 6px;
+      background: var(--surface);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .lang-btn:hover:not(.active) {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--emerald-soft);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--emerald);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .meta-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+    .meta-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .meta-value {
+      margin-top: 4px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      word-break: break-word;
+    }
+    .meta-value a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+    .meta-value a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section p {
+      margin: 0 0 10px;
+      font-size: 0.92rem;
+      color: #cbd5e1;
+    }
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+    .section ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+    .section li {
+      margin-bottom: 6px;
+    }
+    .highlight {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .lang-panel {
+      display: none;
+    }
+    .lang-panel.active {
+      display: block;
+    }
+    .footer {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+    .back-link:hover {
+      background: rgba(99, 102, 241, 0.25);
+    }
+    @media print {
+      body { background: #ffffff; color: #0f172a; }
+      .section, .meta-card { background: #ffffff; border-color: #cbd5e1; }
+      .section h2, .meta-value, .highlight { color: #0f172a; }
+      .section p, .section li { color: #334155; }
+      .lang-bar, .back-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">MF</div>
+        <div>
+          <h1>MyFinance Pro — Privacy Policy</h1>
+          <p>Android Mobile Edition · Google Play Compliance</p>
+        </div>
+      </div>
+
+      <div class="lang-bar" role="group" aria-label="Language selector">
+        <button type="button" class="lang-btn active" data-lang="it" onclick="setPolicyLang('it')">Italiano</button>
+        <button type="button" class="lang-btn" data-lang="en" onclick="setPolicyLang('en')">English</button>
+        <button type="button" class="lang-btn" data-lang="de" onclick="setPolicyLang('de')">Deutsch</button>
+      </div>
+    </header>
+
+    <!-- ITALIANO -->
+    <article id="panel-it" class="lang-panel active" lang="it">
+      <div class="hero-badge">100% Privacy Locale · Nessuna Pubblicità · Nessun Tracciamento</div>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">Titolare / Sviluppatore</div>
+          <div class="meta-value">Federico Pontedoro</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Email di Contatto</div>
+          <div class="meta-value"><a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a></div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Ultimo Aggiornamento</div>
+          <div class="meta-value">23 Novembre 2026</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>1. Principio Generale e Titolare del Trattamento</h2>
+        <p>
+          <span class="highlight">MyFinance Pro</span> è un'applicazione per la gestione della finanza personale sviluppata da <span class="highlight">Federico Pontedoro</span>.
+          La tutela della tua riservatezza è alla base del funzionamento dell'app: tutti i tuoi dati finanziari sono progettati per rimanere <span class="highlight">sul tuo dispositivo</span> e sotto il tuo controllo esclusivo.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>2. Dati Salvati Localmente sul Dispositivo</h2>
+        <p>
+          MyFinance Pro non richiede la creazione di un account su server remoti e non dispone di un database cloud proprietario per raccogliere le tue finanze.
+          Tutte le informazioni inserite dall'utente vengono salvate esclusivamente nella memoria locale del dispositivo (<span class="highlight">LocalStorage</span> e <span class="highlight">IndexedDB</span>):
+        </p>
+        <ul>
+          <li>Conti bancari, carte, contanti e relativi saldi iniziali/correnti;</li>
+          <li>Movimenti di entrata, uscita, giroconto, categorie, tag, note, budget e obiettivi di risparmio;</li>
+          <li>Scadenzario ricorrente, regole automatiche di categorizzazione, debiti/crediti e preferiti;</li>
+          <li>Profilo locale facoltativo (Nome, Cognome, Email per il recupero locale o estratto conto) e password di sblocco, memorizzata unicamente come <span class="highlight">hash crittografico SHA-256 con salt casuale</span> (mai in chiaro).</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>3. Funzionalità Online Opzionali (Solo su Richiesta dell'Utente)</h2>
+        <p>
+          L'app funziona interamente offline. Alcune funzioni avanzate utilizzano connessioni internet HTTPS <span class="highlight">solo quando attivate volontariamente</span> dall'utente:
+        </p>
+        <ul>
+          <li><span class="highlight">Assistente AI e Scanner Scontrini/Documenti:</span> i messaggi digitati o i file/foto di scontrini caricati volontariamente dall'utente vengono inviati tramite connessione cifrata HTTPS al servizio AI (Google Gemini API) esclusivamente per generare l'analisi richiesta o precompilare il movimento. Lo sviluppatore non archivia tali contenuti su server persistenti.</li>
+          <li><span class="highlight">Aggiornamento Tassi di Cambio:</span> richiesta anonima di sola lettura alle API pubbliche di cambio (es. BCE / Frankfurter) per ottenere i tassi aggiornati tra valute, senza invio di dati personali o importi dei conti.</li>
+          <li><span class="highlight">Invio Estratto Conto / Recupero Password:</span> avviene tramite l'app email predefinita del dispositivo (<code style="color:#93c5fd">mailto:</code>) o tramite eventuale webhook configurato liberamente dall'utente.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>4. Permessi del Dispositivo</h2>
+        <ul>
+          <li><span class="highlight">Fotocamera / Galleria / Archiviazione File:</span> richiesti solo quando scegli di scansionare uno scontrino, importare estratti conto CSV/Excel o salvare/ripristinare un backup manuale (.JSON/.ZIP/.PDF).</li>
+          <li><span class="highlight">Microfono (Opzionale):</span> utilizzato dal sistema operativo esclusivamente quando avvii la dettatura vocale nei campi di testo.</li>
+          <li><span class="highlight">Notifiche Locali:</span> usate facoltativamente per ricordarti movimenti in scadenza o promemoria giornalieri configurati da te.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>5. Nessuna Pubblicità, Nessuna Profilazione e Servizi Finanziari</h2>
+        <p>
+          MyFinance Pro non contiene banner pubblicitari, non integra SDK di tracciamento commerciale e non vende né condivide dati con terze parti.
+          Inoltre, l'applicazione è uno strumento personale di monitoraggio budget e spese: <span class="highlight">non eroga prestiti, non effettua intermediazione creditizia e non fornisce consulenza finanziaria regolamentata</span>.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>6. Diritti dell'Utente, Esportazione e Cancellazione Dati</h2>
+        <p>
+          In conformità con il GDPR, mantieni in ogni momento la piena proprietà dei tuoi dati. Puoi esportare tutte le informazioni in formato <span class="highlight">.JSON, .CSV o .PDF</span> direttamente dalla scheda Impostazioni, oppure eliminare definitivamente e istantaneamente ogni dato cancellando i dati dell'applicazione dalle impostazioni del dispositivo o disinstallando l'app.
+        </p>
+        <p>
+          Per domande o richieste relative alla privacy, scrivi a: <a href="mailto:fpontedoro@gmail.com" style="color:#818cf8;font-weight:700;">fpontedoro@gmail.com</a>.
+        </p>
+      </section>
+    </article>
+
+    <!-- ENGLISH -->
+    <article id="panel-en" class="lang-panel" lang="en">
+      <div class="hero-badge">100% Local Privacy · No Ads · No Third-Party Trackers</div>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">Developer / Data Controller</div>
+          <div class="meta-value">Federico Pontedoro</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Contact Email</div>
+          <div class="meta-value"><a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a></div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Last Updated</div>
+          <div class="meta-value">November 23, 2026</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>1. Overview &amp; Developer Information</h2>
+        <p>
+          <span class="highlight">MyFinance Pro</span> is a personal finance tracking application developed by <span class="highlight">Federico Pontedoro</span>.
+          The application is built on a privacy-first architecture: all financial records are stored locally on your device under your exclusive control.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>2. Data Stored Locally on Your Device</h2>
+        <p>
+          MyFinance Pro does not require a cloud account and does not maintain any proprietary remote database of your financial data.
+          All information you enter is saved strictly inside your device's local storage (<span class="highlight">LocalStorage</span> and <span class="highlight">IndexedDB</span>):
+        </p>
+        <ul>
+          <li>Accounts, balances, income/expense transactions, transfers, categories, tags, budgets, goals, and debts/credits;</li>
+          <li>Recurring schedules, auto-categorization rules, and 1-tap quick shortcuts;</li>
+          <li>Local profile details (First Name, Last Name, Email for local recovery or monthly statements) and lock password, stored solely as a <span class="highlight">salted SHA-256 cryptographic hash</span>.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>3. Optional Online Features (User-Initiated Only)</h2>
+        <p>
+          The app works completely offline. Internet requests occur via encrypted HTTPS <span class="highlight">only when explicitly triggered</span> by you:
+        </p>
+        <ul>
+          <li><span class="highlight">AI Assistant &amp; Receipt/Document Scanner:</span> prompts or receipt images/PDFs you voluntarily submit are transmitted over HTTPS to the AI processing endpoint (Google Gemini API) solely to return your requested answer or transaction draft. No permanent server-side financial archive is kept by the developer.</li>
+          <li><span class="highlight">Exchange Rates Refresh:</span> anonymous read-only lookup of public reference FX rates (e.g., ECB / Frankfurter) without transmitting personal or account data.</li>
+          <li><span class="highlight">Monthly Statement Email / Password Recovery:</span> uses your device's native email client (<code style="color:#93c5fd">mailto:</code>) or an optional webhook explicitly configured by you.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>4. Device Permissions</h2>
+        <ul>
+          <li><span class="highlight">Camera / Photos / File Storage:</span> accessed only when you tap to scan a receipt, import CSV/Excel statements, or save/restore backups (.JSON, .ZIP, .PDF).</li>
+          <li><span class="highlight">Microphone (Optional):</span> used only when you actively trigger voice dictation.</li>
+          <li><span class="highlight">Local Notifications:</span> optionally used for recurring due-date alerts and daily reminders.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>5. Zero Ads, Zero Tracking &amp; Financial Disclaimer</h2>
+        <p>
+          MyFinance Pro displays no advertisements, contains no advertising/analytics tracking SDKs, and never sells or shares your data with third parties.
+          It is strictly a personal budgeting and expense-tracking utility: <span class="highlight">it does not offer loans, credit services, or regulated financial advice</span>.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>6. Data Export, Deletion &amp; Contact</h2>
+        <p>
+          You can export all your records anytime (.JSON, .CSV, .PDF) or permanently delete all stored data by clearing the application data in your Android/browser settings or uninstalling the app.
+          Questions? Contact <a href="mailto:fpontedoro@gmail.com" style="color:#818cf8;font-weight:700;">fpontedoro@gmail.com</a>.
+        </p>
+      </section>
+    </article>
+
+    <!-- DEUTSCH -->
+    <article id="panel-de" class="lang-panel" lang="de">
+      <div class="hero-badge">100% Lokale Privatsphäre · Keine Werbung · Kein Tracking</div>
+
+      <div class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">Entwickler / Verantwortlicher</div>
+          <div class="meta-value">Federico Pontedoro</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Kontakt-E-Mail</div>
+          <div class="meta-value"><a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a></div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Letzte Aktualisierung</div>
+          <div class="meta-value">23. November 2026</div>
+        </div>
+      </div>
+
+      <section class="section">
+        <h2>1. Grundsatz &amp; Verantwortlicher</h2>
+        <p>
+          <span class="highlight">MyFinance Pro</span> ist eine App zur persönlichen Finanzverwaltung, entwickelt von <span class="highlight">Federico Pontedoro</span>.
+          Alle Finanzdaten werden nach dem Privacy-First-Prinzip <span class="highlight">ausschließlich lokal auf Ihrem Gerät</span> gespeichert.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>2. Lokal auf dem Gerät gespeicherte Daten</h2>
+        <p>
+          Es existiert keine Cloud-Datenbank des Entwicklers. Ihre Daten verbleiben im lokalen Gerätespeicher (<span class="highlight">LocalStorage</span> und <span class="highlight">IndexedDB</span>):
+        </p>
+        <ul>
+          <li>Konten, Salden, Einnahmen, Ausgaben, Umbuchungen, Kategorien, Tags, Budgets, Sparziele sowie Schulden/Forderungen;</li>
+          <li>Dauerbuchungen, automatische Kategorisierungsregeln und Schnellfavoriten;</li>
+          <li>Optionales lokales Profil (Vorname, Nachname, E-Mail) und Zugriffspasswort, ausschließlich als <span class="highlight">gesalzener SHA-256-Hash</span> gespeichert.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>3. Optionale Online-Funktionen (nur auf Nutzeraktion)</h2>
+        <ul>
+          <li><span class="highlight">KI-Assistent &amp; Beleg-Scanner:</span> freiwillig gesendete Texteingaben oder Belegbilder werden per HTTPS an die KI-Schnittstelle (Google Gemini API) übertragen, um die Antwort bzw. Buchungsvorlage zu erstellen, ohne dauerhafte Speicherung beim Entwickler.</li>
+          <li><span class="highlight">Wechselkurs-Abruf:</span> anonymer Leseabruf öffentlicher Referenzkurse (EZB / Frankfurter API) ohne Übermittlung persönlicher Daten.</li>
+          <li><span class="highlight">E-Mail-Auszug / Passwort-Wiederherstellung:</span> über die lokale E-Mail-App (<code style="color:#93c5fd">mailto:</code>) oder einen selbst konfigurierten Webhook.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>4. Geräteberechtigungen &amp; Löschung</h2>
+        <p>
+          Kamera, Dateien, Mikrofon und lokale Benachrichtigungen werden ausschließlich auf Ihre direkte Aktion hin genutzt.
+          Es gibt keinerlei Werbung oder Drittanbieter-Tracker. Sie können Ihre Daten jederzeit als .JSON/.CSV/.PDF exportieren oder durch Löschen der App-Daten bzw. Deinstallation vollständig entfernen.
+          Kontakt: <a href="mailto:fpontedoro@gmail.com" style="color:#818cf8;font-weight:700;">fpontedoro@gmail.com</a>.
+        </p>
+      </section>
+    </article>
+
+    <footer class="footer">
+      <span>© 2026 Federico Pontedoro · MyFinance Pro</span>
+      <a href="/" class="back-link">← Apri MyFinance Pro</a>
+    </footer>
+  </main>
+
+  <script>
+    function setPolicyLang(lang) {
+      var panels = document.querySelectorAll('.lang-panel');
+      var btns = document.querySelectorAll('.lang-btn');
+      panels.forEach(function (el) {
+        el.classList.toggle('active', el.id === 'panel-' + lang);
+      });
+      btns.forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = lang;
+    }
+
+    (function initLang() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var qLang = params.get('lang');
+        if (qLang === 'it' || qLang === 'en' || qLang === 'de') {
+          setPolicyLang(qLang);
+          return;
+        }
+        var stored = localStorage.getItem('myfinance_lang') || localStorage.getItem('myfinance_lang_v3');
+        if (stored === 'it' || stored === 'en' || stored === 'de') {
+          setPolicyLang(stored);
+          return;
+        }
+      } catch (e) {}
+    })();
+  </script>
+</body>
+</html>

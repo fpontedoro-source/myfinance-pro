@@ -1,0 +1,53 @@
+{
+  "id": "/",
+  "name": "MyFinance Pro - Android Edition",
+  "short_name": "MyFinance",
+  "description": "App di finanza personale mobile con tracciamento spese, gestione conti, budget e supporto offline completo.",
+  "lang": "it-IT",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen", "window-controls-overlay"],
+  "orientation": "portrait-primary",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "prefer_related_applications": false,
+  "categories": ["finance", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nuova Spesa",
+      "short_name": "Spesa",
+      "description": "Registra velocemente una nuova spesa",
+      "url": "/?action=new-expense",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Giroconto Rapido",
+      "short_name": "Giroconto",
+      "description": "Trasferisci denaro tra i tuoi conti",
+      "url": "/?action=transfer",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}
