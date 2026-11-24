@@ -490,6 +490,20 @@ async function startServer() {
     return res.status(500).json({ error: getLocalizedError(language, 'server') });
   });
 
+  // Android Digital Asset Links (Trusted Web Activity fullscreen verification)
+  app.get('/.well-known/assetlinks.json', (_req, res, next) => {
+    const publicPath = path.resolve('public', '.well-known', 'assetlinks.json');
+    const distPath = path.resolve('dist', '.well-known', 'assetlinks.json');
+    const filePath = fs.existsSync(publicPath) ? publicPath : distPath;
+    if (fs.existsSync(filePath)) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.sendFile(filePath);
+      return;
+    }
+    next();
+  });
+
   // Public standalone Privacy Policy routes (Google Play Store compliant, bypasses SPA auth gate)
   app.get(['/privacy', '/privacy-policy', '/privacy-policy.html'], (_req, res, next) => {
     const publicPath = path.resolve('public', 'privacy-policy.html');

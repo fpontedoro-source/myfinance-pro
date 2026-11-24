@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.pontedoro.myfinancepro",
+      "sha256_cert_fingerprints": [
+        "30:7B:7C:F4:DF:B3:05:11:EF:03:56:01:9D:EB:2D:44:08:69:4D:19:39:B1:B6:C0:2E:82:FD:56:2B:93:38:2D"
+      ]
+    }
+  }
+]
