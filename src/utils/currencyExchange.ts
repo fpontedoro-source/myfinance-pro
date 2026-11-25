@@ -145,22 +145,11 @@ export async function fetchLiveFxRates(): Promise<{
   lastUpdatedAt: string;
   source: 'live' | 'default';
 }> {
-  const customServerUrl = (() => {
-    try {
-      return (localStorage.getItem('myfinance_ai_server_url_v1') || '').trim().replace(/\/+$/, '');
-    } catch {
-      return '';
-    }
-  })();
-
   const isLocalStandalone =
     typeof window !== 'undefined' &&
     ['file:', 'capacitor:', 'ionic:', 'app:'].includes(window.location.protocol);
 
   const urls: string[] = [];
-  if (customServerUrl) {
-    urls.push(`${customServerUrl}/api/fx/rates`);
-  }
   if (!isLocalStandalone) {
     urls.push('/api/fx/rates');
   }

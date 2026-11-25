@@ -1393,10 +1393,10 @@ export function buildAppIntroPdfDocument(language: Language = 'it'): {
   doc.setFillColor(248, 250, 252);
   doc.setDrawColor(203, 213, 225);
   const welcomeText = isDe
-    ? 'MyFinance Pro ist Ihre umfassende App für persönliche Finanzen: Kontostände in mehreren Währungen, Monatsend-Prognosen, Budget-Warnungen, automatische Kategorisierungsregeln, Beleg-Scanner per Kamera und KI-Finanzassistent. Alle Daten bleiben geschützt im lokalen Speicher Ihres Geräts und funktionieren auch komplett offline.'
+    ? 'MyFinance Pro ist Ihre umfassende App für persönliche Finanzen: Kontostände in mehreren Währungen, Monatsend-Prognosen, Budget-Warnungen, automatische Kategorisierungsregeln, CSV/Excel-Import und A4-PDF-Berichte. Alle Daten bleiben geschützt im lokalen Speicher Ihres Geräts und funktionieren auch komplett offline.'
     : isEn
-      ? 'MyFinance Pro is your all-in-one personal finance companion: multi-currency net worth tracking, end-of-month cashflow forecasts, smart budget alerts, automatic keyword rules & #tags, AI receipt scanning, and bank CSV/Excel import. All your records stay privately stored on your device and work completely offline.'
-      : 'MyFinance Pro è la tua app completa per la finanza personale: patrimonio netto unificato multi-valuta, previsione di fine mese, allarmi budget, regole automatiche con #tag, importazione estratti conto CSV/Excel, scansione scontrini con fotocamera e assistente AI. Tutti i dati restano salvati in sicurezza sul tuo dispositivo e funzionano anche offline.';
+      ? 'MyFinance Pro is your all-in-one personal finance companion: multi-currency net worth tracking, end-of-month cashflow forecasts, smart budget alerts, automatic keyword rules & #tags, bank CSV/Excel import, and A4 PDF reports. All your records stay privately stored on your device and work completely offline.'
+      : 'MyFinance Pro è la tua app completa per la finanza personale: patrimonio netto unificato multi-valuta, previsione di fine mese, allarmi budget, regole automatiche con #tag, importazione estratti conto CSV/Excel e report PDF A4. Tutti i dati restano salvati in sicurezza sul tuo dispositivo e funzionano anche offline.';
   const welcomeLines = doc.splitTextToSize(welcomeText, contentWidth - 10);
   const welcomeBoxH = welcomeLines.length * 4.1 + 10;
   doc.roundedRect(margin, cursorY, contentWidth, welcomeBoxH, 2.5, 2.5, 'FD');
@@ -1438,20 +1438,20 @@ export function buildAppIntroPdfDocument(language: Language = 'it'): {
   );
   cursorY += 2;
 
-  // Section 2: The 6 Main Tabs (2-column cards)
+  // Section 2: The 5 Main Tabs (2-column cards)
   drawSectionHeader(
     isDe
-      ? '2. Aufbau der App: Die 6 Bereiche im Überblick'
+      ? '2. Aufbau der App: Die 5 Bereiche im Überblick'
       : isEn
-        ? '2. App Navigation: The 6 Core Tabs'
-        : '2. Struttura dell\'App: Le 6 Schede Principali'
+        ? '2. App Navigation: The 5 Core Tabs'
+        : '2. Struttura dell\'App: Le 5 Schede Principali'
   );
 
   const tabCards = isDe
     ? [
         {
           title: 'Home (Dashboard)',
-          desc: 'Konsolidiertes Gesamtvermögen in Basiswährung, Konten-Karussell, Schnellaktionen (Neu, Scan, Umbuchung, CSV), Monatsend-Prognose, Budget-Warnungen und Fälligkeiten.',
+          desc: 'Konsolidiertes Gesamtvermögen in Basiswährung, Konten-Karussell, Schnellaktionen (Neu, Umbuchung, CSV), Favoriten, Monatsend-Prognose, Budget-Warnungen und Fälligkeiten.',
         },
         {
           title: 'Buchungen (Movimenti)',
@@ -1459,72 +1459,60 @@ export function buildAppIntroPdfDocument(language: Language = 'it'): {
         },
         {
           title: 'Budgets & Sparziele',
-          desc: 'Monatliche Ausgabenlimits pro Kategorie mit Status-Ampel (Überschritten, Warnung, Tempo-Risiko) und Tagesbudget. Dazu virtuelle Spardosen für persönliche Ziele.',
+          desc: 'Monatliche Ausgabenlimits pro Kategorie mit Status-Ampel (Überschritten, Warnung, Tempo-Risiko), Tagesbudget, Sparzielen sowie Schulden & Raten.',
         },
         {
           title: 'Analysen & Diagramme',
-          desc: 'Vermögensverlauf über die Zeit, Ausgabenverteilung nach Kategorie und monatlicher Einnahmen-/Ausgaben-Vergleich - automatisch in Ihre Basiswährung umgerechnet.',
-        },
-        {
-          title: 'KI-Assistent (AI Chat)',
-          desc: 'Stellen Sie Fragen zu Ihren Finanzen, diktieren oder schreiben Sie Ausgaben (z. B. "14,50 EUR Pizza auf Konto Karte") oder scannen Sie Kassenbons direkt per Kamera.',
+          desc: 'Vermögensverlauf über die Zeit, Ausgabenverteilung nach Kategorie, Monatsvergleich (MoM) und #Tag-Auswertung in Ihrer Basiswährung.',
         },
         {
           title: 'Einstellungen & Backup',
-          desc: 'Konten, Kategorien, automatische Regeln, Wechselkurse, tägliches Auto-Backup (.JSON), automatischer E-Mail-Kontoauszug sowie Standalone-HTML/ZIP für Android APK.',
+          desc: 'Konten, Kategorien, automatische Regeln, Wechselkurse, PIN-/Fingerabdruck-Sperre, tägliches Auto-Backup (.JSON), E-Mail-Kontoauszug sowie Android APK.',
         },
       ]
     : isEn
       ? [
           {
             title: 'Home Dashboard',
-            desc: 'Unified net worth in base currency, accounts carousel, 1-tap quick actions (New, Scan, Transfer, CSV), End-of-Month Forecast, Budget Alerts, and Upcoming Bills.',
+            desc: 'Unified net worth in base currency, accounts carousel, 1-tap quick actions (New, Transfer, CSV), Favorites, End-of-Month Forecast, Budget Alerts, and Upcoming Bills.',
           },
           {
             title: 'Transactions',
             desc: 'Instant search and multi-filters by period, type, account, category, and #tag. Edit, duplicate to today in 1 tap, or export filtered PDF statements.',
           },
           {
-            title: 'Budgets & Goals',
-            desc: 'Category monthly budgets with status alerts (Exceeded, Warning, Pacing Risk) and remaining daily allowance, plus savings jars to track your goals.',
+            title: 'Budgets, Goals & Debts',
+            desc: 'Category monthly budgets with status alerts (Exceeded, Warning, Pacing Risk) and daily allowance, savings jars, plus Debts & Installments.',
           },
           {
             title: 'Analytics',
-            desc: 'Interactive balance history trend, category expense breakdown, and monthly income vs expense charts - all converted cleanly into your selected base currency.',
-          },
-          {
-            title: 'AI Chat Assistant',
-            desc: 'Ask financial questions, log expenses via text or voice (e.g. "25 EUR groceries on Main Bank"), or scan paper receipts with your camera.',
+            desc: 'Interactive balance history trend, category expense breakdown, Month-over-Month diff, and #Tag summary - all converted into your base currency.',
           },
           {
             title: 'Settings & APK Tools',
-            desc: 'Manage accounts, categories, keyword rules, FX rates, daily auto-backup (.JSON), monthly PDF email statements, and standalone HTML/ZIP export for Android APK.',
+            desc: 'Manage accounts, categories, keyword rules, FX rates, PIN/Biometric lock, daily auto-backup (.JSON), monthly PDF email statements, and Android APK export.',
           },
         ]
       : [
           {
             title: 'Home (Cruscotto)',
-            desc: 'Patrimonio netto unificato in valuta base, carosello conti, barra azioni rapide (Nuova, Scansiona, Giroconto, CSV), Previsione Fine Mese, Allarmi Budget e Scadenzario.',
+            desc: 'Patrimonio netto unificato in valuta base, carosello conti, azioni rapide (Nuova, Giroconto, CSV), Spese Preferite, Previsione Fine Mese, Allarmi Budget e Scadenzario.',
           },
           {
             title: 'Movimenti',
             desc: 'Ricerca istantanea e filtri per periodo, tipo, conto, categoria e #tag. Modifica rapida, duplica movimento ad oggi e stampa/esportazione PDF filtrata.',
           },
           {
-            title: 'Budget & Obiettivi',
-            desc: 'Limiti mensili per categoria con allarmi chiari (Superato, Attenzione, Rischio ritmo) e margine giornaliero residuo, più salvadanai per i tuoi obiettivi.',
+            title: 'Budget, Obiettivi & Debiti',
+            desc: 'Limiti mensili per categoria con allarmi chiari e margine giornaliero residuo, salvadanai obiettivi e gestione Debiti, Rate & Crediti.',
           },
           {
             title: 'Analisi & Grafici',
-            desc: 'Andamento storico del patrimonio, ripartizione spese per categoria e confronto mensile entrate/uscite convertiti nella tua valuta base.',
-          },
-          {
-            title: 'AI Chat Assistente',
-            desc: 'Chiedi consigli e riepiloghi, registra spese scrivendo o parlando (es. "15 EUR pizza con Carta") oppure scansiona scontrini con la fotocamera.',
+            desc: 'Andamento storico del patrimonio, ripartizione spese, confronto Mese vs Mese e riepilogo per #tag convertiti nella tua valuta base.',
           },
           {
             title: 'Impostazioni & APK',
-            desc: 'Gestione conti, categorie, regole automatiche, tassi di cambio, backup automatico (.JSON), estratto conto PDF via email e pacchetto standalone/APK.',
+            desc: 'Gestione conti, categorie, regole automatiche, tassi di cambio, PIN e impronta digitale, backup automatico (.JSON), estratto conto PDF e pacchetto APK.',
           },
         ];
 
@@ -1621,7 +1609,7 @@ export function buildAppIntroPdfDocument(language: Language = 'it'): {
     isDe
       ? '- Schlüsselwort-Regeln: Legen Sie unter Einstellungen -> Regeln Regeln wie "rewe, lidl -> Lebensmittel + #supermarkt" an. Sie greifen live bei neuen Buchungen, beim CSV-Import sowie rückwirkend auf Knopfdruck für den gesamten Verlauf.'
       : isEn
-        ? '- Keyword Rules: Define rules under Settings -> Auto Rules (e.g. "lidl, coop -> Groceries + #supermarket"). Rules trigger live while typing, during quick AI add, during CSV import, or retroactively across existing history.'
+        ? '- Keyword Rules: Define rules under Settings -> Auto Rules (e.g. "lidl, coop -> Groceries + #supermarket"). Rules trigger live while typing, during CSV import, or retroactively across existing history.'
         : '- Regole per Parole Chiave: in Impostazioni -> Regole Automatiche imposti parole chiave (es. "esselunga, coop -> Alimentari + #supermercato") che assegnano automaticamente categoria e #tag ai nuovi movimenti, alle importazioni CSV o allo storico con un clic.'
   );
   drawParagraph(
@@ -1633,20 +1621,13 @@ export function buildAppIntroPdfDocument(language: Language = 'it'): {
   );
   cursorY += 2;
 
-  // Section 5: AI Vision, Recurring & Monthly PDF Email
+  // Section 5: Recurring & Monthly PDF Email
   drawSectionHeader(
     isDe
-      ? '5. Beleg-Scanner (AI Vision), Dauerbuchungen & PDF per E-Mail'
+      ? '5. Dauerbuchungen & Monatlicher PDF-Kontoauszug'
       : isEn
-        ? '5. Receipt Scanner (AI Vision), Recurring & Email PDF'
-        : '5. Scansione Scontrini, Scadenzario & Estratto Conto Email'
-  );
-  drawParagraph(
-    isDe
-      ? '- Kamera-Scan: Fotografieren oder laden Sie einen Kassenbon direkt im Buchungsformular oder im KI-Chat - Betrag, Datum, Händler und Kategorie werden automatisch erkannt.'
-      : isEn
-        ? '- AI Receipt Scanner: Snap or upload a receipt inside the Transaction modal or AI Chat to extract amount, date, merchant description, and category automatically.'
-        : '- Fotocamera Scontrini e Fatture: scatta o carica la foto di uno scontrino nel modulo Movimento o in AI Chat per compilare in automatico importo, data, descrizione e categoria.'
+        ? '5. Recurring Schedules & Monthly Email PDF'
+        : '5. Scadenzario Ricorrenti & Estratto Conto Email'
   );
   drawParagraph(
     isDe
@@ -1657,20 +1638,20 @@ export function buildAppIntroPdfDocument(language: Language = 'it'): {
   );
   cursorY += 2;
 
-  // Section 6: Standalone APK & Remote AI Server
+  // Section 6: Standalone APK & Biometric Lock
   drawSectionHeader(
     isDe
-      ? '6. Android APK Nutzung & Externer KI-Server'
+      ? '6. Android APK Paket & Biometrische Sperre'
       : isEn
-        ? '6. Standalone APK Package & Remote AI Server'
-        : '6. Versione Standalone, APK Android & Server AI'
+        ? '6. Standalone APK Package & Biometric Lock'
+        : '6. Versione Standalone, APK Android & Impronta'
   );
   drawParagraph(
     isDe
-      ? '- Offline APK / HTML-Paket: Unter Einstellungen können Sie myfinance_app.html oder myfinance_app.zip herunterladen, um die App als eigenständige Android-APK zu verpacken. Für Cloud-KI und Live-Kurse im APK hinterlegen Sie in der KI-Ansicht (Server-Symbol) einfach die URL Ihrer veröffentlichten Instanz; ohne Server bleibt der Offline-Finanzassistent aktiv.'
+      ? '- Offline APK / HTML-Paket: Unter Einstellungen können Sie myfinance_app.html oder myfinance_app.zip herunterladen, um die App als eigenständige Android-APK zu verpacken. Aktivieren Sie zudem PIN & Fingerabdruck-Entsperrung für maximalen Schutz.'
       : isEn
-        ? '- Standalone HTML / APK Ready: Export myfinance_app.html or myfinance_app.zip from Settings to wrap as an Android APK. To enable Cloud AI & live scans inside a standalone APK, tap the Server button in AI Chat and paste your published app URL; offline assistant remains available anytime.'
-        : '- Pacchetto Offline & APK Android: dalle Impostazioni puoi scaricare myfinance_app.html o myfinance_app.zip per convertirli in APK Android. Per usare l\'AI cloud e la scansione anche dall\'APK, tocca il pulsante Server nella scheda AI Chat e inserisci l\'URL della tua istanza pubblicata (in alternativa resta sempre attivo l\'assistente offline).'
+        ? '- Standalone HTML / APK Ready: Export myfinance_app.html or myfinance_app.zip from Settings to wrap as an Android APK. Enable PIN & Fingerprint biometric unlock for fast local security.'
+        : '- Pacchetto Offline & APK Android: dalle Impostazioni puoi scaricare myfinance_app.html o myfinance_app.zip per convertirli in APK Android. Attiva anche lo sblocco con PIN e Impronta Digitale.'
   );
   cursorY += 3;
 

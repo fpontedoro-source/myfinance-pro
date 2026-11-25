@@ -7,7 +7,6 @@ import {
   Mail,
   X,
   CalendarClock,
-  Camera,
   ArrowLeftRight,
   Upload,
   Zap,
@@ -59,7 +58,6 @@ import { AccountsCarousel } from './components/AccountsCarousel';
 import { TransactionsTab } from './components/TransactionsTab';
 import { BudgetsGoalsTab, BudgetsSubTab } from './components/BudgetsGoalsTab';
 import { AnalyticsTab } from './components/AnalyticsTab';
-import { AiChatTab } from './components/AiChatTab';
 import { SettingsTab } from './components/SettingsTab';
 import { BottomNav } from './components/BottomNav';
 import { TransactionModal } from './components/TransactionModal';
@@ -358,7 +356,6 @@ export default function App() {
   // Modals state
   const [isTxModalOpen, setIsTxModalOpen] = useState(false);
   const [editingTx, setEditingTx] = useState<Transaction | null>(null);
-  const [highlightTxScanner, setHighlightTxScanner] = useState(false);
 
   const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
   const [isAccountsModalOpen, setIsAccountsModalOpen] = useState(false);
@@ -2655,12 +2652,11 @@ export default function App() {
             />
 
             {/* Quick Mobile Actions Bar */}
-            <section className="grid grid-cols-4 gap-2">
+            <section className="grid grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={() => {
                   setEditingTx(null);
-                  setHighlightTxScanner(false);
                   setIsTxModalOpen(true);
                 }}
                 className="min-h-[60px] p-2 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/40 hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
@@ -2668,21 +2664,6 @@ export default function App() {
                 <PlusCircle className="w-4 h-4 text-indigo-400" />
                 <span className="text-[10px] font-semibold text-slate-200 leading-tight">
                   {language === 'de' ? 'Neu' : language === 'en' ? 'New' : 'Nuova'}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setEditingTx(null);
-                  setHighlightTxScanner(true);
-                  setIsTxModalOpen(true);
-                }}
-                className="min-h-[60px] p-2 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/40 hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
-              >
-                <Camera className="w-4 h-4 text-cyan-400" />
-                <span className="text-[10px] font-semibold text-slate-200 leading-tight">
-                  {language === 'de' ? 'Scannen' : language === 'en' ? 'Scan' : 'Scansiona'}
                 </span>
               </button>
 
@@ -3156,7 +3137,6 @@ export default function App() {
             onClearFilters={handleClearFilters}
             onEditTransaction={(tx) => {
               setEditingTx(tx);
-              setHighlightTxScanner(false);
               setIsTxModalOpen(true);
             }}
             onDuplicateTransaction={handleDuplicateTransaction}
@@ -3222,27 +3202,7 @@ export default function App() {
           />
         )}
 
-        {/* VIEW 5: AI Chat Tab */}
-        {currentTab === 'ai' && (
-          <AiChatTab
-            accounts={accounts}
-            balances={overallBalances}
-            transactions={transactions}
-            categories={categories}
-            budgets={budgets}
-            goals={goals}
-            recurring={recurring}
-            userName={[securitySettings.firstName, securitySettings.lastName]
-              .filter(Boolean)
-              .join(' ')}
-            onAddTransaction={handleSaveTransaction}
-            onShowToast={showToast}
-            language={language}
-            t={t}
-          />
-        )}
-
-        {/* VIEW 6: Settings Tab */}
+        {/* VIEW 5: Settings Tab */}
         {currentTab === 'settings' && (
           <SettingsTab
             accounts={accounts}
@@ -3286,7 +3246,7 @@ export default function App() {
         )}
 
         {/* Footer Copyright */}
-        {currentTab !== 'settings' && currentTab !== 'ai' && (
+        {currentTab !== 'settings' && (
           <CopyrightFooter
             variant="minimal"
             className="pt-2"
@@ -3296,19 +3256,16 @@ export default function App() {
       </main>
 
       {/* Floating Action Button (FAB) */}
-      {currentTab !== 'ai' && (
-        <button
-          onClick={() => {
-            setEditingTx(null);
-            setHighlightTxScanner(false);
-            setIsTxModalOpen(true);
-          }}
-          title={t.newTransactionBtn}
-          className="fixed right-5 bottom-20 z-40 w-14 h-14 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-full shadow-2xl text-white flex items-center justify-center active:scale-90 transition-transform no-print hover:brightness-110"
-        >
-          <Plus className="w-7 h-7" />
-        </button>
-      )}
+      <button
+        onClick={() => {
+          setEditingTx(null);
+          setIsTxModalOpen(true);
+        }}
+        title={t.newTransactionBtn}
+        className="fixed right-5 bottom-20 z-40 w-14 h-14 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-full shadow-2xl text-white flex items-center justify-center active:scale-90 transition-transform no-print hover:brightness-110"
+      >
+        <Plus className="w-7 h-7" />
+      </button>
 
       {/* Bottom Navigation Bar */}
       <BottomNav currentTab={currentTab} onTabChange={setCurrentTab} t={t} />
@@ -3319,7 +3276,6 @@ export default function App() {
         onClose={() => {
           setIsTxModalOpen(false);
           setEditingTx(null);
-          setHighlightTxScanner(false);
         }}
         accounts={accounts}
         categories={categories}
@@ -3329,7 +3285,6 @@ export default function App() {
         onSave={handleSaveTransaction}
         language={language}
         t={t}
-        highlightScanner={highlightTxScanner}
       />
 
       <TransferModal

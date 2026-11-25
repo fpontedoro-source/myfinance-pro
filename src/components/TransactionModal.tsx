@@ -1,20 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   PlusCircle,
   ArrowUpRight,
   ArrowDownLeft,
   X,
   AlertTriangle,
-  Camera,
-  ImagePlus,
-  Loader2,
-  CheckCircle2,
 } from 'lucide-react';
 import { Account, CategoryRule, Transaction } from '../types/finance';
 import { CategoryIcon, getCategoryColorDetails } from './CategoryIcon';
 import { Language, Translations, getCategoryDisplayName } from '../utils/translations';
 import { getCurrencySymbol, getCurrencyCode } from '../utils/formatters';
-import { scanReceiptWithAi } from '../utils/receiptScanner';
 import {
   matchCategorizationRule,
   mergeUniqueTags,
@@ -43,7 +38,6 @@ interface TransactionModalProps {
   }) => void;
   language?: Language;
   t?: Translations;
-  highlightScanner?: boolean;
 }
 
 export const TransactionModal: React.FC<TransactionModalProps> = ({
@@ -57,7 +51,6 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
   onSave,
   language = 'it',
   t,
-  highlightScanner = false,
 }) => {
   const [type, setType] = useState<'INCOME' | 'EXPENSE'>('EXPENSE');
   const [amount, setAmount] = useState<string>('');
@@ -71,17 +64,9 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
   const [matchedRuleName, setMatchedRuleName] = useState<string | null>(null);
   const [date, setDate] = useState<string>('');
   const [formError, setFormError] = useState<string | null>(null);
-  const [isScanningReceipt, setIsScanningReceipt] = useState(false);
-  const [receiptPreview, setReceiptPreview] = useState<string | null>(null);
-  const [scanSuccessMsg, setScanSuccessMsg] = useState<string | null>(null);
-  const cameraInputRef = useRef<HTMLInputElement | null>(null);
-  const galleryInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setFormError(null);
-    setScanSuccessMsg(null);
-    setReceiptPreview(null);
-    setIsScanningReceipt(false);
     setTagDraft('');
     setMatchedRuleName(null);
     if (editingTransaction) {
@@ -178,62 +163,6 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
     onClose();
   };
 
-  const handleReceiptSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = '';
-    if (!file) return;
-
-    setFormError(null);
-    setScanSuccessMsg(null);
-    setIsScanningReceipt(true);
-    try {
-      const result = await scanReceiptWithAi({
-        file,
-        accounts,
-        categories,
-        language,
-      });
-      const tx = result.proposedTransaction;
-      setType(tx.type === 'INCOME' ? 'INCOME' : 'EXPENSE');
-      if (tx.amount > 0) setAmount(tx.amount.toFixed(2));
-      if (tx.description) setDescription(tx.description);
-      if (tx.date && /^\d{4}-\d{2}-\d{2}$/.test(tx.date)) setDate(tx.date);
-      if (tx.notes) setNotes(tx.notes);
-
-      const matchedAcc = accounts.find(
-        (a) => a.name.toLowerCase() === (tx.account || '').toLowerCase()
-      );
-      if (matchedAcc) setAccount(matchedAcc.id);
-
-      const matchedCat = categories.find(
-        (c) => c.toLowerCase() === (tx.category || '').toLowerCase()
-      );
-      if (matchedCat) setCategory(matchedCat);
-
-      if (result.previewDataUrl) setReceiptPreview(result.previewDataUrl);
-      setScanSuccessMsg(
-        result.reply ||
-          (language === 'de'
-            ? 'Beleg erkannt! Bitte Felder prüfen und speichern.'
-            : language === 'en'
-              ? 'Receipt scanned! Review fields and save.'
-              : 'Scontrino letto con AI! Verifica i campi e salva.')
-      );
-    } catch (err) {
-      setFormError(
-        err instanceof Error
-          ? err.message
-          : language === 'de'
-            ? 'Beleg-Scan fehlgeschlagen.'
-            : language === 'en'
-              ? 'Receipt scan failed.'
-              : 'Errore durante la scansione dello scontrino.'
-      );
-    } finally {
-      setIsScanningReceipt(false);
-    }
-  };
-
   return (
     <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
       <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto">
@@ -263,110 +192,7 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
           </span>
         </h3>
 
-        {/* AI Vision Receipt / Invoice Scanner Bar */}
-        {!editingTransaction && (
-          <div
-            className={`mb-3.5 p-3 rounded-2xl bg-slate-950/90 border space-y-2.5 transition-all ${
-              highlightScanner
-                ? 'border-indigo-500/70 ring-2 ring-indigo-500/25'
-                : 'border-slate-800'
-            }`}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <div>
-                <div className="text-xs font-bold text-white">
-                  {language === 'de'
-                    ? 'Beleg / Rechnung scannen (AI Vision)'
-                    : language === 'en'
-                      ? 'Scan Receipt / Invoice (AI Vision)'
-                      : 'Scansiona Scontrino o Fattura (AI)'}
-                </div>
-                <div className="text-[10px] text-slate-400">
-                  {language === 'de'
-                    ? 'Liest automatisch Betrag, Datum & Händler aus Foto oder PDF'
-                    : language === 'en'
-                      ? 'Auto-fills amount, date & merchant from photo or PDF'
-                      : 'Compila in automatico importo, data ed esercente da foto o PDF'}
-                </div>
-              </div>
-              {receiptPreview && (
-                <img
-                  src={receiptPreview}
-                  alt="Receipt preview"
-                  className="w-10 h-10 rounded-lg object-cover border border-slate-700 flex-shrink-0"
-                />
-              )}
-            </div>
-
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                disabled={isScanningReceipt}
-                onClick={() => cameraInputRef.current?.click()}
-                className="min-h-[44px] px-3 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 disabled:opacity-50 border border-indigo-500/30 text-indigo-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition active:scale-95"
-              >
-                {isScanningReceipt ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Camera className="w-4 h-4" />
-                )}
-                <span>
-                  {isScanningReceipt
-                    ? language === 'de'
-                      ? 'Analysiere...'
-                      : language === 'en'
-                        ? 'Scanning...'
-                        : 'Lettura...'
-                    : language === 'de'
-                      ? 'Kamera'
-                      : language === 'en'
-                        ? 'Camera'
-                        : 'Fotocamera'}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                disabled={isScanningReceipt}
-                onClick={() => galleryInputRef.current?.click()}
-                className="min-h-[44px] px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-50 border border-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 transition active:scale-95"
-              >
-                <ImagePlus className="w-4 h-4 text-cyan-400" />
-                <span>
-                  {language === 'de'
-                    ? 'Galerie / PDF'
-                    : language === 'en'
-                      ? 'Gallery / PDF'
-                      : 'Galleria / PDF'}
-                </span>
-              </button>
-            </div>
-
-            <input
-              ref={cameraInputRef}
-              type="file"
-              accept="image/*"
-              capture="environment"
-              className="hidden"
-              onChange={handleReceiptSelected}
-            />
-            <input
-              ref={galleryInputRef}
-              type="file"
-              accept="image/*,application/pdf"
-              className="hidden"
-              onChange={handleReceiptSelected}
-            />
-          </div>
-        )}
-
         <form onSubmit={handleSubmit} className="space-y-3.5">
-          {scanSuccessMsg && (
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-start gap-2">
-              <CheckCircle2 className="w-4 h-4 flex-shrink-0 mt-0.5" />
-              <span>{scanSuccessMsg}</span>
-            </div>
-          )}
           {formError && (
             <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />

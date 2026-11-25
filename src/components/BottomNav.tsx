@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, List, Target, PieChart, Sparkles, Sliders } from 'lucide-react';
+import { Home, List, Target, PieChart, Sliders } from 'lucide-react';
 import { TabType } from '../types/finance';
 import { Translations } from '../utils/translations';
 
@@ -15,7 +15,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentTab, onTabChange, t
     { id: 'transactions', label: t.navTransactions, icon: <List className="w-5 h-5" /> },
     { id: 'budgets', label: t.navBudgets, icon: <Target className="w-5 h-5" /> },
     { id: 'analytics', label: t.navAnalytics, icon: <PieChart className="w-5 h-5" /> },
-    { id: 'ai', label: t.navAi, icon: <Sparkles className="w-5 h-5" /> },
     { id: 'settings', label: t.navSettings, icon: <Sliders className="w-5 h-5" /> },
   ];
 

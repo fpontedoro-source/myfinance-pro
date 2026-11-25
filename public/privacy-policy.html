@@ -294,7 +294,6 @@
           L'app funziona interamente offline. Alcune funzioni avanzate utilizzano connessioni internet HTTPS <span class="highlight">solo quando attivate volontariamente</span> dall'utente:
         </p>
         <ul>
-          <li><span class="highlight">Assistente AI e Scanner Scontrini/Documenti:</span> i messaggi digitati o i file/foto di scontrini caricati volontariamente dall'utente vengono inviati tramite connessione cifrata HTTPS al servizio AI (Google Gemini API) esclusivamente per generare l'analisi richiesta o precompilare il movimento. Lo sviluppatore non archivia tali contenuti su server persistenti.</li>
           <li><span class="highlight">Aggiornamento Tassi di Cambio:</span> richiesta anonima di sola lettura alle API pubbliche di cambio (es. BCE / Frankfurter) per ottenere i tassi aggiornati tra valute, senza invio di dati personali o importi dei conti.</li>
           <li><span class="highlight">Invio Estratto Conto / Recupero Password:</span> avviene tramite l'app email predefinita del dispositivo (<code style="color:#93c5fd">mailto:</code>) o tramite eventuale webhook configurato liberamente dall'utente.</li>
         </ul>
@@ -303,8 +302,7 @@
       <section class="section">
         <h2>4. Permessi del Dispositivo</h2>
         <ul>
-          <li><span class="highlight">Fotocamera / Galleria / Archiviazione File:</span> richiesti solo quando scegli di scansionare uno scontrino, importare estratti conto CSV/Excel o salvare/ripristinare un backup manuale (.JSON/.ZIP/.PDF).</li>
-          <li><span class="highlight">Microfono (Opzionale):</span> utilizzato dal sistema operativo esclusivamente quando avvii la dettatura vocale nei campi di testo.</li>
+          <li><span class="highlight">Archiviazione File:</span> richiesta solo quando scegli di importare estratti conto CSV/Excel o salvare/ripristinare un backup manuale (.JSON/.ZIP/.PDF).</li>
           <li><span class="highlight">Notifiche Locali:</span> usate facoltativamente per ricordarti movimenti in scadenza o promemoria giornalieri configurati da te.</li>
         </ul>
       </section>
@@ -374,7 +372,6 @@
           The app works completely offline. Internet requests occur via encrypted HTTPS <span class="highlight">only when explicitly triggered</span> by you:
         </p>
         <ul>
-          <li><span class="highlight">AI Assistant &amp; Receipt/Document Scanner:</span> prompts or receipt images/PDFs you voluntarily submit are transmitted over HTTPS to the AI processing endpoint (Google Gemini API) solely to return your requested answer or transaction draft. No permanent server-side financial archive is kept by the developer.</li>
           <li><span class="highlight">Exchange Rates Refresh:</span> anonymous read-only lookup of public reference FX rates (e.g., ECB / Frankfurter) without transmitting personal or account data.</li>
           <li><span class="highlight">Monthly Statement Email / Password Recovery:</span> uses your device's native email client (<code style="color:#93c5fd">mailto:</code>) or an optional webhook explicitly configured by you.</li>
         </ul>
@@ -383,8 +380,7 @@
       <section class="section">
         <h2>4. Device Permissions</h2>
         <ul>
-          <li><span class="highlight">Camera / Photos / File Storage:</span> accessed only when you tap to scan a receipt, import CSV/Excel statements, or save/restore backups (.JSON, .ZIP, .PDF).</li>
-          <li><span class="highlight">Microphone (Optional):</span> used only when you actively trigger voice dictation.</li>
+          <li><span class="highlight">File Storage:</span> accessed only when you import CSV/Excel statements or save/restore backups (.JSON, .ZIP, .PDF).</li>
           <li><span class="highlight">Local Notifications:</span> optionally used for recurring due-date alerts and daily reminders.</li>
         </ul>
       </section>
@@ -448,7 +444,6 @@
       <section class="section">
         <h2>3. Optionale Online-Funktionen (nur auf Nutzeraktion)</h2>
         <ul>
-          <li><span class="highlight">KI-Assistent &amp; Beleg-Scanner:</span> freiwillig gesendete Texteingaben oder Belegbilder werden per HTTPS an die KI-Schnittstelle (Google Gemini API) übertragen, um die Antwort bzw. Buchungsvorlage zu erstellen, ohne dauerhafte Speicherung beim Entwickler.</li>
           <li><span class="highlight">Wechselkurs-Abruf:</span> anonymer Leseabruf öffentlicher Referenzkurse (EZB / Frankfurter API) ohne Übermittlung persönlicher Daten.</li>
           <li><span class="highlight">E-Mail-Auszug / Passwort-Wiederherstellung:</span> über die lokale E-Mail-App (<code style="color:#93c5fd">mailto:</code>) oder einen selbst konfigurierten Webhook.</li>
         </ul>
@@ -457,7 +452,7 @@
       <section class="section">
         <h2>4. Geräteberechtigungen &amp; Löschung</h2>
         <p>
-          Kamera, Dateien, Mikrofon und lokale Benachrichtigungen werden ausschließlich auf Ihre direkte Aktion hin genutzt.
+          Dateien und lokale Benachrichtigungen werden ausschließlich auf Ihre direkte Aktion hin genutzt.
           Es gibt keinerlei Werbung oder Drittanbieter-Tracker. Sie können Ihre Daten jederzeit als .JSON/.CSV/.PDF exportieren oder durch Löschen der App-Daten bzw. Deinstallation vollständig entfernen.
           Kontakt: <a href="mailto:fpontedoro@gmail.com" style="color:#818cf8;font-weight:700;">fpontedoro@gmail.com</a>.
         </p>

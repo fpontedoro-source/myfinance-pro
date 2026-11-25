@@ -14,7 +14,6 @@ export interface Translations {
   navTransactions: string;
   navBudgets: string;
   navAnalytics: string;
-  navAi: string;
   navSettings: string;
 
   // Banner & Overall Metrics
@@ -427,7 +426,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     navTransactions: 'Movimenti',
     navBudgets: 'Budget',
     navAnalytics: 'Analisi',
-    navAi: 'AI Chat',
     navSettings: 'Opzioni',
 
     totalNetWorth: 'Patrimonio Totale',
@@ -758,7 +756,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     navTransactions: 'Buchungen',
     navBudgets: 'Budgets',
     navAnalytics: 'Analysen',
-    navAi: 'KI-Chat',
     navSettings: 'Optionen',
 
     totalNetWorth: 'Gesamtvermögen',
@@ -1089,7 +1086,6 @@ export const TRANSLATIONS: Record<Language, Translations> = {
     navTransactions: 'Transactions',
     navBudgets: 'Budgets',
     navAnalytics: 'Analytics',
-    navAi: 'AI Chat',
     navSettings: 'Settings',
 
     totalNetWorth: 'Total Net Worth',

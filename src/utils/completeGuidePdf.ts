@@ -30,8 +30,8 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
     editionLabel: 'Aggiornata il',
     introTitle: 'PANORAMICA GENERALE',
     introBody:
-      'MyFinance Pro e un\'app completa per la gestione della finanza personale su Web, smartphone e Android APK. Integra controllo conti multi-valuta, spese preferite a un tocco, debiti/rate/crediti, previsione di fine mese, regole automatiche con #tag, analisi comparative mese su mese, importazione estratti conto bancari CSV/Excel, scansione scontrini AI, assistente chat operativo e report PDF A4 con salvataggio 100% locale sul dispositivo.',
-    tabOverviewTitle: 'ARCHITETTURA DELL\'APP: LE 6 SCHEDE PRINCIPALI',
+      'MyFinance Pro e un\'app completa per la gestione della finanza personale su Web, smartphone e Android APK. Integra controllo conti multi-valuta, spese preferite a un tocco, debiti/rate/crediti, previsione di fine mese, regole automatiche con #tag, analisi comparative mese su mese, importazione estratti conto bancari CSV/Excel e report PDF A4 con salvataggio 100% locale sul dispositivo.',
+    tabOverviewTitle: 'ARCHITETTURA DELL\'APP: LE 5 SCHEDE PRINCIPALI',
     tabs: [
       {
         name: '1. Home (Cruscotto)',
@@ -54,14 +54,9 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
           'Andamento saldo nel tempo, Torta spese, Ripartizione conti, Flussi 6 mesi, Confronto Mese vs Mese per categoria e Riepilogo aggregato per #tag.',
       },
       {
-        name: '5. AI Chat',
+        name: '5. Impostazioni & APK',
         summary:
-          'Assistente finanziario operativo: chiedi analisi sui conti, inserisci spese scrivendo o parlando, scansiona scontrini con la fotocamera o collega un server remoto.',
-      },
-      {
-        name: '6. Impostazioni & APK',
-        summary:
-          'Gestione conti, categorie, ricorrenti, regole automatiche, tassi FX, sicurezza PIN, estratto conto email automatico, backup JSON/CSV e pacchetti Android APK.',
+          'Gestione conti, categorie, ricorrenti, regole automatiche, tassi FX, sicurezza PIN e impronta digitale, estratto conto email automatico, backup JSON/CSV e pacchetti Android APK.',
       },
     ],
     sections: [
@@ -103,7 +98,7 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
           },
           {
             label: 'Barra Azioni Rapide & Carosello Conti',
-            desc: 'Scorri i saldi individuali di ogni conto o usa i 4 tasti rapidi (Nuova, Scansiona, Giroconto, Importa CSV) per operare senza passaggi superflui.',
+            desc: 'Scorri i saldi individuali di ogni conto o usa i 3 tasti rapidi (Nuova, Giroconto, Importa CSV) per operare senza passaggi superflui.',
           },
         ],
       },
@@ -194,24 +189,7 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
         ],
       },
       {
-        title: '9. AI Chat Operativa, Dettatura Vocale & Scanner Scontrini',
-        items: [
-          {
-            label: 'Inserimento Spese via Chat o Voce',
-            desc: 'Scrivi o detta un comando naturale (es. "Segna 18,50 EUR pranzo oggi con Carta") oppure chiedi analisi sui tuoi consumi. L\'AI mostra una scheda di anteprima da confermare prima del salvataggio.',
-          },
-          {
-            label: 'Scansione Scontrini e Fatture (AI Vision)',
-            desc: 'Scatta una foto o carica un file/PDF dello scontrino dal modulo Nuovo Movimento o in AI Chat per estrarre automaticamente esercente, totale, data e categoria.',
-          },
-          {
-            label: 'Pulsante Server & Assistente Offline',
-            desc: 'Se usi l\'app in versione standalone o APK Android su smartphone, tocca l\'icona Server in AI Chat per inserire l\'URL della tua istanza pubblicata e abilitare AI cloud e tassi live. Senza server resta sempre attivo l\'assistente offline locale.',
-          },
-        ],
-      },
-      {
-        title: '10. Import CSV/Excel, Report PDF, Backup & Android APK',
+        title: '9. Import CSV/Excel, Report PDF, Backup & Android APK',
         items: [
           {
             label: 'Importazione Estratti Conto Bancari (CSV / Excel)',
@@ -250,8 +228,8 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
     editionLabel: 'Stand',
     introTitle: 'GESAMTUEBERBLICK',
     introBody:
-      'MyFinance Pro ist Ihre umfassende Finanz-App fuer Web, Smartphone und Android-APK. Sie vereint Multi-Waehrungskonten, 1-Klick-Favoriten, Schulden/Raten/Forderungen, Monatsend-Prognosen, automatische Regeln mit #Tags, Monatsvergleiche, Bank-CSV/Excel-Import, KI-Belegscanner, operativen KI-Chat und A4-PDF-Berichte mit 100% lokaler Datenspeicherung.',
-    tabOverviewTitle: 'APP-STRUKTUR: DIE 6 HAUPTBEREICHE IM UEBERBLICK',
+      'MyFinance Pro ist Ihre umfassende Finanz-App fuer Web, Smartphone und Android-APK. Sie vereint Multi-Waehrungskonten, 1-Klick-Favoriten, Schulden/Raten/Forderungen, Monatsend-Prognosen, automatische Regeln mit #Tags, Monatsvergleiche, Bank-CSV/Excel-Import und A4-PDF-Berichte mit 100% lokaler Datenspeicherung.',
+    tabOverviewTitle: 'APP-STRUKTUR: DIE 5 HAUPTBEREICHE IM UEBERBLICK',
     tabs: [
       {
         name: '1. Home (Dashboard)',
@@ -274,14 +252,9 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
           'Saldoverlauf, Ausgaben-Tortendiagramm, Kontenverteilung, 6-Monats-Balken, Monatsvergleich (Aktuell vs. Vormonat) und detaillierter #Tag-Report.',
       },
       {
-        name: '5. KI-Assistent (AI Chat)',
+        name: '5. Einstellungen & APK',
         summary:
-          'Operativer Finanzassistent: Fragen stellen, Buchungen per Text oder Sprache erfassen, Kassenbons per Kamera scannen oder eigene Server-URL anbinden.',
-      },
-      {
-        name: '6. Einstellungen & APK',
-        summary:
-          'Konten, Kategorien, Dauerbuchungen, Auto-Regeln, Wechselkurse, PIN-Schutz, automatischer E-Mail-Kontoauszug, JSON/CSV-Backup und Android-APK-Pakete.',
+          'Konten, Kategorien, Dauerbuchungen, Auto-Regeln, Wechselkurse, PIN-/Fingerabdruck-Schutz, automatischer E-Mail-Kontoauszug, JSON/CSV-Backup und Android-APK-Pakete.',
       },
     ],
     sections: [
@@ -323,7 +296,7 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
           },
           {
             label: 'Schnellaktionsleiste & Konten-Karussell',
-            desc: 'Wischen Sie durch die Einzelkonten oder nutzen Sie die 4 Direkttasten (Neu, Scannen, Umbuchen, CSV-Import) fuer schnelle Erfassung.',
+            desc: 'Wischen Sie durch die Einzelkonten oder nutzen Sie die 3 Direkttasten (Neu, Umbuchen, CSV-Import) fuer schnelle Erfassung.',
           },
         ],
       },
@@ -414,24 +387,7 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
         ],
       },
       {
-        title: '9. KI-Chat, Spracheingabe & Kamera-Belegscanner',
-        items: [
-          {
-            label: 'Buchungen per Chat oder Diktat erfassen',
-            desc: 'Schreiben oder sprechen Sie Anfragen wie "Buche 15 EUR Mittagessen auf Karte" oder stellen Sie Finanzfragen. Neue Buchungen werden vor dem Speichern als Vorschau bestaetigt.',
-          },
-          {
-            label: 'Beleg- & Rechnungs-Scanner (AI Vision)',
-            desc: 'Fotografieren oder laden Sie Kassenbons bzw. PDF-Rechnungen direkt im Buchungsdialog oder KI-Chat, um Haendler, Gesamtbetrag, Datum und Kategorie automatisch auszulesen.',
-          },
-          {
-            label: 'Server-URL fuer Standalone/APK & Offline-Modus',
-            desc: 'Im KI-Chat koennen Sie ueber das Server-Symbol die URL Ihrer veroeffentlichten Instanz hinterlegen, damit Cloud-KI auch im Offline-APK funktioniert; ohne Server bleibt der Offline-Assistent aktiv.',
-          },
-        ],
-      },
-      {
-        title: '10. Bank-Import (CSV/Excel), PDF-Berichte, Backup & APK',
+        title: '9. Bank-Import (CSV/Excel), PDF-Berichte, Backup & APK',
         items: [
           {
             label: 'CSV- & Excel-Kontoauszug-Import',
@@ -470,8 +426,8 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
     editionLabel: 'Edition',
     introTitle: 'OVERVIEW',
     introBody:
-      'MyFinance Pro is your complete personal finance application for Web, mobile browsers, and Android APK. It brings together multi-currency accounts, 1-tap favorite shortcuts, debts/installments/shared credits, end-of-month cashflow forecasting, keyword #tag rules, month-over-month analytics, CSV/Excel bank statement import, AI Vision receipt scanning, operational AI chat, and A4 PDF reports with 100% local privacy.',
-    tabOverviewTitle: 'APP ARCHITECTURE: THE 6 CORE TABS',
+      'MyFinance Pro is your complete personal finance application for Web, mobile browsers, and Android APK. It brings together multi-currency accounts, 1-tap favorite shortcuts, debts/installments/shared credits, end-of-month cashflow forecasting, keyword #tag rules, month-over-month analytics, CSV/Excel bank statement import, and A4 PDF reports with 100% local privacy.',
+    tabOverviewTitle: 'APP ARCHITECTURE: THE 5 CORE TABS',
     tabs: [
       {
         name: '1. Home Dashboard',
@@ -494,14 +450,9 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
           'Balance history trend, category expense pie, account distribution, 6-month income/expense bars, Month-over-Month category diff, and #Tag summary breakdown.',
       },
       {
-        name: '5. AI Chat',
+        name: '5. Settings & APK',
         summary:
-          'Operational financial assistant: ask questions on live balances, log expenses by text or voice, scan receipts with your camera, or link a remote server URL.',
-      },
-      {
-        name: '6. Settings & APK',
-        summary:
-          'Manage accounts, categories, recurring items, auto rules, FX rates, PIN lock, automatic monthly email statements, JSON/CSV backups, and standalone Android APK bundles.',
+          'Manage accounts, categories, recurring items, auto rules, FX rates, PIN/Fingerprint lock, automatic monthly email statements, JSON/CSV backups, and standalone Android APK bundles.',
       },
     ],
     sections: [
@@ -543,7 +494,7 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
           },
           {
             label: 'Quick Actions Bar & Accounts Carousel',
-            desc: 'Swipe through individual account cards or tap the 4 quick buttons (New, Scan, Transfer, Import CSV) to perform common workflows immediately.',
+            desc: 'Swipe through individual account cards or tap the 3 quick buttons (New, Transfer, Import CSV) to perform common workflows immediately.',
           },
         ],
       },
@@ -634,24 +585,7 @@ const GUIDE_CONTENT: Record<Language, GuideCopy> = {
         ],
       },
       {
-        title: '9. Operational AI Chat, Voice Input & Receipt Scanner',
-        items: [
-          {
-            label: 'Conversational Expense Entry & Financial Q&A',
-            desc: 'Type or dictate natural commands (e.g., "Log 18 EUR lunch today on Card") or ask questions about your spending. Proposed transactions show an editable confirmation card before saving.',
-          },
-          {
-            label: 'AI Vision Receipt & Invoice Scanner',
-            desc: 'Take a photo or upload a receipt/PDF inside the Transaction modal or AI Chat to auto-extract merchant, total amount, date, and best matching category.',
-          },
-          {
-            label: 'Remote Server URL (APK) & Built-in Offline Assistant',
-            desc: 'When running the standalone HTML or Android APK offline package, tap the Server button in AI Chat to connect your published instance URL for cloud AI; otherwise the built-in offline engine handles summaries.',
-          },
-        ],
-      },
-      {
-        title: '10. CSV/Excel Bank Import, White-Header PDFs, Backup & APK',
+        title: '9. CSV/Excel Bank Import, White-Header PDFs, Backup & APK',
         items: [
           {
             label: 'CSV / Excel Bank Statement Import',
@@ -1028,20 +962,20 @@ export function buildTrilingualCompleteGuidePdfDocument(): {
     {
       badge: 'PARTE I · ITALIANO',
       title: 'Guida Completa alle Funzioni',
-      subtitle: 'Tutte le 10 aree funzionali e i 6 pannelli dell\'app',
-      desc: 'Primo avvio, sicurezza PIN, Modalita Discreta (occhio), Patrimonio Netto Effettivo (Liquidita + Crediti - Debiti), Spese Preferite 1-Tap, Regole #tag, Budget e Allarmi, Rate/Crediti, Previsione Fine Mese, Analisi Mese vs Mese, AI Chat/Scanner, Import CSV/Excel, Report PDF con testata bianca, Backup & Android APK.',
+      subtitle: 'Tutte le 9 aree funzionali e i 5 pannelli dell\'app',
+      desc: 'Primo avvio, sicurezza PIN & impronta, Modalita Discreta (occhio), Patrimonio Netto Effettivo (Liquidita + Crediti - Debiti), Spese Preferite 1-Tap, Regole #tag, Budget e Allarmi, Rate/Crediti, Previsione Fine Mese, Analisi Mese vs Mese, Import CSV/Excel, Report PDF con testata bianca, Backup & Android APK.',
     },
     {
       badge: 'TEIL II · DEUTSCH',
       title: 'Vollstaendige Funktionsanleitung',
-      subtitle: 'Alle 10 Funktionsbereiche und 6 Hauptansichten im Detail',
-      desc: 'Ersteinrichtung, PIN-Schutz, Diskret-Modus, Effektives Nettovermoegen (Liquiditaet + Forderungen - Schulden), 1-Klick-Favoriten, Schluesselwort-Regeln & #Tags, Budgets & Warnungen, Schulden/Raten, Monatsend-Prognose, Monatsvergleich, KI-Chat/Scanner, CSV/Excel-Import, PDF-Berichte mit weissem Kopf & Android-APK.',
+      subtitle: 'Alle 9 Funktionsbereiche und 5 Hauptansichten im Detail',
+      desc: 'Ersteinrichtung, PIN- & Fingerabdruck-Schutz, Diskret-Modus, Effektives Nettovermoegen (Liquiditaet + Forderungen - Schulden), 1-Klick-Favoriten, Schluesselwort-Regeln & #Tags, Budgets & Warnungen, Schulden/Raten, Monatsend-Prognose, Monatsvergleich, CSV/Excel-Import, PDF-Berichte mit weissem Kopf & Android-APK.',
     },
     {
       badge: 'PART III · ENGLISH',
       title: 'Complete App Feature Guide',
-      subtitle: 'All 10 feature modules and 6 core tabs explained step-by-step',
-      desc: 'Onboarding, PIN lock, Privacy Mode, Effective Net Worth (Liquid Cash + Credits - Debts), 1-Tap Favorite Shortcuts, Keyword Rules & #Tags, Budgets & Pacing Alerts, Installments & Shared Expenses, End-of-Month Forecast, MoM & #Tag Analytics, Operational AI Chat & Scanner, CSV/Excel Import, White-Header PDFs & Android APK.',
+      subtitle: 'All 9 feature modules and 5 core tabs explained step-by-step',
+      desc: 'Onboarding, PIN & fingerprint lock, Privacy Mode, Effective Net Worth (Liquid Cash + Credits - Debts), 1-Tap Favorite Shortcuts, Keyword Rules & #Tags, Budgets & Pacing Alerts, Installments & Shared Expenses, End-of-Month Forecast, MoM & #Tag Analytics, CSV/Excel Import, White-Header PDFs & Android APK.',
     },
   ];
 

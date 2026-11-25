@@ -90,9 +90,9 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
         <h2>1. Lokale Datenspeicherung (Privacy-First)</h2>
         <p>Alle Konten, Transaktionen, Kategorien, Budgets, Sparziele, Dauerbuchungen und Ihr optionales lokales Profil werden ausschließlich lokal im Gerätespeicher (LocalStorage &amp; IndexedDB) gespeichert. Ihr Zugriffspasswort wird ausschließlich als gesalzener SHA-256-Hash abgelegt.</p>
         <h2>2. Optionale Online-Dienste</h2>
-        <p>Die App funktioniert offline. KI-Assistent/Beleg-Scanner (Google Gemini API), öffentliche Wechselkurse (EZB/Frankfurter API) oder E-Mail-Entwürfe (mailto:) werden nur auf ausdrückliche Nutzeraktion ausgelöst.</p>
+        <p>Die App funktioniert offline. Öffentliche Wechselkurse (EZB/Frankfurter API) oder E-Mail-Entwürfe (mailto:) werden nur auf ausdrückliche Nutzeraktion ausgelöst.</p>
         <h2>3. Berechtigungen, Werbung &amp; Löschung</h2>
-        <p>Keine Werbung, kein Tracking, keine Kreditvermittlung. Kamera/Dateien/Mikrofon/Benachrichtigungen werden nur auf Wunsch genutzt. Alle Daten können jederzeit exportiert oder durch Löschen der App-Daten vollständig entfernt werden.</p>
+        <p>Keine Werbung, kein Tracking, keine Kreditvermittlung. Dateizugriff oder lokale Benachrichtigungen werden nur auf Wunsch genutzt. Alle Daten können jederzeit exportiert oder durch Löschen der App-Daten vollständig entfernt werden.</p>
       `
       : isEn
         ? `
@@ -100,18 +100,18 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
         <h2>1. 100% Local Storage (Privacy-First)</h2>
         <p>All accounts, transactions, categories, budgets, goals, recurring entries, and optional profile info remain strictly on your device (LocalStorage &amp; IndexedDB). Passwords are stored exclusively as a salted SHA-256 cryptographic hash.</p>
         <h2>2. Optional User-Initiated Online Features</h2>
-        <p>The app works offline. AI Assistant / Receipt Scanner (Google Gemini API), anonymous reference FX rate lookup (ECB/Frankfurter), and email statement drafts (mailto:) are executed only when explicitly triggered by you.</p>
+        <p>The app works offline. Anonymous reference FX rate lookup (ECB/Frankfurter) and email statement drafts (mailto:) are executed only when explicitly triggered by you.</p>
         <h2>3. Permissions, Zero Ads &amp; Data Deletion</h2>
-        <p>No ads, no third-party tracking SDKs, and no lending/credit services. Camera/files/microphone/notifications are optional and user-triggered. Export (.JSON/.CSV/.PDF) or delete all data anytime from device settings.</p>
+        <p>No ads, no third-party tracking SDKs, and no lending/credit services. File access and local notifications are optional and user-triggered. Export (.JSON/.CSV/.PDF) or delete all data anytime from device settings.</p>
       `
         : `
         <p><strong>Titolare / Sviluppatore:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · Aggiornato: 23/11/2026</p>
         <h2>1. Archiviazione 100% Locale (Privacy-First)</h2>
         <p>Tutti i conti, movimenti, categorie, budget, obiettivi, scadenze e il profilo locale facoltativo restano esclusivamente sul tuo dispositivo (LocalStorage e IndexedDB). La password di sblocco è salvata solo come hash crittografico SHA-256 con salt casuale.</p>
         <h2>2. Servizi Online Opzionali (Solo su Richiesta)</h2>
-        <p>L'app funziona interamente offline. Assistente AI / Scanner Scontrini (Google Gemini API), aggiornamento tassi di cambio (BCE/Frankfurter API) e bozze email (mailto:) vengono attivati solo su tua esplicita richiesta.</p>
+        <p>L'app funziona interamente offline. Aggiornamento tassi di cambio (BCE/Frankfurter API) e bozze email (mailto:) vengono attivati solo su tua esplicita richiesta.</p>
         <h2>3. Permessi, Zero Pubblicità e Cancellazione Dati</h2>
-        <p>Nessuna pubblicità, nessun tracker di terze parti e nessun servizio di prestito/credito. Fotocamera, file, microfono e notifiche sono opzionali. Puoi esportare (.JSON/.CSV/.PDF) o cancellare tutti i dati in qualsiasi momento dal dispositivo.</p>
+        <p>Nessuna pubblicità, nessun tracker di terze parti e nessun servizio di prestito/credito. Accesso ai file e notifiche locali sono opzionali. Puoi esportare (.JSON/.CSV/.PDF) o cancellare tutti i dati in qualsiasi momento dal dispositivo.</p>
       `;
 
     printHtmlDocument({
@@ -300,16 +300,6 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
             <ul className="text-[11px] text-slate-300 space-y-1 list-disc list-inside leading-relaxed">
               <li>
                 <strong className="text-white">
-                  {isDe ? 'KI-Assistent & Beleg-Scanner:' : isEn ? 'AI Assistant & Receipt Scanner:' : 'Assistente AI & Scanner Scontrini:'}
-                </strong>{' '}
-                {isDe
-                  ? 'Texte oder Belegfotos werden nur bei aktivem Senden per HTTPS an Google Gemini API verarbeitet, ohne dauerhafte Speicherung.'
-                  : isEn
-                    ? 'Prompts or receipt files you explicitly submit are sent over HTTPS to Google Gemini API only to generate your draft/reply, with no persistent developer storage.'
-                    : 'Messaggi o foto/PDF degli scontrini inviati volontariamente transitano in HTTPS verso Google Gemini API al solo scopo di generare risposta o bozza movimento, senza archiviazione permanente.'}
-              </li>
-              <li>
-                <strong className="text-white">
                   {isDe ? 'Wechselkurse:' : isEn ? 'FX Rates:' : 'Tassi di Cambio:'}
                 </strong>{' '}
                 {isDe
@@ -345,10 +335,10 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
             </div>
             <p className="text-[11px] text-slate-300 leading-relaxed">
               {isDe
-                ? 'Kamera, Dateien, Mikrofon und lokale Benachrichtigungen werden ausschließlich verwendet, wenn Sie einen Beleg scannen, CSV/JSON importieren/exportieren, Sprachdiktat starten oder Erinnerungen aktivieren.'
+                ? 'Dateizugriff und lokale Benachrichtigungen werden ausschließlich verwendet, wenn Sie CSV/JSON importieren/exportieren oder Erinnerungen aktivieren.'
                 : isEn
-                  ? 'Camera, file picker, microphone, and local notifications are accessed only when you choose to scan a receipt, import/export CSV/JSON, dictate voice notes, or enable reminders.'
-                  : 'Fotocamera, file/galleria, microfono e notifiche locali sono richiesti solo quando scegli di scansionare scontrini, importare/esportare CSV o JSON, usare la dettatura vocale o attivare i promemoria.'}
+                  ? 'File picker and local notifications are accessed only when you choose to import/export CSV/JSON backups or enable reminders.'
+                  : 'Accesso ai file e notifiche locali sono richiesti solo quando scegli di importare/esportare CSV o JSON oppure attivare i promemoria.'}
             </p>
           </div>
 

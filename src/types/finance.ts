@@ -83,18 +83,7 @@ export type PeriodFilter =
   | 'Q4'
   | 'CUSTOM';
 
-export type TabType = 'home' | 'transactions' | 'budgets' | 'analytics' | 'ai' | 'settings';
-
-export interface ProposedTransactionAction {
-  type: 'INCOME' | 'EXPENSE';
-  amount: number;
-  description: string;
-  category: string;
-  account: string;
-  date: string;
-  notes?: string;
-  tags?: string[];
-}
+export type TabType = 'home' | 'transactions' | 'budgets' | 'analytics' | 'settings';
 
 export interface QuickShortcut {
   id: string;

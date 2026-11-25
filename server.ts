@@ -2,11 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
-import {
-  fetchFxRatesPayload,
-  processAiChatRequest,
-  processReceiptScanRequest,
-} from './server/aiService.ts';
 
 function resolvePort(): number {
   const portArgIdx = process.argv.indexOf('--port');
@@ -35,18 +30,44 @@ async function startServer() {
   });
 
   app.get('/api/fx/rates', async (_req, res) => {
-    const result = await fetchFxRatesPayload();
-    return res.status(result.status).json(result.body);
-  });
-
-  app.post('/api/ai/chat', async (req, res) => {
-    const result = await processAiChatRequest(req.body);
-    return res.status(result.status).json(result.body);
-  });
-
-  app.post('/api/ai/scan-receipt', async (req, res) => {
-    const result = await processReceiptScanRequest(req.body);
-    return res.status(result.status).json(result.body);
+    const fallbackRates = { USD: 1.08, GBP: 0.85, JPY: 163.5, CHF: 0.94 };
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 4500);
+      const response = await fetch(
+        'https://api.frankfurter.app/latest?from=EUR&to=USD,GBP,JPY,CHF',
+        { signal: controller.signal }
+      );
+      clearTimeout(timeout);
+      if (response.ok) {
+        const data = (await response.json()) as {
+          date?: string;
+          rates?: Record<string, number>;
+        };
+        if (data?.rates) {
+          return res.json({
+            base: 'EUR',
+            date: data.date || new Date().toISOString().slice(0, 10),
+            source: 'live',
+            rates: {
+              EUR: 1,
+              USD: Number(data.rates.USD) || fallbackRates.USD,
+              GBP: Number(data.rates.GBP) || fallbackRates.GBP,
+              JPY: Number(data.rates.JPY) || fallbackRates.JPY,
+              CHF: Number(data.rates.CHF) || fallbackRates.CHF,
+            },
+          });
+        }
+      }
+    } catch {
+      // Fallback safely to reference defaults when offline
+    }
+    return res.json({
+      base: 'EUR',
+      date: new Date().toISOString().slice(0, 10),
+      source: 'default',
+      rates: { EUR: 1, ...fallbackRates },
+    });
   });
 
   // Android Digital Asset Links (Trusted Web Activity fullscreen verification)
