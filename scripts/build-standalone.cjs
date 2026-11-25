@@ -55,7 +55,7 @@ async function buildStandalone() {
   // IMPORTANT: We use array join concatenation so NO regex or string .replace($) can ever corrupt the content!
   const htmlParts = [
     `<!doctype html>
-<html lang="it" class="h-full bg-slate-950 text-slate-100 antialiased select-none">
+<html lang="it" class="dark h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased select-none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -81,6 +81,18 @@ async function buildStandalone() {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('myfinance_theme_v1');
+          var isDark = saved !== 'light';
+          document.documentElement.classList.toggle('dark', isDark);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', isDark ? '#020617' : '#f8fafc');
+        } catch (e) {}
+      })();
+    </script>
+
     <style>
 `,
     cssContent,
@@ -88,8 +100,6 @@ async function buildStandalone() {
       /* Standalone base styling */
       html, body {
         height: 100%;
-        background-color: #020617;
-        color: #f8fafc;
         margin: 0;
         padding: 0;
         font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -99,7 +109,7 @@ async function buildStandalone() {
       }
     </style>
   </head>
-  <body class="h-full bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-indigo-500/30 selection:text-white">
+  <body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-indigo-500/30 selection:text-slate-900 dark:selection:text-white">
     <div id="root">
       <div id="app-loader" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #020617; color: #f8fafc; text-align: center; padding: 20px;">
         <div style="width: 54px; height: 54px; border-radius: 16px; background: linear-gradient(135deg, #4f46e5, #9333ea); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-weight: 900; font-size: 22px; color: white; box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);">

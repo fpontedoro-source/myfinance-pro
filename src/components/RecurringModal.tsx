@@ -156,24 +156,24 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
   const currencySym = getCurrencySymbol();
 
   return (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
-      <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[92vh] flex flex-col">
-        <div className="w-10 h-1 bg-slate-700 rounded-full mx-auto mb-3 sm:hidden" />
+    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[92vh] flex flex-col">
+        <div className="w-10 h-1 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-3 sm:hidden" />
 
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl transition"
+          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl transition"
           aria-label={t?.close || 'Chiudi'}
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1 pr-10">
-          <Repeat className="w-5 h-5 text-amber-400" />{' '}
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-1 pr-10">
+          <Repeat className="w-5 h-5 text-amber-600 dark:text-amber-400" />{' '}
           {t?.recurringTitle || 'Movimenti Ricorrenti'}
         </h3>
-        <p className="text-[11px] text-slate-400 mb-3">
+        <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-3">
           {isDe
             ? 'Plane wiederkehrende Buchungen mit automatischer Fälligkeitsausführung oder manueller Vorlage.'
             : isEn
@@ -185,7 +185,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
 
         {/* Auto-Execution Notification Settings Bar */}
         {onToggleNotifications && (
-          <div className="mb-3 p-2.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-2">
+          <div className="mb-3 p-2.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-2">
             <button
               type="button"
               onClick={onToggleNotifications}
@@ -194,8 +194,8 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
               <div
                 className={`p-1.5 rounded-lg flex-shrink-0 ${
                   notificationsEnabled
-                    ? 'bg-amber-500/15 text-amber-300'
-                    : 'bg-slate-800 text-slate-500'
+                    ? 'bg-amber-500/15 text-amber-700 dark:text-amber-300'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-500'
                 }`}
               >
                 {notificationsEnabled ? (
@@ -205,14 +205,14 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                 )}
               </div>
               <div className="min-w-0">
-                <div className="text-[11px] font-bold text-slate-200 truncate">
+                <div className="text-[11px] font-bold text-slate-800 dark:text-slate-200 truncate">
                   {isDe
                     ? 'Benachrichtigung bei Fälligkeit'
                     : isEn
                       ? 'Notify on auto-record'
                       : 'Notifica alla registrazione'}
                 </div>
-                <div className="text-[10px] text-slate-400 truncate">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
                   {notificationsEnabled
                     ? isDe
                       ? 'Meldet automatisch Ausgaben & Einnahmen'
@@ -233,13 +233,13 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                 <button
                   type="button"
                   onClick={onEnableBrowserNotifications}
-                  className="px-2 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-500/30 text-indigo-300 text-[10px] font-bold transition"
+                  className="px-2 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-[10px] font-bold transition"
                 >
                   {isDe ? 'Push aktivieren' : isEn ? 'Device Push' : 'Push Dispositivo'}
                 </button>
               )}
               {notificationsEnabled && browserNotifStatus === 'granted' && (
-                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold">
+                <span className="px-2 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-[10px] font-semibold">
                   {isDe ? 'Push AN' : isEn ? 'Push ON' : 'Push ON'}
                 </span>
               )}
@@ -248,8 +248,8 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                 onClick={onToggleNotifications}
                 className={`px-2 py-1 rounded-lg text-[10px] font-bold border transition ${
                   notificationsEnabled
-                    ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
-                    : 'bg-slate-800 border-slate-700 text-slate-400'
+                    ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300'
+                    : 'bg-slate-100 dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400'
                 }`}
               >
                 {notificationsEnabled ? 'ON' : 'OFF'}
@@ -263,7 +263,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
             <button
               type="button"
               onClick={onApplyAll}
-              className="w-full min-h-[42px] bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 border border-amber-500/30 py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-sm"
+              className="w-full min-h-[42px] bg-amber-600/20 hover:bg-amber-600/30 text-amber-700 dark:text-amber-300 border border-amber-500/30 py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-sm"
             >
               <Play className="w-4 h-4 fill-current" />{' '}
               {isDe
@@ -278,13 +278,13 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
         {/* Creation/Edit Form */}
         <form
           onSubmit={handleSubmit}
-          className={`space-y-2.5 bg-slate-950 p-3 rounded-2xl border transition ${
-            editingId ? 'border-amber-500/70 ring-1 ring-amber-500/30' : 'border-slate-800'
+          className={`space-y-2.5 bg-slate-50 dark:bg-slate-950 p-3 rounded-2xl border transition ${
+            editingId ? 'border-amber-500/70 ring-1 ring-amber-500/30' : 'border-slate-200 dark:border-slate-800'
           }`}
         >
           {editingId && (
-            <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
-              <span className="text-[11px] font-bold text-amber-300 flex items-center gap-1.5 truncate">
+            <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-200 dark:border-slate-800">
+              <span className="text-[11px] font-bold text-amber-700 dark:text-amber-300 flex items-center gap-1.5 truncate">
                 <Pencil className="w-3.5 h-3.5 flex-shrink-0" />
                 <span className="truncate">
                   {isDe
@@ -297,7 +297,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
               <button
                 type="button"
                 onClick={resetForm}
-                className="text-[10px] text-slate-400 hover:text-white font-semibold flex-shrink-0"
+                className="text-[10px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold flex-shrink-0"
               >
                 {t?.cancel || 'Annulla'}
               </button>
@@ -305,7 +305,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
           )}
 
           {formError && (
-            <div className="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+            <div className="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{formError}</span>
             </div>
@@ -325,7 +325,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                     ? 'Description (e.g. Bill)'
                     : 'Descrizione (es. Bolletta)'
               }
-              className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2.5 py-2 text-xs focus:outline-none focus:border-amber-500 select-text"
+              className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2.5 py-2 text-xs focus:outline-none focus:border-amber-500 select-text"
             />
             <input
               type="text"
@@ -343,7 +343,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                     ? `Amount (${currencySym})`
                     : `Importo (${currencySym})`
               }
-              className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2.5 py-2 text-xs font-bold tabular-nums focus:outline-none focus:border-amber-500 select-text"
+              className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2.5 py-2 text-xs font-bold tabular-nums focus:outline-none focus:border-amber-500 select-text"
             />
           </div>
 
@@ -351,7 +351,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
             <select
               value={type}
               onChange={(e) => setType(e.target.value as 'EXPENSE' | 'INCOME')}
-              className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2 py-2 text-xs"
+              className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2 py-2 text-xs"
             >
               <option value="EXPENSE">{t?.expenseWord || 'Uscita'}</option>
               <option value="INCOME">{t?.incomeWord || 'Entrata'}</option>
@@ -359,7 +359,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
             <select
               value={getAccountDisplayName(account, accounts)}
               onChange={(e) => setAccount(e.target.value)}
-              className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2 py-2 text-xs"
+              className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2 py-2 text-xs"
             >
               {accounts.map((acc) => (
                 <option key={acc.id} value={acc.name}>
@@ -370,7 +370,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="bg-slate-800 border border-slate-700 text-white rounded-xl px-2 py-2 text-xs"
+              className="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2 py-2 text-xs"
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -383,13 +383,13 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
           {/* Schedule Row: Frequency + Next Due Date */}
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-[10px] text-slate-400 mb-0.5">
+              <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">
                 {isDe ? 'Intervall' : isEn ? 'Frequency' : 'Frequenza'}
               </label>
               <select
                 value={frequency}
                 onChange={(e) => setFrequency(e.target.value as RecurringFrequency)}
-                className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-2.5 py-2 text-xs"
+                className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2.5 py-2 text-xs"
               >
                 <option value="MONTHLY">{formatRecurringFrequencyLabel('MONTHLY', language)}</option>
                 <option value="WEEKLY">{formatRecurringFrequencyLabel('WEEKLY', language)}</option>
@@ -397,14 +397,14 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
               </select>
             </div>
             <div>
-              <label className="block text-[10px] text-slate-400 mb-0.5">
+              <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">
                 {isDe ? 'Nächste Fälligkeit' : isEn ? 'Next Due Date' : 'Prossima Scadenza'}
               </label>
               <input
                 type="date"
                 value={nextDueDate}
                 onChange={(e) => setNextDueDate(e.target.value)}
-                className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-2.5 py-2 text-xs focus:outline-none focus:border-amber-500"
+                className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-2.5 py-2 text-xs focus:outline-none focus:border-amber-500"
               />
             </div>
           </div>
@@ -415,12 +415,12 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
             onClick={() => setAutoExecute((v) => !v)}
             className={`w-full px-3 py-2 rounded-xl border text-xs flex items-center justify-between transition ${
               autoExecute
-                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                : 'bg-slate-900 border-slate-800 text-slate-400'
+                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300'
+                : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400'
             }`}
           >
             <span className="flex items-center gap-2 font-semibold">
-              <Zap className={`w-3.5 h-3.5 ${autoExecute ? 'text-emerald-400' : 'text-slate-500'}`} />
+              <Zap className={`w-3.5 h-3.5 ${autoExecute ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-500'}`} />
               <span>
                 {isDe
                   ? 'Automatisch bei Fälligkeit buchen'
@@ -439,7 +439,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
               <button
                 type="button"
                 onClick={resetForm}
-                className="flex-1 min-h-[40px] bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-semibold transition"
+                className="flex-1 min-h-[40px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 py-2 rounded-xl text-xs font-semibold transition"
               >
                 {t?.cancel || 'Annulla'}
               </button>
@@ -465,19 +465,19 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
 
         {/* Search Filter for Models */}
         <div className="relative">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
           <input
             type="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t?.searchRecurringPlaceholder || 'Cerca modello per nome o categoria...'}
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-8 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition select-text"
+            className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-8 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition select-text"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-0.5"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-0.5"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -491,7 +491,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
               {t?.noRecurringSaved || 'Nessun modello ricorrente salvato.'}
             </p>
           ) : filteredRecurring.length === 0 ? (
-            <div className="p-5 text-center text-xs text-slate-400 bg-slate-950/60 rounded-xl border border-slate-800">
+            <div className="p-5 text-center text-xs text-slate-500 dark:text-slate-400 bg-slate-100/90 dark:bg-slate-950/60 rounded-xl border border-slate-200 dark:border-slate-800">
               <Search className="w-5 h-5 mx-auto mb-1 text-slate-600" />
               <span>
                 {isDe
@@ -513,8 +513,8 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                   key={rec.id}
                   className={`flex justify-between items-center p-2.5 rounded-xl border text-xs transition ${
                     isBeingEdited
-                      ? 'bg-amber-950/30 border-amber-500/70'
-                      : 'bg-slate-950 border-slate-800 hover:border-slate-700'
+                      ? 'bg-amber-50 dark:bg-amber-950/30 border-amber-500/70'
+                      : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
                   <button
@@ -522,13 +522,13 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                     onClick={() => handleStartEdit(rec)}
                     className="truncate mr-2 flex-1 min-w-0 text-left"
                   >
-                    <div className="text-slate-200 font-semibold truncate flex items-center gap-1.5">
+                    <div className="text-slate-800 dark:text-slate-200 font-semibold truncate flex items-center gap-1.5">
                       <span className="truncate">{rec.description}</span>
                       {rec.autoExecute && (
-                        <Zap className="w-3 h-3 text-emerald-400 flex-shrink-0" />
+                        <Zap className="w-3 h-3 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                       )}
                     </div>
-                    <div className="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5 truncate tabular-nums">
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5 truncate tabular-nums">
                       <span className={`${colorClass} font-bold`}>
                         {isExpense ? '-' : '+'}
                         {formatCurrency(rec.amount)}
@@ -536,13 +536,13 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                       <span>·</span>
                       <span className="truncate">{getAccountDisplayName(rec.account, accounts)}</span>
                       <span>·</span>
-                      <span className="truncate text-indigo-300 font-medium">
+                      <span className="truncate text-indigo-700 dark:text-indigo-300 font-medium">
                         {getCategoryDisplayName(rec.category, language)}
                       </span>
                     </div>
                     {(rec.nextDueDate || rec.frequency) && (
                       <div className="text-[10px] text-slate-500 flex items-center gap-1.5 mt-0.5 truncate">
-                        <CalendarClock className="w-3 h-3 text-amber-400/80 flex-shrink-0" />
+                        <CalendarClock className="w-3 h-3 text-amber-600 dark:text-amber-400/80 flex-shrink-0" />
                         <span>{freqLabel}</span>
                         {rec.nextDueDate && (
                           <>
@@ -553,7 +553,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                           </>
                         )}
                         <span>·</span>
-                        <span className={rec.autoExecute ? 'text-emerald-400 font-medium' : 'text-slate-400'}>
+                        <span className={rec.autoExecute ? 'text-emerald-400 font-medium' : 'text-slate-500 dark:text-slate-400'}>
                           {rec.autoExecute
                             ? isDe
                               ? 'Auto'
@@ -575,7 +575,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                       type="button"
                       onClick={() => onApplyRecurring(rec.id)}
                       title={t?.applyRecurringBtn || 'Applica Oggi'}
-                      className="min-h-[36px] bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 px-2.5 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 transition"
+                      className="min-h-[36px] bg-amber-500/20 hover:bg-amber-500/30 text-amber-700 dark:text-amber-300 border border-amber-500/30 px-2.5 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 transition"
                     >
                       <Play className="w-3 h-3 fill-current" /> {t?.applyRecurringBtn || 'Applica'}
                     </button>
@@ -583,7 +583,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                       type="button"
                       onClick={() => handleStartEdit(rec)}
                       title={t?.edit || 'Modifica'}
-                      className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-400 hover:text-indigo-400 rounded-lg transition hover:bg-slate-800"
+                      className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg transition hover:bg-slate-100 dark:hover:bg-slate-800"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
@@ -591,7 +591,7 @@ export const RecurringModal: React.FC<RecurringModalProps> = ({
                       type="button"
                       onClick={() => onDeleteRecurring(rec.id)}
                       title={t?.delete || 'Elimina'}
-                      className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-500 hover:text-rose-400 rounded-lg transition hover:bg-slate-800"
+                      className="min-h-[36px] min-w-[36px] flex items-center justify-center text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 rounded-lg transition hover:bg-slate-100 dark:hover:bg-slate-800"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>

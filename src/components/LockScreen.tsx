@@ -337,7 +337,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-slate-950/98 backdrop-blur-2xl flex flex-col items-center justify-center p-4 overflow-y-auto select-none">
+    <div className="fixed inset-0 z-[9999] bg-slate-100/90 dark:bg-slate-950/98 backdrop-blur-2xl flex flex-col items-center justify-center p-4 overflow-y-auto select-none">
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-72 h-72 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
@@ -345,9 +345,9 @@ export const LockScreen: React.FC<LockScreenProps> = ({
       <div className="w-full max-w-sm relative z-10 flex flex-col items-center my-auto py-2">
         {/* Language Switcher Bar at Top */}
         {onLanguageChange && (
-          <div className="w-full mb-4 p-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center justify-between gap-1.5 shadow-lg">
-            <span className="text-[10px] font-bold text-slate-400 pl-2 flex items-center gap-1 flex-shrink-0">
-              <Globe className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="w-full mb-4 p-1.5 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-1.5 shadow-lg">
+            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 pl-2 flex items-center gap-1 flex-shrink-0">
+              <Globe className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
               <span>{isDe ? 'Sprache' : isEn ? 'Language' : 'Lingua'}</span>
             </span>
             <div className="flex items-center gap-1">
@@ -365,7 +365,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     className={`px-2.5 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1 transition active:scale-95 ${
                       active
                         ? 'bg-indigo-600 text-white shadow shadow-indigo-600/30'
-                        : 'bg-slate-950/70 text-slate-400 hover:text-white border border-slate-800'
+                        : 'bg-slate-100/90 dark:bg-slate-950/70 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
                     }`}
                   >
                     <span>{langOpt.flag}</span>
@@ -380,28 +380,28 @@ export const LockScreen: React.FC<LockScreenProps> = ({
         {/* App Logo / Shield */}
         <div className="relative mb-3">
           <div className="w-14 h-14 rounded-3xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-0.5 shadow-2xl shadow-indigo-600/40 flex items-center justify-center">
-            <div className="w-full h-full bg-slate-900 rounded-[22px] flex items-center justify-center">
+            <div className="w-full h-full bg-white dark:bg-slate-900 rounded-[22px] flex items-center justify-center">
               {registered ? (
-                <ShieldCheck className="w-7 h-7 text-cyan-400" />
+                <ShieldCheck className="w-7 h-7 text-cyan-600 dark:text-cyan-400" />
               ) : (
-                <UserPlus className="w-7 h-7 text-cyan-400" />
+                <UserPlus className="w-7 h-7 text-cyan-600 dark:text-cyan-400" />
               )}
             </div>
           </div>
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-indigo-600 border-2 border-slate-950 flex items-center justify-center text-white shadow-md">
+          <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-indigo-600 border-2 border-white dark:border-slate-950 flex items-center justify-center text-white shadow-md">
             <Lock className="w-3 h-3" />
           </div>
         </div>
 
         {/* Title */}
-        <h1 className="text-xl font-black text-white tracking-tight text-center">
+        <h1 className="text-xl font-black text-slate-900 dark:text-white tracking-tight text-center">
           {t?.lockScreenTitle || 'MyFinance Pro'}
         </h1>
 
         {!registered ? (
           <>
             {/* First-Launch Mandatory Registration View */}
-            <p className="text-xs text-slate-300 mt-1 text-center max-w-[310px] leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 text-center max-w-[310px] leading-relaxed">
               {isDe
                 ? 'Registrieren Sie sich mit Vorname, Nachname, E-Mail und Passwort, um die App zu öffnen.'
                 : isEn
@@ -411,13 +411,13 @@ export const LockScreen: React.FC<LockScreenProps> = ({
 
             <form
               onSubmit={handleRegisterSubmit}
-              className={`w-full bg-slate-900/90 border border-slate-800 rounded-3xl p-4 shadow-2xl mt-4 space-y-2.5 transition-transform ${
+              className={`w-full bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-2xl mt-4 space-y-2.5 transition-transform ${
                 shake ? 'animate-shake' : ''
               }`}
             >
-              <div className="flex items-center justify-between pb-1 border-b border-slate-800/80">
-                <span className="text-xs font-bold text-white flex items-center gap-1.5">
-                  <UserPlus className="w-4 h-4 text-cyan-400" />
+              <div className="flex items-center justify-between pb-1 border-b border-slate-200/80 dark:border-slate-800/80">
+                <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <UserPlus className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                   <span>
                     {isDe ? 'Konto erstellen' : isEn ? 'Create Account' : 'Registrazione Utente'}
                   </span>
@@ -425,7 +425,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowRegPassword(!showRegPassword)}
-                  className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1"
+                  className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1"
                 >
                   {showRegPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                   <span>
@@ -446,7 +446,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Vorname *' : isEn ? 'First Name *' : 'Nome *'}
                   </label>
                   <input
@@ -459,11 +459,11 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     }}
                     required
                     placeholder={isDe ? 'z.B. Max' : isEn ? 'e.g. John' : 'es. Mario'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Nachname *' : isEn ? 'Last Name *' : 'Cognome *'}
                   </label>
                   <input
@@ -475,13 +475,13 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     }}
                     required
                     placeholder={isDe ? 'z.B. Mustermann' : isEn ? 'e.g. Smith' : 'es. Rossi'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-semibold text-slate-400 mb-1">
+                <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                   {isDe ? 'E-Mail-Adresse *' : isEn ? 'Email Address *' : 'Email *'}
                 </label>
                 <div className="relative">
@@ -494,7 +494,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     }}
                     required
                     placeholder="es. nome@gmail.com"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                   <Mail className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -509,7 +509,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Passwort *' : isEn ? 'Password *' : 'Password *'}
                   </label>
                   <input
@@ -521,11 +521,11 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     }}
                     required
                     placeholder={isDe ? 'Min. 4 Zeichen' : isEn ? 'Min. 4 chars' : 'Min. 4 caratteri'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Bestätigen *' : isEn ? 'Confirm *' : 'Conferma *'}
                   </label>
                   <input
@@ -537,13 +537,13 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     }}
                     required
                     placeholder={isDe ? 'Wiederholen' : isEn ? 'Repeat password' : 'Ripeti password'}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-semibold text-slate-400 mb-1">
+                <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                   {isDe
                     ? 'Passwort-Hinweis (optional)'
                     : isEn
@@ -561,13 +561,13 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                         ? 'e.g. Birth year...'
                         : 'es. Anno di nascita...'
                   }
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               {regError && (
-                <div className="px-3 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-[11px] flex items-start gap-1.5">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400 mt-0.5" />
+                <div className="px-3 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-[11px] flex items-start gap-1.5">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-600 dark:text-rose-400 mt-0.5" />
                   <span className="leading-snug font-medium">{regError}</span>
                 </div>
               )}
@@ -598,24 +598,24 @@ export const LockScreen: React.FC<LockScreenProps> = ({
           <>
             {/* Registered User Login View */}
             {fullName ? (
-              <div className="mt-2 px-3 py-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 flex items-center gap-2">
-                <User className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+              <div className="mt-2 px-3 py-1.5 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 flex items-center gap-2">
+                <User className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
                 <div className="text-left">
-                  <span className="text-xs font-bold text-white block leading-tight">{fullName}</span>
+                  <span className="text-xs font-bold text-slate-900 dark:text-white block leading-tight">{fullName}</span>
                   {accountEmail && (
-                    <span className="text-[10px] text-slate-400 block leading-tight">{accountEmail}</span>
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 block leading-tight">{accountEmail}</span>
                   )}
                 </div>
               </div>
             ) : (
-              <p className="text-xs text-slate-400 mt-1 text-center max-w-[280px]">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 text-center max-w-[280px]">
                 {t?.lockScreenSubtitle || 'Inserisci la password per sbloccare i tuoi dati'}
               </p>
             )}
 
             <form
               onSubmit={handlePasswordSubmit}
-              className={`w-full bg-slate-900/80 border border-slate-800/90 rounded-3xl p-4 shadow-xl transition-transform mt-4 ${
+              className={`w-full bg-white/80 dark:bg-slate-900/80 border border-slate-200/90 dark:border-slate-800/90 rounded-3xl p-4 shadow-xl transition-transform mt-4 ${
                 shake ? 'animate-shake' : ''
               }`}
             >
@@ -629,12 +629,12 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     if (errorMsg) setErrorMsg(null);
                   }}
                   placeholder={t?.passwordPlaceholder || 'Inserisci la Password...'}
-                  className="w-full bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 rounded-2xl pl-4 pr-11 py-3 focus:outline-none focus:border-indigo-500 transition tracking-widest text-center font-mono"
+                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm text-slate-900 dark:text-white placeholder-slate-500 rounded-2xl pl-4 pr-11 py-3 focus:outline-none focus:border-indigo-500 transition tracking-widest text-center font-mono"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 p-1"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 p-1"
                   aria-label="Toggle password visibility"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -642,8 +642,8 @@ export const LockScreen: React.FC<LockScreenProps> = ({
               </div>
 
               {errorMsg && (
-                <div className="mb-2.5 px-3 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-1.5 animate-fade-in">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400 mt-0.5" />
+                <div className="mb-2.5 px-3 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-start gap-1.5 animate-fade-in">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-600 dark:text-rose-400 mt-0.5" />
                   <span className="leading-snug text-[11px] font-medium">{errorMsg}</span>
                 </div>
               )}
@@ -662,9 +662,9 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                   type="button"
                   onClick={handleFingerprintUnlock}
                   disabled={isBiometricVerifying || isVerifying}
-                  className="w-full mt-2 py-2.5 rounded-2xl bg-slate-950 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-bold text-xs flex items-center justify-center gap-2 transition active:scale-98 shadow-md shadow-cyan-500/10 disabled:opacity-60"
+                  className="w-full mt-2 py-2.5 rounded-2xl bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-800 border border-cyan-500/40 text-cyan-700 dark:text-cyan-300 font-bold text-xs flex items-center justify-center gap-2 transition active:scale-98 shadow-md shadow-cyan-500/10 disabled:opacity-60"
                 >
-                  <Fingerprint className={`w-4 h-4 text-cyan-400 ${isBiometricVerifying ? 'animate-pulse' : ''}`} />
+                  <Fingerprint className={`w-4 h-4 text-cyan-600 dark:text-cyan-400 ${isBiometricVerifying ? 'animate-pulse' : ''}`} />
                   <span>
                     {isBiometricVerifying
                       ? isDe
@@ -681,11 +681,11 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                 </button>
               )}
 
-              <div className="mt-2.5 flex items-center justify-between text-[11px] text-slate-400 px-1">
+              <div className="mt-2.5 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 px-1">
                 <button
                   type="button"
                   onClick={() => setShowKeypad(!showKeypad)}
-                  className="text-indigo-400 hover:text-indigo-300 transition"
+                  className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition"
                 >
                   {showKeypad
                     ? isDe
@@ -700,7 +700,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setShowHint(!showHint)}
-                    className="text-slate-400 hover:text-slate-300 flex items-center gap-1"
+                    className="text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 flex items-center gap-1"
                   >
                     <HelpCircle className="w-3 h-3" />
                     <span>{t?.passwordHintLabel || 'Suggerimento'}</span>
@@ -709,12 +709,12 @@ export const LockScreen: React.FC<LockScreenProps> = ({
               </div>
 
               {showHint && settings.passwordHint && (
-                <div className="mt-2 p-2 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-300 italic text-center">
+                <div className="mt-2 p-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-[11px] text-slate-600 dark:text-slate-300 italic text-center">
                   {settings.passwordHint}
                 </div>
               )}
 
-              <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-center">
+              <div className="mt-3 pt-2.5 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center">
                 <button
                   type="button"
                   onClick={() => {
@@ -725,9 +725,9 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     setRecoveryError(null);
                     setRecoverySuccessMsg(null);
                   }}
-                  className="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1.5 transition hover:underline py-1"
+                  className="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-1.5 transition hover:underline py-1"
                 >
-                  <Mail className="w-3.5 h-3.5 text-indigo-400" />
+                  <Mail className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                   <span>
                     {isDe
                       ? 'Passwort vergessen? Per OTP-Code entsperren'
@@ -740,13 +740,13 @@ export const LockScreen: React.FC<LockScreenProps> = ({
             </form>
 
             {showKeypad && (
-              <div className="w-full mt-3 bg-slate-900/60 border border-slate-800/80 rounded-3xl p-3 grid grid-cols-3 gap-2 animate-fade-in">
+              <div className="w-full mt-3 bg-white/60 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-3 grid grid-cols-3 gap-2 animate-fade-in">
                 {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
                   <button
                     key={digit}
                     type="button"
                     onClick={() => handleKeypadPress(digit)}
-                    className="py-3 rounded-2xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-base font-bold text-white transition active:scale-95"
+                    className="py-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/80 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white transition active:scale-95"
                   >
                     {digit}
                   </button>
@@ -754,23 +754,23 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                 <button
                   type="button"
                   onClick={() => handleKeypadPress('CLEAR')}
-                  className="py-3 rounded-2xl bg-slate-950/60 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-rose-400 transition active:scale-95"
+                  className="py-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/60 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-rose-600 dark:text-rose-400 transition active:scale-95"
                 >
                   C
                 </button>
                 <button
                   type="button"
                   onClick={() => handleKeypadPress('0')}
-                  className="py-3 rounded-2xl bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-base font-bold text-white transition active:scale-95"
+                  className="py-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/80 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white transition active:scale-95"
                 >
                   0
                 </button>
                 <button
                   type="button"
                   onClick={() => handleKeypadPress('BACK')}
-                  className="py-3 rounded-2xl bg-slate-950/60 hover:bg-slate-800 border border-slate-800 text-slate-300 flex items-center justify-center transition active:scale-95"
+                  className="py-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/60 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center transition active:scale-95"
                 >
-                  <Delete className="w-5 h-5 text-slate-400" />
+                  <Delete className="w-5 h-5 text-slate-500 dark:text-slate-400" />
                 </button>
               </div>
             )}
@@ -782,9 +782,9 @@ export const LockScreen: React.FC<LockScreenProps> = ({
             <button
               type="button"
               onClick={onOpenPrivacyPolicy}
-              className="text-[11px] text-slate-400 hover:text-indigo-300 font-semibold inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/70 border border-slate-800 transition"
+              className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800 transition"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
               <span>
                 {isDe ? 'Datenschutzerklärung' : 'Privacy Policy'}
               </span>
@@ -796,21 +796,21 @@ export const LockScreen: React.FC<LockScreenProps> = ({
       {/* Modal Recupero Password tramite Email / OTP */}
       {showRecoveryModal && (
         <div className="fixed inset-0 z-[10000] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-sm w-full p-5 shadow-2xl space-y-4 animate-scale-up">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-sm w-full p-5 shadow-2xl space-y-4 animate-scale-up">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm text-white">
+                  <h3 className="font-bold text-sm text-slate-900 dark:text-white">
                     {isDe
                       ? 'Passwort wiederherstellen'
                       : isEn
                         ? 'Password Recovery'
                         : 'Recupero Password (OTP)'}
                   </h3>
-                  <p className="text-[10px] text-slate-400">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400">
                     {recoveryStep === 'REQUEST'
                       ? isDe
                         ? '6-stelligen OTP-Code generieren'
@@ -828,29 +828,29 @@ export const LockScreen: React.FC<LockScreenProps> = ({
               <button
                 type="button"
                 onClick={() => setShowRecoveryModal(false)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg"
+                className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {recoveryError && (
-              <div className="p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" />
+              <div className="p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-start gap-2">
+                <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />
                 <span className="leading-snug text-[11px] font-medium">{recoveryError}</span>
               </div>
             )}
 
             {recoverySuccessMsg && (
-              <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs flex items-start gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+              <div className="p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs flex items-start gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                 <span className="leading-snug text-[11px] font-medium">{recoverySuccessMsg}</span>
               </div>
             )}
 
             {recoveryStep === 'REQUEST' ? (
               <form onSubmit={handleRequestRecoveryEmail} className="space-y-3">
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   {isDe
                     ? 'Geben Sie Ihre registrierte E-Mail-Adresse ein. Ein 6-stelliger OTP-Sicherheitscode wird sofort erstellt.'
                     : isEn
@@ -859,7 +859,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                 </p>
 
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
                     {isDe ? 'E-Mail-Adresse' : isEn ? 'Email Address' : 'Email Registrata'}
                   </label>
                   <div className="relative">
@@ -870,7 +870,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                       placeholder="es. nome@gmail.com"
                       required
                       autoFocus
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
+                      className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
                     />
                     <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                   </div>
@@ -880,7 +880,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => setShowRecoveryModal(false)}
-                    className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 text-xs font-semibold transition"
+                    className="flex-1 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 text-xs font-semibold transition"
                   >
                     {isDe ? 'Abbrechen' : isEn ? 'Cancel' : 'Annulla'}
                   </button>
@@ -906,7 +906,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
               <form onSubmit={handleResetPasswordSubmit} className="space-y-3">
                 {sentOtpCode && (
                   <div className="p-3.5 rounded-2xl bg-indigo-500/15 border border-indigo-500/30 text-center space-y-2">
-                    <span className="text-[11px] text-slate-300 block font-medium">
+                    <span className="text-[11px] text-slate-600 dark:text-slate-300 block font-medium">
                       {isDe
                         ? 'Ihr 6-stelliger OTP-Code:'
                         : isEn
@@ -914,27 +914,27 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                           : 'Il tuo codice OTP a 6 cifre:'}
                     </span>
                     <div className="flex items-center justify-center gap-2">
-                      <span className="text-2xl font-mono font-black tracking-widest text-indigo-300 bg-slate-950 px-4 py-1.5 rounded-xl border border-indigo-500/40 select-all">
+                      <span className="text-2xl font-mono font-black tracking-widest text-indigo-700 dark:text-indigo-300 bg-slate-50 dark:bg-slate-950 px-4 py-1.5 rounded-xl border border-indigo-500/40 select-all">
                         {sentOtpCode}
                       </span>
                       <button
                         type="button"
                         onClick={() => setRecoveryCodeInput(sentOtpCode)}
-                        className="px-2.5 py-1.5 bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 border border-indigo-500/40 rounded-xl text-xs font-bold transition active:scale-95 flex items-center gap-1"
+                        className="px-2.5 py-1.5 bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-800 dark:text-indigo-200 border border-indigo-500/40 rounded-xl text-xs font-bold transition active:scale-95 flex items-center gap-1"
                         title="Copia codice nel campo"
                       >
-                        <Check className="w-3.5 h-3.5 text-indigo-300" />
+                        <Check className="w-3.5 h-3.5 text-indigo-700 dark:text-indigo-300" />
                         <span>{isDe ? 'Einfügen' : isEn ? 'Fill' : 'Inserisci'}</span>
                       </button>
                     </div>
                     <div className="flex items-center justify-center gap-3 pt-0.5">
-                      <span className="text-[10px] text-slate-400">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400">
                         {isDe ? 'Gültig für 15 Min.' : isEn ? 'Valid for 15 min.' : 'Valido per 15 min.'}
                       </span>
                       {recoveryMailtoUrl && (
                         <a
                           href={recoveryMailtoUrl}
-                          className="text-[10px] text-cyan-400 hover:text-cyan-300 underline font-semibold inline-flex items-center gap-1"
+                          className="text-[10px] text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 underline font-semibold inline-flex items-center gap-1"
                         >
                           <Mail className="w-3 h-3" />
                           <span>
@@ -951,7 +951,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                 )}
 
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
                     {isDe ? '6-stelliger OTP-Code' : isEn ? '6-digit OTP Code' : 'Codice OTP a 6 cifre'}
                   </label>
                   <input
@@ -963,12 +963,12 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                     onChange={(e) => setRecoveryCodeInput(e.target.value.replace(/\D/g, ''))}
                     placeholder="123456"
                     required
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-center font-mono text-xl tracking-widest text-indigo-300 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-center font-mono text-xl tracking-widest text-indigo-700 dark:text-indigo-300 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
+                  <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
                     {isDe ? 'Neues Passwort / Neue PIN' : isEn ? 'New Password / PIN' : 'Nuova Password o PIN'}
                   </label>
                   <div className="relative">
@@ -979,13 +979,13 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                       placeholder="Min. 4 caratteri o cifre"
                       required
                       autoFocus
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-10 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
+                      className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-10 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
                     />
                     <Key className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                     <button
                       type="button"
                       onClick={() => setShowNewRecoveryPassword(!showNewRecoveryPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 p-1"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 p-1"
                     >
                       {showNewRecoveryPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                     </button>
@@ -999,7 +999,7 @@ export const LockScreen: React.FC<LockScreenProps> = ({
                       setRecoveryStep('REQUEST');
                       setRecoveryError(null);
                     }}
-                    className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 text-xs font-semibold transition flex items-center justify-center gap-1"
+                    className="py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 text-xs font-semibold transition flex items-center justify-center gap-1"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>{isDe ? 'Zurück' : isEn ? 'Back' : 'Indietro'}</span>

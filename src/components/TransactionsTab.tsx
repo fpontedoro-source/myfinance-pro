@@ -136,8 +136,8 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <List className="w-4 h-4 text-indigo-400" /> {t?.transactionsTitle || 'Movimenti'} (
+        <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <List className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.transactionsTitle || 'Movimenti'} (
           <span>{transactions.length}</span>)
         </h2>
         <div className="flex items-center gap-1.5 no-print">
@@ -151,7 +151,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                     ? 'Import Bank Statement (CSV / Excel)'
                     : 'Importa Estratto Conto (CSV / Excel)'
               }
-              className="text-xs bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-xl transition-all flex items-center gap-1 font-semibold active:scale-95"
+              className="text-xs bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-xl transition-all flex items-center gap-1 font-semibold active:scale-95"
             >
               <FileSpreadsheet className="w-3.5 h-3.5" />
               <span>CSV / XLS</span>
@@ -161,7 +161,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
             <button
               onClick={onOpenPrintModal}
               title={t?.printStatementBtn || 'Stampa / Esporta'}
-              className="text-xs bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700/80 px-2.5 py-1 rounded-xl transition-all flex items-center gap-1 font-semibold active:scale-95"
+              className="text-xs bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-cyan-600 dark:text-cyan-400 border border-slate-300/80 dark:border-slate-700/80 px-2.5 py-1 rounded-xl transition-all flex items-center gap-1 font-semibold active:scale-95"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>{t?.printStatementBtn || 'Stampa'}</span>
@@ -170,7 +170,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
           {hasActiveFilters && (
             <button
               onClick={onClearFilters}
-              className="text-xs bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-xl transition-all flex items-center gap-1"
+              className="text-xs bg-rose-500/20 hover:bg-rose-500/30 text-rose-700 dark:text-rose-300 border border-rose-500/30 px-2.5 py-1 rounded-xl transition-all flex items-center gap-1"
             >
               <X className="w-3.5 h-3.5" /> {t?.resetFiltersBtn || 'Azzeramento'}
             </button>
@@ -180,13 +180,13 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
 
       {/* Mobile Search Bar */}
       <div className="relative w-full no-print">
-        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
         <input
           type="search"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder={t?.searchPlaceholder || 'Cerca descrizione, conto, categoria, importo...'}
-          className="w-full bg-slate-900 border border-slate-800 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
+          className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl pl-10 pr-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition"
         />
       </div>
 
@@ -202,7 +202,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                 className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all ${
                   isSelected
                     ? 'bg-indigo-600 text-white shadow-md font-semibold'
-                    : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
+                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
                 }`}
               >
                 {chip.label}
@@ -213,17 +213,17 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
       </div>
 
       {/* Date Range Filter Card (es. dal 15.10.2026 al 10.11.2026) */}
-      <div className="no-print bg-slate-900/90 border border-slate-800 rounded-2xl p-3 space-y-2.5 shadow-sm">
+      <div className="no-print bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 space-y-2.5 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center flex-shrink-0">
+            <div className="w-7 h-7 rounded-xl bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
               <Calendar className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs font-bold text-white block">
+              <span className="text-xs font-bold text-slate-900 dark:text-white block">
                 {t?.dateRangeFilterTitle || 'Filtra per Data (Dal ... Al ...)'}
               </span>
-              <span className="text-[10px] text-slate-400 block">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                 es. dal 15.10.2026 al 10.11.2026
               </span>
             </div>
@@ -231,7 +231,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
           {(startDate || endDate) && (
             <button
               onClick={handleClearCustomDates}
-              className="text-[11px] text-rose-400 hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 px-2 py-0.5 rounded-lg flex items-center gap-1 transition"
+              className="text-[11px] text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 px-2 py-0.5 rounded-lg flex items-center gap-1 transition"
             >
               <X className="w-3 h-3" />
               <span>{t?.clearDateRange || 'Azzera date'}</span>
@@ -242,10 +242,10 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
         <div className="grid grid-cols-2 gap-2">
           {/* Da data (Dal) */}
           <div>
-            <label className="block text-[10px] text-slate-400 font-medium mb-1 flex items-center justify-between">
+            <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1 flex items-center justify-between">
               <span>{t?.dateFromLabel || 'Dal'}</span>
               {startDate && (
-                <span className="text-indigo-400 font-mono font-bold text-[10px]">
+                <span className="text-indigo-600 dark:text-indigo-400 font-mono font-bold text-[10px]">
                   {formatDateEuropean(startDate)}
                 </span>
               )}
@@ -257,16 +257,16 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                 if (onStartDateChange) onStartDateChange(e.target.value);
                 onPeriodChange('CUSTOM');
               }}
-              className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 text-xs text-white rounded-xl px-2.5 py-1.5 focus:outline-none transition"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 text-xs text-slate-900 dark:text-white rounded-xl px-2.5 py-1.5 focus:outline-none transition"
             />
           </div>
 
           {/* A data (Al) */}
           <div>
-            <label className="block text-[10px] text-slate-400 font-medium mb-1 flex items-center justify-between">
+            <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1 flex items-center justify-between">
               <span>{t?.dateToLabel || 'Al'}</span>
               {endDate && (
-                <span className="text-indigo-400 font-mono font-bold text-[10px]">
+                <span className="text-indigo-600 dark:text-indigo-400 font-mono font-bold text-[10px]">
                   {formatDateEuropean(endDate)}
                 </span>
               )}
@@ -278,7 +278,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                 if (onEndDateChange) onEndDateChange(e.target.value);
                 onPeriodChange('CUSTOM');
               }}
-              className="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 text-xs text-white rounded-xl px-2.5 py-1.5 focus:outline-none transition"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-indigo-500 text-xs text-slate-900 dark:text-white rounded-xl px-2.5 py-1.5 focus:outline-none transition"
             />
           </div>
         </div>
@@ -296,7 +296,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
               if (onEndDateChange) onEndDateChange(todayStr);
               onPeriodChange('CUSTOM');
             }}
-            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700/60 whitespace-nowrap transition active:scale-95"
+            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 border border-slate-300/60 dark:border-slate-700/60 whitespace-nowrap transition active:scale-95"
           >
             {t?.periodToday || 'Oggi'}
           </button>
@@ -309,7 +309,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
               if (onEndDateChange) onEndDateChange(now.toISOString().split('T')[0]);
               onPeriodChange('CUSTOM');
             }}
-            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700/60 whitespace-nowrap transition active:scale-95"
+            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 border border-slate-300/60 dark:border-slate-700/60 whitespace-nowrap transition active:scale-95"
           >
             {t?.quickDays7 || 'Ultimi 7 gg'}
           </button>
@@ -322,7 +322,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
               if (onEndDateChange) onEndDateChange(now.toISOString().split('T')[0]);
               onPeriodChange('CUSTOM');
             }}
-            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700/60 whitespace-nowrap transition active:scale-95"
+            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 border border-slate-300/60 dark:border-slate-700/60 whitespace-nowrap transition active:scale-95"
           >
             {t?.quickDays30 || 'Ultimi 30 gg'}
           </button>
@@ -335,7 +335,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
               if (onEndDateChange) onEndDateChange(lastDay.toISOString().split('T')[0]);
               onPeriodChange('CUSTOM');
             }}
-            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700/60 whitespace-nowrap transition active:scale-95"
+            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 border border-slate-300/60 dark:border-slate-700/60 whitespace-nowrap transition active:scale-95"
           >
             {t?.periodMonth || 'Questo Mese'}
           </button>
@@ -348,7 +348,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
               if (onEndDateChange) onEndDateChange(lastDay.toISOString().split('T')[0]);
               onPeriodChange('CUSTOM');
             }}
-            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700/60 whitespace-nowrap transition active:scale-95"
+            className="text-[10px] px-2 py-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-600 dark:text-slate-300 border border-slate-300/60 dark:border-slate-700/60 whitespace-nowrap transition active:scale-95"
           >
             {t?.periodLastMonth || 'Mese Scorso'}
           </button>
@@ -356,15 +356,15 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
 
         {/* Active Range Summary indicator */}
         {(startDate || endDate) && (
-          <div className="flex items-center justify-between bg-indigo-950/40 border border-indigo-500/30 rounded-xl px-2.5 py-1.5 text-[11px] text-indigo-200">
+          <div className="flex items-center justify-between bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-500/30 rounded-xl px-2.5 py-1.5 text-[11px] text-indigo-800 dark:text-indigo-200">
             <span className="flex items-center gap-1.5 truncate">
               <span className="font-semibold">{t?.dateRangeActiveLabel || 'Intervallo attivo'}:</span>
-              <span className="font-mono font-bold text-white">
+              <span className="font-mono font-bold text-slate-900 dark:text-white">
                 {startDate ? `${t?.dateFromLabel || 'Dal'} ${formatDateEuropean(startDate)}` : ''}{' '}
                 {endDate ? `${t?.dateToLabel || 'al'} ${formatDateEuropean(endDate)}` : ''}
               </span>
             </span>
-            <span className="bg-indigo-600/30 px-2 py-0.5 rounded-md text-[10px] font-bold text-indigo-300 flex-shrink-0">
+            <span className="bg-indigo-600/30 px-2 py-0.5 rounded-md text-[10px] font-bold text-indigo-700 dark:text-indigo-300 flex-shrink-0">
               {transactions.length} {t?.rowsWord || 'movimenti'}
             </span>
           </div>
@@ -372,13 +372,13 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
       </div>
 
       {/* Filters Selects Grid */}
-      <div className="grid grid-cols-2 gap-2 no-print bg-slate-900/60 p-2.5 rounded-2xl border border-slate-800/80">
+      <div className="grid grid-cols-2 gap-2 no-print bg-white/60 dark:bg-slate-900/60 p-2.5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80">
         <div>
-          <label className="block text-[10px] text-slate-400 mb-0.5">{t?.periodFilterLabel || 'Periodo'}</label>
+          <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">{t?.periodFilterLabel || 'Periodo'}</label>
           <select
             value={selectedPeriod}
             onChange={(e) => handlePeriodSelect(e.target.value as PeriodFilter)}
-            className="w-full bg-slate-950 border border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
           >
             <option value="ALL">{t?.periodAll || 'Tutto'}</option>
             <option value="CUSTOM">{t?.periodCustom || 'Intervallo date'}</option>
@@ -398,11 +398,11 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
         </div>
 
         <div>
-          <label className="block text-[10px] text-slate-400 mb-0.5">{t?.typeFilterLabel || 'Tipo'}</label>
+          <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">{t?.typeFilterLabel || 'Tipo'}</label>
           <select
             value={selectedType}
             onChange={(e) => onTypeChange(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
           >
             <option value="ALL">{t?.allTypes || 'Tutti i tipi'}</option>
             <option value="INCOME">{t?.incomeType || 'Entrate'}</option>
@@ -412,11 +412,11 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
         </div>
 
         <div>
-          <label className="block text-[10px] text-slate-400 mb-0.5">{t?.accountFilterLabel || 'Conto'}</label>
+          <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">{t?.accountFilterLabel || 'Conto'}</label>
           <select
             value={selectedAccount}
             onChange={(e) => onAccountChange(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
           >
             <option value="ALL">{t?.allAccountsOption || 'Tutti i conti'}</option>
             {accounts.map((acc) => (
@@ -428,11 +428,11 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
         </div>
 
         <div>
-          <label className="block text-[10px] text-slate-400 mb-0.5">{t?.categoryFilterLabel || 'Categoria'}</label>
+          <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">{t?.categoryFilterLabel || 'Categoria'}</label>
           <select
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-200 focus:outline-none focus:border-indigo-500"
+            className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
           >
             <option value="ALL">{t?.allCategoriesOption || 'Tutte le categorie'}</option>
             {categories.map((cat) => (
@@ -445,13 +445,13 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
 
         {availableTags.length > 0 && onTagChange && (
           <div className="col-span-2">
-            <label className="block text-[10px] text-slate-400 mb-0.5">
+            <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-0.5">
               {language === 'de' ? 'Tag-Filter' : language === 'en' ? 'Tag filter' : 'Filtra per #Tag'}
             </label>
             <select
               value={selectedTag}
               onChange={(e) => onTagChange(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-200 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs rounded-xl px-2 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
             >
               <option value="ALL">
                 {language === 'de' ? 'Alle Tags' : language === 'en' ? 'All tags' : 'Tutti i tag'}
@@ -469,7 +469,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
       {/* List */}
       <div className="space-y-2 pt-1">
         {transactions.length === 0 ? (
-          <div className="text-center py-12 text-slate-500 print-text-dark bg-slate-900/40 rounded-3xl border border-slate-800/60">
+          <div className="text-center py-12 text-slate-500 print-text-dark bg-white/40 dark:bg-slate-900/40 rounded-3xl border border-slate-200/60 dark:border-slate-800/60">
             <Inbox className="w-8 h-8 mx-auto mb-2 opacity-40 no-print" />
             <p className="text-xs font-semibold">{t?.noTransactionsFound || 'Nessun movimento trovato.'}</p>
             <p className="text-[10px] text-slate-500 mt-0.5">{t?.noTransactionsFoundSub || 'Prova a modificare i filtri o premi + per aggiungerne uno.'}</p>
@@ -505,11 +505,11 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
             return (
               <div
                 key={tx.id}
-                className="flex items-center justify-between p-3 rounded-2xl bg-slate-900 border border-slate-800/80 active:bg-slate-800 transition-all print-card"
+                className="flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 active:bg-slate-100 dark:active:bg-slate-800 transition-all print-card"
               >
                 <div className="flex items-center space-x-2.5 overflow-hidden">
                   {isTransfer ? (
-                    <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 no-print flex-shrink-0 flex items-center justify-center">
+                    <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20 no-print flex-shrink-0 flex items-center justify-center">
                       <ArrowRightLeft className="w-3.5 h-3.5" />
                     </div>
                   ) : (
@@ -520,13 +520,13 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                     </div>
                   )}
                   <div className="truncate flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-white truncate print-text-dark flex items-center gap-1.5">
+                    <div className="text-xs font-semibold text-slate-900 dark:text-white truncate print-text-dark flex items-center gap-1.5">
                       <span className="truncate">{tx.description}</span>
                     </div>
-                    <div className="text-[10px] text-slate-400 print-text-dark flex items-center gap-1.5 mt-0.5 truncate">
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 print-text-dark flex items-center gap-1.5 mt-0.5 truncate">
                       <span>{tx.date}</span>
                       <span>•</span>
-                      <span className="text-slate-300 font-medium truncate">
+                      <span className="text-slate-600 dark:text-slate-300 font-medium truncate">
                         {isTransfer ? subtext : accDisplayName}
                       </span>
                       {!isTransfer && tx.category && (
@@ -541,14 +541,14 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                       )}
                     </div>
                     {tx.tags && tx.tags.length > 0 && (
-                      <div className="text-[10px] text-cyan-300/90 mt-0.5 truncate">
+                      <div className="text-[10px] text-cyan-700 dark:text-cyan-300/90 mt-0.5 truncate">
                         {tx.tags.map((tg) => `#${tg}`).join(' · ')}
                       </div>
                     )}
                     {tx.notes && (
-                      <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-indigo-300 bg-indigo-950/40 border border-indigo-500/20 px-2.5 py-1 rounded-xl max-w-full">
-                        <FileText className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0 mt-0.5" />
-                        <span className="break-words line-clamp-2 italic font-normal text-slate-300">{tx.notes}</span>
+                      <div className="mt-1.5 flex items-start gap-1.5 text-[11px] text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-500/20 px-2.5 py-1 rounded-xl max-w-full">
+                        <FileText className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" />
+                        <span className="break-words line-clamp-2 italic font-normal text-slate-600 dark:text-slate-300">{tx.notes}</span>
                       </div>
                     )}
                   </div>
@@ -565,7 +565,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                       const toCurr = toAcc?.currency;
                       if (!toCurr || toCurr === txCurrency) return null;
                       return (
-                        <span className="text-[10px] font-semibold tabular-nums text-cyan-300 block">
+                        <span className="text-[10px] font-semibold tabular-nums text-cyan-700 dark:text-cyan-300 block">
                           → {formatCurrency(tx.convertedAmount, true, toCurr)}
                         </span>
                       );
@@ -581,7 +581,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                             ? 'Duplicate today'
                             : 'Duplica ad oggi'
                       }
-                      className="text-slate-400 hover:text-emerald-400 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg no-print hover:bg-slate-800 transition"
+                      className="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg no-print hover:bg-slate-100 dark:hover:bg-slate-800 transition"
                     >
                       <CopyPlus className="w-3.5 h-3.5" />
                     </button>
@@ -590,7 +590,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                     <button
                       onClick={() => onEditTransaction(tx)}
                       title={t?.edit || 'Modifica'}
-                      className="text-slate-400 hover:text-indigo-400 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg no-print hover:bg-slate-800 transition"
+                      className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg no-print hover:bg-slate-100 dark:hover:bg-slate-800 transition"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
@@ -598,7 +598,7 @@ export const TransactionsTab: React.FC<TransactionsTabProps> = ({
                   <button
                     onClick={() => onDeleteTransaction(tx.id)}
                     title={t?.delete || 'Elimina'}
-                    className="text-slate-500 hover:text-rose-400 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg no-print hover:bg-slate-800 transition"
+                    className="text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-lg no-print hover:bg-slate-100 dark:hover:bg-slate-800 transition"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>

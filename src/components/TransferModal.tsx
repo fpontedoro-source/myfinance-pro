@@ -113,24 +113,24 @@ export const TransferModal: React.FC<TransferModalProps> = ({
       : 0;
 
   return (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print animate-fade-in">
-      <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up">
+    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print animate-fade-in">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up">
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition hover:bg-slate-800"
+          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition hover:bg-slate-100 dark:hover:bg-slate-800"
           aria-label={t?.cancelBtn || 'Chiudi'}
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-          <ArrowRightLeft className="w-5 h-5 text-indigo-400" /> {t?.transferModalTitle || 'Giroconto tra Conti'}
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <ArrowRightLeft className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> {t?.transferModalTitle || 'Giroconto tra Conti'}
         </h3>
 
         {errorMessage && (
-          <div className="mb-3 p-2.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs text-rose-300 flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0" />
+          <div className="mb-3 p-2.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-xs text-rose-700 dark:text-rose-300 flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-shrink-0" />
             <span>{errorMessage}</span>
           </div>
         )}
@@ -138,10 +138,10 @@ export const TransferModal: React.FC<TransferModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <label className="text-xs text-slate-400">
+                  <label className="text-xs text-slate-500 dark:text-slate-400">
                     {language === 'de' ? `Betrag (${fromSymbol})` : language === 'en' ? `Amount (${fromSymbol})` : `Importo (${fromSymbol})`}
                   </label>
-                  <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                  <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
                     {fromCode} ({fromSymbol})
                   </span>
                 </div>
@@ -157,16 +157,16 @@ export const TransferModal: React.FC<TransferModalProps> = ({
                     required
                     placeholder="0.00"
                     autoFocus
-                    className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl pl-4 pr-10 py-2.5 font-bold text-lg focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl pl-4 pr-10 py-2.5 font-bold text-lg focus:outline-none focus:border-indigo-500"
                   />
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold pointer-events-none">
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-bold pointer-events-none">
                     {fromSymbol}
                   </div>
                 </div>
                 {isCrossCurrency && !isNaN(parsedPreviewAmount) && parsedPreviewAmount > 0 && (
-                  <div className="mt-1.5 px-2.5 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-[11px] text-cyan-200 flex items-center justify-between gap-2">
+                  <div className="mt-1.5 px-2.5 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-[11px] text-cyan-800 dark:text-cyan-200 flex items-center justify-between gap-2">
                     <span className="flex items-center gap-1.5 truncate">
-                      <Globe className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0" />
+                      <Globe className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
                       <span>
                         {language === 'de'
                           ? `Gutschrift (${toCode})`
@@ -175,7 +175,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
                             : `Accredito (${toCode})`}
                       </span>
                     </span>
-                    <strong className="tabular-nums text-cyan-300 flex-shrink-0">
+                    <strong className="tabular-nums text-cyan-700 dark:text-cyan-300 flex-shrink-0">
                       ≈ {formatCurrency(convertedPreview, true, toCode)}
                     </strong>
                   </div>
@@ -183,7 +183,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs text-slate-400 mb-1">
+                <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
                   {t?.transferFromAccount || (language === 'de' ? 'Von Konto (Quelle)' : language === 'en' ? 'From Account (Source)' : 'Da Conto (Sorgente)')}
                 </label>
                 <select
@@ -193,7 +193,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
                     setErrorMessage(null);
                   }}
                   required
-                  className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
                 >
                   {accounts.map((acc) => {
                     const sym = getCurrencySymbol(acc.currency);
@@ -208,7 +208,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs text-slate-400 mb-1">
+                <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
                   {t?.transferToAccount || (language === 'de' ? 'Auf Konto (Ziel)' : language === 'en' ? 'To Account (Destination)' : 'A Conto (Destinazione)')}
                 </label>
                 <select
@@ -218,7 +218,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
                     setErrorMessage(null);
                   }}
                   required
-                  className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-indigo-500"
                 >
                   {accounts.map((acc) => {
                     const sym = getCurrencySymbol(acc.currency);
@@ -233,7 +233,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
               </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
+            <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
               {t?.transferReasonLabel || (language === 'de' ? 'Verwendungszweck / Notiz' : language === 'en' ? 'Reason / Notes' : 'Causale / Note')}
             </label>
             <input
@@ -248,12 +248,12 @@ export const TransferModal: React.FC<TransferModalProps> = ({
                     ? 'e.g. Monthly savings, top-up...'
                     : 'es. Risparmio mensile, ricarica...')
               }
-              className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
+            <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
               {t?.transferDateLabel || (language === 'de' ? 'Datum' : language === 'en' ? 'Date' : 'Data')}
             </label>
             <input
@@ -261,7 +261,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
               value={date}
               onChange={(e) => setDate(e.target.value)}
               required
-              className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:border-indigo-500"
             />
           </div>
 
@@ -269,7 +269,7 @@ export const TransferModal: React.FC<TransferModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 bg-slate-800 text-slate-300 py-3 rounded-xl text-xs font-semibold transition hover:bg-slate-750"
+              className="flex-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 py-3 rounded-xl text-xs font-semibold transition hover:bg-slate-200 dark:hover:bg-slate-750"
             >
               {t?.cancelBtn || (language === 'de' ? 'Abbrechen' : language === 'en' ? 'Cancel' : 'Annulla')}
             </button>

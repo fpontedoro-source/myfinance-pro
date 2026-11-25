@@ -389,13 +389,13 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-      <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
         {/* Close */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition hover:bg-slate-800"
+          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition hover:bg-slate-100 dark:hover:bg-slate-800"
           aria-label={isDe ? 'Schließen' : isEn ? 'Close' : 'Chiudi'}
         >
           <X className="w-5 h-5" />
@@ -407,14 +407,14 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
             <Mail className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white flex items-center gap-1.5">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
               {isDe
                 ? 'Monatlicher E-Mail-Kontoauszug'
                 : isEn
                   ? 'Automatic Monthly Email Statement'
                   : 'Estratto Conto Mensile per Email'}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               {isDe
                 ? 'Automatischer PDF- & Multi-Währungsbericht'
                 : isEn
@@ -425,12 +425,12 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
         </div>
 
         {/* Navigation Tabs */}
-        <div className="grid grid-cols-3 bg-slate-950 p-1 rounded-2xl border border-slate-800 mb-3 text-[11px] font-semibold">
+        <div className="grid grid-cols-3 bg-slate-50 dark:bg-slate-950 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 mb-3 text-[11px] font-semibold">
           <button
             type="button"
             onClick={() => setActiveTab('preview')}
             className={`py-2 px-2 rounded-xl transition flex items-center justify-center gap-1 ${
-              activeTab === 'preview' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              activeTab === 'preview' ? 'bg-indigo-600 text-white shadow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -440,7 +440,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
             type="button"
             onClick={() => setActiveTab('config')}
             className={`py-2 px-2 rounded-xl transition flex items-center justify-center gap-1 ${
-              activeTab === 'config' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              activeTab === 'config' ? 'bg-indigo-600 text-white shadow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <Calendar className="w-3.5 h-3.5" />
@@ -450,7 +450,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
             type="button"
             onClick={() => setActiveTab('history')}
             className={`py-2 px-2 rounded-xl transition flex items-center justify-center gap-1 ${
-              activeTab === 'history' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+              activeTab === 'history' ? 'bg-indigo-600 text-white shadow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <Clock className="w-3.5 h-3.5" />
@@ -465,14 +465,14 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
           <div
             className={`mb-3 p-2.5 rounded-xl border text-[11px] flex items-start gap-2 ${
               statusFeedback.type === 'ok'
-                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-200'
-                : 'bg-rose-500/15 border-rose-500/30 text-rose-200'
+                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-800 dark:text-emerald-200'
+                : 'bg-rose-500/15 border-rose-500/30 text-rose-800 dark:text-rose-200'
             }`}
           >
             {statusFeedback.type === 'ok' ? (
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
             ) : (
-              <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" />
+              <AlertCircle className="w-4 h-4 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />
             )}
             <span className="leading-snug">{statusFeedback.text}</span>
           </div>
@@ -483,16 +483,16 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
           {activeTab === 'preview' && (
             <div className="space-y-3">
               {/* Month selector & Recipient info */}
-              <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2.5">
                 <div className="flex items-center justify-between gap-2">
-                  <label className="text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+                  <label className="text-[11px] font-bold text-slate-600 dark:text-slate-300 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                     <span>{isDe ? 'Monat auswählen:' : isEn ? 'Select month:' : 'Mese di riferimento:'}</span>
                   </label>
                   <select
                     value={selectedMonthKey}
                     onChange={(e) => setSelectedMonthKey(e.target.value)}
-                    className="bg-slate-900 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs font-bold text-white focus:outline-none focus:border-indigo-500"
+                    className="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                   >
                     {availableMonths.map((mk) => (
                       <option key={mk} value={mk}>
@@ -502,16 +502,16 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                   </select>
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] pt-1 border-t border-slate-800/80">
-                  <span className="text-slate-400">
+                <div className="flex items-center justify-between text-[11px] pt-1 border-t border-slate-200/80 dark:border-slate-800/80">
+                  <span className="text-slate-500 dark:text-slate-400">
                     {isDe ? 'Empfänger:' : isEn ? 'Recipient:' : 'Destinatario:'}
                   </span>
-                  <span className="font-semibold text-cyan-300 truncate max-w-[230px]">
+                  <span className="font-semibold text-cyan-700 dark:text-cyan-300 truncate max-w-[230px]">
                     {settings.recipientEmail || (
                       <button
                         type="button"
                         onClick={() => setActiveTab('config')}
-                        className="text-amber-300 underline"
+                        className="text-amber-700 dark:text-amber-300 underline"
                       >
                         Imposta email
                       </button>
@@ -525,43 +525,43 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                 {Object.entries(previewSummary.totalsByCurrency).map(([code, stats]) => (
                   <div
                     key={code}
-                    className="p-3 rounded-2xl bg-slate-950/90 border border-slate-800 space-y-2"
+                    className="p-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/90 border border-slate-200 dark:border-slate-800 space-y-2"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-extrabold text-indigo-300 uppercase tracking-wider">
+                      <span className="text-[11px] font-extrabold text-indigo-700 dark:text-indigo-300 uppercase tracking-wider">
                         {isDe ? 'Währung' : isEn ? 'Currency' : 'Valuta'}: {code}
                       </span>
-                      <span className="text-[11px] font-bold text-slate-300">
+                      <span className="text-[11px] font-bold text-slate-600 dark:text-slate-300">
                         {isDe ? 'Aktueller Saldo' : isEn ? 'Balance' : 'Saldo Conti'}:{' '}
-                        <span className={stats.balance >= 0 ? 'text-white' : 'text-rose-400'}>
+                        <span className={stats.balance >= 0 ? 'text-slate-900 dark:text-white' : 'text-rose-400'}>
                           {formatCurrency(stats.balance, true, code)}
                         </span>
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-center">
-                      <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                        <span className="text-[10px] text-slate-400 block">
+                      <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                           {isDe ? 'Einnahmen' : isEn ? 'Income' : 'Entrate'}
                         </span>
-                        <span className="text-xs font-bold text-emerald-400">
+                        <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
                           +{formatCurrency(stats.income, true, code)}
                         </span>
                       </div>
-                      <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                        <span className="text-[10px] text-slate-400 block">
+                      <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                           {isDe ? 'Ausgaben' : isEn ? 'Expenses' : 'Uscite'}
                         </span>
-                        <span className="text-xs font-bold text-rose-400">
+                        <span className="text-xs font-bold text-rose-600 dark:text-rose-400">
                           -{formatCurrency(stats.expense, true, code)}
                         </span>
                       </div>
-                      <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                        <span className="text-[10px] text-slate-400 block">
+                      <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                           {isDe ? 'Netto' : isEn ? 'Net' : 'Netto'}
                         </span>
                         <span
                           className={`text-xs font-bold ${
-                            stats.net >= 0 ? 'text-cyan-300' : 'text-rose-400'
+                            stats.net >= 0 ? 'text-cyan-700 dark:text-cyan-300' : 'text-rose-600 dark:text-rose-400'
                           }`}
                         >
                           {stats.net >= 0 ? '+' : ''}
@@ -602,17 +602,17 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                     type="button"
                     disabled={isBusy}
                     onClick={handleDownloadPdfOnly}
-                    className="py-2 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
+                    className="py-2 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
                   >
-                    <Download className="w-3.5 h-3.5 text-rose-400" />
+                    <Download className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
                     <span>Scarica PDF</span>
                   </button>
                   {settings.recipientEmail && preparedMailto ? (
                     <a
                       href={preparedMailto}
-                      className="py-2 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-cyan-300 border border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
+                      className="py-2 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-cyan-700 dark:text-cyan-300 border border-slate-300 dark:border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
                     >
-                      <Mail className="w-3.5 h-3.5 text-cyan-400" />
+                      <Mail className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
                       <span>{isDe ? 'Mail-App' : isEn ? 'Email App' : 'App Email'}</span>
                     </a>
                   ) : (
@@ -620,18 +620,18 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                       type="button"
                       disabled={isBusy}
                       onClick={handleShareWithPdf}
-                      className="py-2 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
+                      className="py-2 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
                     >
-                      <Share2 className="w-3.5 h-3.5 text-cyan-400" />
+                      <Share2 className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
                       <span>{isDe ? 'Teilen' : isEn ? 'Share PDF' : 'Condividi'}</span>
                     </button>
                   )}
                   <button
                     type="button"
                     onClick={handleCopyText}
-                    className="py-2 px-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
+                    className="py-2 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 font-semibold text-[11px] flex items-center justify-center gap-1 transition"
                   >
-                    {copiedText ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-indigo-400" />}
+                    {copiedText ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />}
                     <span>{copiedText ? 'Copiato' : isDe ? 'Text' : isEn ? 'Copy' : 'Copia'}</span>
                   </button>
                 </div>
@@ -642,20 +642,20 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
           {activeTab === 'config' && (
             <form onSubmit={handleSaveConfig} className="space-y-3">
               {/* Auto Toggle */}
-              <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-3">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-xl bg-indigo-500/15 text-indigo-400 border border-indigo-500/30">
+                  <div className="p-2 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30">
                     <Sparkles className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="font-bold text-white block">
+                    <span className="font-bold text-slate-900 dark:text-white block">
                       {isDe
                         ? 'Automatischer Monatsauszug aktiv'
                         : isEn
                           ? 'Automatic Monthly Statement'
                           : 'Invio Automatico Mensile'}
                     </span>
-                    <span className="text-[10px] text-slate-400 block">
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
                       {isDe
                         ? 'Erstellt am Monatsanfang automatisch den Auszug für den Vormonat'
                         : isEn
@@ -668,7 +668,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                   type="button"
                   onClick={() => setSettings((s) => ({ ...s, enabled: !s.enabled }))}
                   className={`w-12 h-7 rounded-full p-1 transition-colors flex items-center flex-shrink-0 ${
-                    settings.enabled ? 'bg-indigo-600 justify-end' : 'bg-slate-800 justify-start'
+                    settings.enabled ? 'bg-indigo-600 justify-end' : 'bg-slate-100 dark:bg-slate-800 justify-start'
                   }`}
                 >
                   <div className="w-5 h-5 rounded-full bg-white shadow-md" />
@@ -676,9 +676,9 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
               </div>
 
               {/* Recipient Email */}
-              <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2.5">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                  <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
                     {isDe ? 'Empfänger-E-Mail-Adresse' : isEn ? 'Recipient Email Address' : 'Email Destinatario Estratto Conto'}
                   </label>
                   <div className="relative">
@@ -687,7 +687,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                       value={settings.recipientEmail}
                       onChange={(e) => setSettings((s) => ({ ...s, recipientEmail: e.target.value }))}
                       placeholder="es. nome@gmail.com"
-                      className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2.5 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                     />
                     <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                   </div>
@@ -695,7 +695,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
 
                 <div className="grid grid-cols-2 gap-2.5">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                    <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
                       {isDe ? 'Tag des Monats' : isEn ? 'Day of Month (1-28)' : 'Giorno invio mensile (1-28)'}
                     </label>
                     <input
@@ -709,13 +709,13 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                           sendDayOfMonth: Math.max(1, Math.min(28, Number(e.target.value) || 1)),
                         }))
                       }
-                      className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
                     />
                   </div>
 
                   <div className="flex flex-col justify-end">
-                    <label className="flex items-center justify-between p-2 rounded-xl bg-slate-900 border border-slate-800 cursor-pointer">
-                      <span className="text-[11px] font-medium text-slate-200">
+                    <label className="flex items-center justify-between p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer">
+                      <span className="text-[11px] font-medium text-slate-800 dark:text-slate-200">
                         {isDe ? 'Auto-PDF Download' : isEn ? 'Auto-download PDF' : 'Scarica PDF auto'}
                       </span>
                       <input
@@ -730,8 +730,8 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
 
                 {/* Optional HTTPS Webhook */}
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-                    <Globe className="w-3 h-3 text-cyan-400" />
+                  <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
+                    <Globe className="w-3 h-3 text-cyan-600 dark:text-cyan-400" />
                     <span>
                       {isDe
                         ? 'HTTPS Webhook URL (optional für automatischen Mail-Versand)'
@@ -745,7 +745,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                     value={settings.webhookUrl || ''}
                     onChange={(e) => setSettings((s) => ({ ...s, webhookUrl: e.target.value }))}
                     placeholder="https://script.google.com/macros/s/.../exec"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-[11px] text-white placeholder-slate-500 font-mono focus:outline-none focus:border-cyan-500"
+                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-[11px] text-slate-900 dark:text-white placeholder-slate-500 font-mono focus:outline-none focus:border-cyan-500"
                   />
                   <span className="text-[10px] text-slate-500 block mt-1 leading-snug">
                     Senza webhook, l&apos;app genera il PDF A4 ogni mese e lo condivide/allega direttamente tramite la tua app Email. Con un Webhook Google Apps Script gratuito, il PDF viene spedito automaticamente nella tua Gmail in background!
@@ -753,24 +753,24 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setShowWebhookGuide(!showWebhookGuide)}
-                    className="mt-1.5 text-[10px] text-cyan-400 hover:text-cyan-300 font-semibold underline"
+                    className="mt-1.5 text-[10px] text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-semibold underline"
                   >
                     {showWebhookGuide ? 'Nascondi guida Gmail automatica' : 'Mostra codice Google Apps Script gratuito (invio PDF automatico Gmail)'}
                   </button>
                   {showWebhookGuide && (
-                    <div className="mt-2 p-2.5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div className="mt-2 p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold text-slate-300">script.google.com → Distribuisci App Web</span>
+                        <span className="text-[10px] font-bold text-slate-600 dark:text-slate-300">script.google.com → Distribuisci App Web</span>
                         <button
                           type="button"
                           onClick={handleCopyAppsScript}
-                          className="px-2 py-1 rounded-lg bg-cyan-600/20 text-cyan-300 border border-cyan-500/30 text-[10px] font-bold flex items-center gap-1"
+                          className="px-2 py-1 rounded-lg bg-cyan-600/20 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 text-[10px] font-bold flex items-center gap-1"
                         >
-                          {copiedScript ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                          {copiedScript ? <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3 h-3" />}
                           <span>{copiedScript ? 'Copiato' : 'Copia Codice'}</span>
                         </button>
                       </div>
-                      <pre className="text-[9px] text-slate-300 font-mono overflow-x-auto leading-snug">
+                      <pre className="text-[9px] text-slate-600 dark:text-slate-300 font-mono overflow-x-auto leading-snug">
                         {GOOGLE_APPS_SCRIPT_PDF_EMAIL_TEMPLATE}
                       </pre>
                     </div>
@@ -790,7 +790,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
           {activeTab === 'history' && (
             <div className="space-y-2">
               {history.length === 0 ? (
-                <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 text-center text-slate-400 text-xs space-y-1.5">
+                <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-center text-slate-500 dark:text-slate-400 text-xs space-y-1.5">
                   <Mail className="w-6 h-6 mx-auto text-slate-600" />
                   <p>
                     {isDe
@@ -804,23 +804,23 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                 history.map((item) => (
                   <div
                     key={item.id}
-                    className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-2"
+                    className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="font-bold text-white text-xs">{item.monthLabel}</span>
+                          <span className="font-bold text-slate-900 dark:text-white text-xs">{item.monthLabel}</span>
                           <span
                             className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${
                               item.status === 'sent_webhook'
-                                ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                                : 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30'
+                                ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30'
+                                : 'bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-500/30'
                             }`}
                           >
                             {item.status === 'sent_webhook' ? 'Inviato Webhook' : 'Preparato'}
                           </span>
                         </div>
-                        <span className="text-[10px] text-slate-400 block mt-0.5">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">
                           {item.recipientEmail} • {item.transactionsCount} movimenti
                         </span>
                       </div>
@@ -829,7 +829,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                         {item.mailtoUrl && (
                           <a
                             href={item.mailtoUrl}
-                            className="p-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30"
+                            className="p-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30"
                             title="Invia via Email"
                           >
                             <Mail className="w-3.5 h-3.5" />
@@ -838,7 +838,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleDeleteEntry(item.id)}
-                          className="p-1.5 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 border border-slate-800"
+                          className="p-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-rose-950/60 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 border border-slate-200 dark:border-slate-800"
                           title="Elimina voce"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -850,7 +850,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
                       {Object.entries(item.totalsByCurrency).map(([code, st]) => (
                         <span
                           key={code}
-                          className="px-2 py-0.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-mono"
+                          className="px-2 py-0.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 font-mono"
                         >
                           {code}: {st.net >= 0 ? '+' : ''}
                           {formatCurrency(st.net, true, code)}
@@ -865,7 +865,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="pt-3 border-t border-slate-800 mt-3 flex items-center justify-between">
+        <div className="pt-3 border-t border-slate-200 dark:border-slate-800 mt-3 flex items-center justify-between">
           <span className="text-[10px] text-slate-500">
             {settings.lastProcessedMonthKey
               ? `Ultimo mese elaborato: ${settings.lastProcessedMonthKey}`
@@ -874,7 +874,7 @@ export const MonthlyStatementModal: React.FC<MonthlyStatementModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="py-2 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
+            className="py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold text-xs transition"
           >
             {isDe ? 'Schließen' : isEn ? 'Close' : 'Chiudi'}
           </button>

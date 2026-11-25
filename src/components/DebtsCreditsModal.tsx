@@ -203,19 +203,19 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
-      <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative max-h-[92vh] overflow-y-auto no-scrollbar animate-slide-up">
+    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative max-h-[92vh] overflow-y-auto no-scrollbar animate-slide-up">
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl hover:bg-slate-800 transition"
+          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition"
           aria-label={isDe ? 'Schließen' : isEn ? 'Close' : 'Chiudi'}
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-base font-bold text-white pr-10 mb-1 flex items-center gap-2">
-          <HandCoins className="w-5 h-5 text-indigo-400 flex-shrink-0" />
+        <h3 className="text-base font-bold text-slate-900 dark:text-white pr-10 mb-1 flex items-center gap-2">
+          <HandCoins className="w-5 h-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
           <span>
             {editingEntry
               ? isDe
@@ -230,7 +230,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                   : 'Nuovo Debito, Rata o Credito'}
           </span>
         </h3>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
           {isDe
             ? 'Erfasst offene Forderungen, Ratenpläne oder Auslagen für Freunde.'
             : isEn
@@ -240,7 +240,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
 
         <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
           {/* Direction Selector */}
-          <div className="grid grid-cols-2 gap-2 bg-slate-950 p-1 rounded-2xl border border-slate-800">
+          <div className="grid grid-cols-2 gap-2 bg-slate-50 dark:bg-slate-950 p-1 rounded-2xl border border-slate-200 dark:border-slate-800">
             <button
               type="button"
               onClick={() => {
@@ -250,7 +250,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
               className={`min-h-[44px] rounded-xl font-bold flex items-center justify-center gap-1.5 transition ${
                 direction === 'CREDIT'
                   ? 'bg-emerald-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <Users className="w-3.5 h-3.5" />
@@ -267,7 +267,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
               className={`min-h-[44px] rounded-xl font-bold flex items-center justify-center gap-1.5 transition ${
                 direction === 'DEBT'
                   ? 'bg-rose-600 text-white shadow'
-                  : 'text-slate-400 hover:text-white'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               <CreditCard className="w-3.5 h-3.5" />
@@ -279,7 +279,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
 
           {/* Subtype Switcher */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-400 mb-1.5">
+            <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1.5">
               {isDe ? 'Kategorie' : isEn ? 'Category Type' : 'Tipologia'}
             </label>
             <div className="grid grid-cols-3 gap-1.5">
@@ -305,8 +305,8 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                   onClick={() => setSubtype(item.id)}
                   className={`min-h-[40px] px-2 rounded-xl border font-semibold transition ${
                     subtype === item.id
-                      ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300'
-                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
+                      ? 'bg-indigo-600/20 border-indigo-500 text-indigo-700 dark:text-indigo-300'
+                      : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {item.label}
@@ -318,7 +318,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
           {/* Title & Counterparty */}
           <div className="space-y-2.5">
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 {isDe ? 'Bezeichnung *' : isEn ? 'Title / Description *' : 'Descrizione *'}
               </label>
               <input
@@ -341,12 +341,12 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                         ? 'e.g. Car loan / Laptop 12x'
                         : 'es. Finanziamento auto / Rate TV'
                 }
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 {direction === 'CREDIT'
                   ? isDe
                     ? 'Schuldet mir (Name) *'
@@ -369,7 +369,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                 placeholder={
                   direction === 'CREDIT' ? 'Marco Rossi' : 'Findomestic / Luca B.'
                 }
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
@@ -377,7 +377,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
           {/* Amounts & Currency */}
           <div className="grid grid-cols-3 gap-2">
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 {isDe ? 'Gesamt *' : isEn ? 'Total *' : 'Totale *'}
               </label>
               <input
@@ -387,12 +387,12 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                 value={totalAmount}
                 onChange={(e) => handleTotalChange(e.target.value)}
                 placeholder="0.00"
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white font-bold tabular-nums focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-slate-900 dark:text-white font-bold tabular-nums focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 {isDe ? 'Offen *' : isEn ? 'Remaining *' : 'Residuo *'}
               </label>
               <input
@@ -406,18 +406,18 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                   if (errorMsg) setErrorMsg(null);
                 }}
                 placeholder="0.00"
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-white font-bold tabular-nums focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2.5 text-slate-900 dark:text-white font-bold tabular-nums focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 {isDe ? 'Währung' : isEn ? 'Currency' : 'Valuta'}
               </label>
               <select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-2.5 text-white font-semibold focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2.5 text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-indigo-500"
               >
                 {SUPPORTED_CURRENCIES.map((c) => (
                   <option key={c.code} value={c.code}>
@@ -430,8 +430,8 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
 
           {/* Installments Details (shown when subtype is INSTALLMENT or values exist) */}
           {(subtype === 'INSTALLMENT' || monthlyInstallment || totalInstallments) && (
-            <div className="p-3 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-2">
-              <div className="text-[11px] font-bold text-indigo-300 flex items-center gap-1.5">
+            <div className="p-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="text-[11px] font-bold text-indigo-700 dark:text-indigo-300 flex items-center gap-1.5">
                 <Layers className="w-3.5 h-3.5" />
                 <span>
                   {isDe
@@ -443,7 +443,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
               </div>
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block text-[10px] text-slate-400 mb-1">
+                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Rate/Monat' : isEn ? 'Monthly' : 'Importo Rata'}
                   </label>
                   <input
@@ -453,11 +453,11 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                     value={monthlyInstallment}
                     onChange={(e) => setMonthlyInstallment(e.target.value)}
                     placeholder="35"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-2 text-white tabular-nums focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-slate-900 dark:text-white tabular-nums focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] text-slate-400 mb-1">
+                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Bezahlt' : isEn ? 'Paid #' : 'Rate pagate'}
                   </label>
                   <input
@@ -466,11 +466,11 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                     value={paidInstallments}
                     onChange={(e) => setPaidInstallments(e.target.value)}
                     placeholder="0"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-2 text-white tabular-nums focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-slate-900 dark:text-white tabular-nums focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] text-slate-400 mb-1">
+                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
                     {isDe ? 'Gesamt #' : isEn ? 'Total #' : 'Rate totali'}
                   </label>
                   <input
@@ -479,7 +479,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                     value={totalInstallments}
                     onChange={(e) => setTotalInstallments(e.target.value)}
                     placeholder="12"
-                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-2 text-white tabular-nums focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-slate-900 dark:text-white tabular-nums focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
@@ -489,7 +489,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
           {/* Due Date & Linked Account */}
           <div className="grid grid-cols-2 gap-2.5">
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1 flex items-center gap-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1">
                 <Calendar className="w-3 h-3" />
                 <span>{isDe ? 'Fälligkeit' : isEn ? 'Due Date' : 'Scadenza'}</span>
               </label>
@@ -497,18 +497,18 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] font-semibold text-slate-400 mb-1">
+              <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">
                 {isDe ? 'Standardkonto' : isEn ? 'Default Account' : 'Conto collegato'}
               </label>
               <select
                 value={account}
                 onChange={(e) => setAccount(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-2.5 py-2 text-white focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
               >
                 {accounts.map((acc) => (
                   <option key={acc.id} value={acc.id}>
@@ -521,7 +521,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
 
           {/* Notes */}
           <div>
-            <label className="block text-[11px] font-semibold text-slate-400 mb-1 flex items-center gap-1">
+            <label className="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1">
               <FileText className="w-3 h-3" />
               <span>{isDe ? 'Notizen' : isEn ? 'Notes' : 'Note'}</span>
             </label>
@@ -536,12 +536,12 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
                     ? 'Optional details...'
                     : 'Dettagli aggiuntivi opzionali...'
               }
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
             />
           </div>
 
           {errorMsg && (
-            <div className="p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 flex items-center gap-2">
+            <div className="p-2.5 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{errorMsg}</span>
             </div>
@@ -551,7 +551,7 @@ export const DebtsCreditsModal: React.FC<DebtsCreditsModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 min-h-[44px] bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl font-semibold transition"
+              className="flex-1 min-h-[44px] bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl font-semibold transition"
             >
               {isDe ? 'Abbrechen' : isEn ? 'Cancel' : 'Annulla'}
             </button>

@@ -79,17 +79,17 @@ export const GoalModal: React.FC<GoalModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
-      <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition"
+          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition"
         >
           <X className="w-5 h-5" />
         </button>
 
-        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-          <Trophy className="w-5 h-5 text-emerald-400" />
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <Trophy className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           <span>
             {editingGoal
               ? language === 'de'
@@ -107,14 +107,14 @@ export const GoalModal: React.FC<GoalModalProps> = ({
 
         <form onSubmit={handleSubmit} className="space-y-3.5">
           {formError && (
-            <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
+            <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 flex-shrink-0" />
               <span>{formError}</span>
             </div>
           )}
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
+            <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
               {language === 'de'
                 ? 'Zielname'
                 : language === 'en'
@@ -133,12 +133,12 @@ export const GoalModal: React.FC<GoalModalProps> = ({
                     ? 'e.g. Emergency Fund, Summer Vacation...'
                     : 'es. Fondo di Emergenza, Vacanze Estive...'
               }
-              className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-emerald-500"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
+            <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
               {language === 'de'
                 ? `Zielbetrag (${currencySym})`
                 : language === 'en'
@@ -156,12 +156,12 @@ export const GoalModal: React.FC<GoalModalProps> = ({
               }}
               required
               placeholder="1000.00"
-              className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-base font-bold focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2.5 text-base font-bold focus:outline-none focus:border-emerald-500"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
+            <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
               {language === 'de'
                 ? `Aktuell gesparter Betrag (${currencySym})`
                 : language === 'en'
@@ -175,12 +175,12 @@ export const GoalModal: React.FC<GoalModalProps> = ({
               value={current}
               onChange={(e) => setCurrent(e.target.value)}
               placeholder="0.00"
-              className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs font-bold focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2.5 text-xs font-bold focus:outline-none focus:border-emerald-500"
             />
           </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
+            <label className="block text-xs text-slate-500 dark:text-slate-400 mb-1">
               {language === 'de'
                 ? 'Zieldatum (Optional)'
                 : language === 'en'
@@ -191,7 +191,7 @@ export const GoalModal: React.FC<GoalModalProps> = ({
               type="date"
               value={targetDate}
               onChange={(e) => setTargetDate(e.target.value)}
-              className="w-full bg-slate-800/80 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-100/80 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2.5 text-xs focus:outline-none focus:border-emerald-500"
             />
           </div>
 
@@ -199,7 +199,7 @@ export const GoalModal: React.FC<GoalModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-3 rounded-xl text-xs font-semibold transition"
+              className="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 py-3 rounded-xl text-xs font-semibold transition"
             >
               {t?.cancel || 'Annulla'}
             </button>

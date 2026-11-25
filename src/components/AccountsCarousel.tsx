@@ -76,17 +76,17 @@ export const AccountsCarousel: React.FC<AccountsCarouselProps> = ({
       {/* Header with Title, Counter and Smooth Navigation Buttons */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-bold text-white flex items-center gap-1.5">
-            <CreditCard className="w-4 h-4 text-indigo-400" />
+          <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+            <CreditCard className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             <span>{t?.financialAccounts || 'Conti Finanziari'}</span>
           </h2>
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-900 text-indigo-400 border border-slate-800">
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 border border-slate-200 dark:border-slate-800">
             {activeIndex + 1}/{accounts.length}
           </span>
           <button
             type="button"
             onClick={onManageAccounts}
-            className="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold cursor-pointer transition hover:underline"
+            className="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold cursor-pointer transition hover:underline"
           >
             {t?.manageEdit || 'Gestisci'}
           </button>
@@ -102,8 +102,8 @@ export const AccountsCarousel: React.FC<AccountsCarouselProps> = ({
             title={t?.prevAccountLabel || 'Previous account'}
             className={`p-1.5 rounded-xl border transition ${
               canScrollLeft
-                ? 'bg-slate-900 hover:bg-slate-800 text-white border-slate-800 hover:border-slate-700 active:scale-95'
-                : 'bg-slate-950/40 text-slate-600 border-slate-900 cursor-not-allowed opacity-40'
+                ? 'bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 active:scale-95'
+                : 'bg-slate-100/90 dark:bg-slate-950/40 text-slate-600 border-slate-200 dark:border-slate-900 cursor-not-allowed opacity-40'
             }`}
           >
             <ChevronLeft className="w-4 h-4" />
@@ -117,8 +117,8 @@ export const AccountsCarousel: React.FC<AccountsCarouselProps> = ({
             title={t?.nextAccountLabel || 'Next account'}
             className={`p-1.5 rounded-xl border transition ${
               canScrollRight
-                ? 'bg-slate-900 hover:bg-slate-800 text-white border-slate-800 hover:border-slate-700 active:scale-95'
-                : 'bg-slate-950/40 text-slate-600 border-slate-900 cursor-not-allowed opacity-40'
+                ? 'bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 active:scale-95'
+                : 'bg-slate-100/90 dark:bg-slate-950/40 text-slate-600 border-slate-200 dark:border-slate-900 cursor-not-allowed opacity-40'
             }`}
           >
             <ChevronRight className="w-4 h-4" />
@@ -141,35 +141,35 @@ export const AccountsCarousel: React.FC<AccountsCarouselProps> = ({
               <div
                 key={acc.id}
                 onClick={() => onSelectAccount(isSelected ? 'ALL' : acc.id)}
-                className={`flex-shrink-0 w-44 snap-start rounded-2xl bg-slate-900 border ${
+                className={`flex-shrink-0 w-44 snap-start rounded-2xl bg-white dark:bg-slate-900 border ${
                   isSelected
-                    ? 'border-indigo-500 ring-2 ring-indigo-500/40 bg-slate-850 shadow-lg shadow-indigo-500/15'
-                    : 'border-slate-800 hover:border-slate-700'
+                    ? 'border-indigo-500 ring-2 ring-indigo-500/40 bg-slate-100 dark:bg-slate-850 shadow-lg shadow-indigo-500/15'
+                    : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                 } p-3.5 active:scale-95 transition-all cursor-pointer select-none`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div
                     className={`p-2 rounded-xl bg-gradient-to-tr ${
                       acc.color || 'from-indigo-600 to-purple-600'
-                    } text-white shadow-sm flex items-center justify-center`}
+                    } text-slate-900 dark:text-white shadow-sm flex items-center justify-center`}
                   >
                     <AccountIcon iconName={acc.icon || 'wallet'} className="w-4 h-4" />
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                    <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
                       {accCurr}
                     </span>
                     {isSelected && (
-                      <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 flex items-center gap-0.5">
+                      <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 flex items-center gap-0.5">
                         <Check className="w-2.5 h-2.5" />
                       </span>
                     )}
                   </div>
                 </div>
-                <div className="text-xs font-semibold text-slate-300 truncate">{acc.name}</div>
+                <div className="text-xs font-semibold text-slate-600 dark:text-slate-300 truncate">{acc.name}</div>
                 <div
                   className={`text-base font-extrabold mt-0.5 truncate tracking-tight ${
-                    balance < 0 ? 'text-rose-400' : 'text-white'
+                    balance < 0 ? 'text-rose-600 dark:text-rose-400' : 'text-slate-900 dark:text-white'
                   }`}
                 >
                   {formatCurrency(balance, true, accCurr)}
@@ -191,7 +191,7 @@ export const AccountsCarousel: React.FC<AccountsCarouselProps> = ({
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeIndex === index
                   ? 'w-6 bg-indigo-500'
-                  : 'w-1.5 bg-slate-800 hover:bg-slate-700'
+                  : 'w-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             />
           ))}

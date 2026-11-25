@@ -14,6 +14,8 @@ import {
   PlusCircle,
   TrendingUp,
   AlertTriangle,
+  Calendar,
+  List,
 } from 'lucide-react';
 import {
   Account,
@@ -96,6 +98,8 @@ import { SecuritySettingsModal } from './components/SecuritySettingsModal';
 import { MonthlyStatementModal } from './components/MonthlyStatementModal';
 import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { RecurringNotificationsBanner } from './components/RecurringNotificationsBanner';
+import { SafeToSpendCard } from './components/SafeToSpendCard';
+import { DueCalendarSection } from './components/DueCalendarSection';
 import {
   getSecuritySettings,
   shouldAppBeLocked,
@@ -142,6 +146,7 @@ import {
 import {
   computeMonthlyCashflowForecast,
   computeBudgetAlerts,
+  computeSafeToSpend,
 } from './utils/cashflowForecast';
 import {
   DEFAULT_CATEGORY_RULES,
@@ -293,6 +298,46 @@ export default function App() {
     );
   };
 
+  // Theme state ('light' | 'dark', persisted in localStorage, default 'dark')
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      return localStorage.getItem('myfinance_theme_v1') === 'light' ? 'light' : 'dark';
+    } catch {
+      return 'dark';
+    }
+  });
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) {
+        meta.setAttribute('content', theme === 'dark' ? '#020617' : '#f8fafc');
+      }
+    }
+    try {
+      localStorage.setItem('myfinance_theme_v1', theme);
+    } catch {}
+  }, [theme]);
+
+  const handleToggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    showToast(
+      next === 'light'
+        ? language === 'de'
+          ? 'Helles Design aktiviert'
+          : language === 'en'
+            ? 'Light mode enabled'
+            : 'Tema chiaro attivato'
+        : language === 'de'
+          ? 'Dunkles Design aktiviert'
+          : language === 'en'
+            ? 'Dark mode enabled'
+            : 'Tema scuro attivato'
+    );
+  };
+
   // Global Page Zoom State (persisted across sessions and pages)
   const [zoomLevel, setZoomLevel] = useState<number>(() => {
     try {
@@ -374,6 +419,7 @@ export default function App() {
   const [isRulesModalOpen, setIsRulesModalOpen] = useState(false);
   const [isShortcutsModalOpen, setIsShortcutsModalOpen] = useState(false);
   const [budgetsSubTab, setBudgetsSubTab] = useState<BudgetsSubTab>('budgets');
+  const [scadenzarioView, setScadenzarioView] = useState<'list' | 'calendar'>('calendar');
   const [isDebtCreditModalOpen, setIsDebtCreditModalOpen] = useState(false);
   const [editingDebtCredit, setEditingDebtCredit] = useState<DebtCreditEntry | null>(null);
   const [monthlyEmailSettings, setMonthlyEmailSettings] = useState<MonthlyEmailSettings>(getMonthlyEmailSettings);
@@ -1041,6 +1087,19 @@ export default function App() {
         fxSettings,
       }),
     [accounts, unifiedNetWorth.totalUnified, transactions, recurring, fxSettings]
+  );
+
+  const safeToSpend = useMemo(
+    () =>
+      computeSafeToSpend({
+        accounts,
+        currentUnifiedBalance: unifiedNetWorth.totalUnified,
+        transactions,
+        recurring,
+        budgets,
+        fxSettings,
+      }),
+    [accounts, unifiedNetWorth.totalUnified, transactions, recurring, budgets, fxSettings]
   );
 
   const budgetAlerts = useMemo(
@@ -2496,7 +2555,7 @@ export default function App() {
   }, [selectedType, selectedAccount, t]);
 
   return (
-    <div className="min-h-full flex flex-col bg-slate-950 text-slate-100 overflow-x-hidden selection:bg-indigo-500/30">
+    <div className="min-h-full flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-indigo-500/30">
       {/* Toast Alert */}
       <Toast message={toastMessage} />
 
@@ -2515,6 +2574,8 @@ export default function App() {
         onOpenAuthModal={() => setIsSecurityModalOpen(true)}
         privacyMode={privacyMode}
         onTogglePrivacyMode={handleTogglePrivacyMode}
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
       />
 
       {/* Main Content Area */}
@@ -2533,20 +2594,20 @@ export default function App() {
         />
 
         {pendingStatementBanner && (
-          <div className="p-3.5 rounded-2xl bg-gradient-to-r from-indigo-950/90 via-slate-900 to-cyan-950/80 border border-indigo-500/40 shadow-lg flex items-start justify-between gap-2.5">
+          <div className="p-3.5 rounded-2xl bg-gradient-to-r from-indigo-50/90 dark:from-indigo-950/90 via-white dark:via-slate-900 to-cyan-50/80 dark:to-cyan-950/80 border border-indigo-500/40 shadow-lg flex items-start justify-between gap-2.5">
             <div className="flex items-start gap-2.5 min-w-0">
-              <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 flex-shrink-0">
+              <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 flex-shrink-0">
                 <Mail className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-bold text-white">
+                <p className="text-xs font-bold text-slate-900 dark:text-white">
                   {language === 'de'
                     ? `Kontoauszug ${pendingStatementBanner.monthLabel} bereit`
                     : language === 'en'
                       ? `Statement ${pendingStatementBanner.monthLabel} ready`
                       : `Estratto Conto ${pendingStatementBanner.monthLabel} pronto`}
                 </p>
-                <p className="text-[11px] text-slate-300 truncate">
+                <p className="text-[11px] text-slate-600 dark:text-slate-300 truncate">
                   {language === 'de' ? 'Empfänger' : language === 'en' ? 'Recipient' : 'Destinatario'}:{' '}
                   {pendingStatementBanner.recipientEmail}
                 </p>
@@ -2581,7 +2642,7 @@ export default function App() {
                   <button
                     type="button"
                     onClick={() => setIsMonthlyStatementModalOpen(true)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-750 text-cyan-300 border border-slate-700 text-[11px] font-semibold"
+                    className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-cyan-700 dark:text-cyan-300 border border-slate-300 dark:border-slate-700 text-[11px] font-semibold"
                   >
                     {language === 'de'
                       ? 'Übersicht / PDF öffnen'
@@ -2595,7 +2656,7 @@ export default function App() {
             <button
               type="button"
               onClick={() => setPendingStatementBanner(null)}
-              className="text-slate-400 hover:text-white p-1"
+              className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-1"
               aria-label={language === 'de' ? 'Hinweis schließen' : language === 'en' ? 'Close notice' : 'Chiudi avviso'}
             >
               <X className="w-4 h-4" />
@@ -2659,10 +2720,10 @@ export default function App() {
                   setEditingTx(null);
                   setIsTxModalOpen(true);
                 }}
-                className="min-h-[60px] p-2 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/40 hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
+                className="min-h-[60px] p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/40 hover:bg-slate-100 dark:hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
               >
-                <PlusCircle className="w-4 h-4 text-indigo-400" />
-                <span className="text-[10px] font-semibold text-slate-200 leading-tight">
+                <PlusCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span className="text-[10px] font-semibold text-slate-800 dark:text-slate-200 leading-tight">
                   {language === 'de' ? 'Neu' : language === 'en' ? 'New' : 'Nuova'}
                 </span>
               </button>
@@ -2670,10 +2731,10 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsTransferModalOpen(true)}
-                className="min-h-[60px] p-2 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
+                className="min-h-[60px] p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 hover:bg-slate-100 dark:hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
               >
-                <ArrowLeftRight className="w-4 h-4 text-emerald-400" />
-                <span className="text-[10px] font-semibold text-slate-200 leading-tight">
+                <ArrowLeftRight className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-[10px] font-semibold text-slate-800 dark:text-slate-200 leading-tight">
                   {language === 'de' ? 'Umbuchen' : language === 'en' ? 'Transfer' : 'Giroconto'}
                 </span>
               </button>
@@ -2681,10 +2742,10 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setIsCsvImportModalOpen(true)}
-                className="min-h-[60px] p-2 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
+                className="min-h-[60px] p-2 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 hover:bg-slate-100 dark:hover:bg-slate-850 active:scale-95 transition flex flex-col items-center justify-center gap-1 text-center"
               >
-                <Upload className="w-4 h-4 text-amber-400" />
-                <span className="text-[10px] font-semibold text-slate-200 leading-tight">
+                <Upload className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                <span className="text-[10px] font-semibold text-slate-800 dark:text-slate-200 leading-tight">
                   {language === 'de' ? 'CSV' : language === 'en' ? 'Import' : 'Importa CSV'}
                 </span>
               </button>
@@ -2693,8 +2754,8 @@ export default function App() {
             {/* Quick Favorite 1-Tap Shortcuts (Spese Preferite) */}
             <section className="space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <Zap className="w-3.5 h-3.5 text-amber-400" />
+                <h3 className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <Zap className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                   <span>
                     {language === 'de'
                       ? 'Favoriten (1-Klick)'
@@ -2706,7 +2767,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setIsShortcutsModalOpen(true)}
-                  className="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold transition"
+                  className="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold transition"
                 >
                   {language === 'de' ? 'Verwalten' : language === 'en' ? 'Manage' : 'Gestisci'}
                 </button>
@@ -2716,7 +2777,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => setIsShortcutsModalOpen(true)}
-                  className="w-full p-3 rounded-2xl bg-slate-900/70 border border-dashed border-slate-800 text-xs text-slate-400 hover:text-slate-200 transition text-center"
+                  className="w-full p-3 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-dashed border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition text-center"
                 >
                   {language === 'de'
                     ? '+ Favoriten für schnelle Zahlungen hinzufügen'
@@ -2734,20 +2795,20 @@ export default function App() {
                         key={sc.id}
                         type="button"
                         onClick={() => handleExecuteQuickShortcut(sc)}
-                        className="min-h-[54px] px-3 py-2.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 active:scale-95 transition text-left flex items-center justify-between gap-2"
+                        className="min-h-[54px] px-3 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 active:scale-95 transition text-left flex items-center justify-between gap-2"
                       >
                         <div className="min-w-0 flex-1">
-                          <div className="text-xs font-bold text-white truncate">
+                          <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
                             {sc.label}
                           </div>
-                          <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
                             {getCategoryDisplayName(sc.category, language)}
                             {sc.tags && sc.tags.length > 0 ? ` · #${sc.tags[0]}` : ''}
                           </div>
                         </div>
                         <span
                           className={`text-xs font-extrabold tabular-nums flex-shrink-0 ${
-                            isExpense ? 'text-rose-400' : 'text-emerald-400'
+                            isExpense ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'
                           }`}
                         >
                           {isExpense ? '-' : '+'}
@@ -2762,11 +2823,11 @@ export default function App() {
 
             {/* Monthly Cashflow Forecast & Budget Alerts */}
             <section className="space-y-2.5">
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800/90 space-y-2.5">
+              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 space-y-2.5">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <TrendingUp className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-                    <h3 className="text-xs font-bold text-white truncate">
+                    <TrendingUp className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white truncate">
                       {language === 'de'
                         ? 'Monatsend-Prognose'
                         : language === 'en'
@@ -2777,8 +2838,8 @@ export default function App() {
                   <span
                     className={`text-sm font-extrabold tabular-nums flex-shrink-0 ${
                       monthlyForecast.projectedEndBalance >= monthlyForecast.currentUnifiedBalance
-                        ? 'text-emerald-400'
-                        : 'text-amber-300'
+                        ? 'text-emerald-600 dark:text-emerald-400'
+                        : 'text-amber-700 dark:text-amber-300'
                     }`}
                   >
                     {formatCurrency(
@@ -2790,33 +2851,33 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
-                  <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
-                    <div className="text-slate-400">
+                  <div className="p-2.5 rounded-xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80">
+                    <div className="text-slate-500 dark:text-slate-400">
                       {language === 'de'
                         ? 'Erwartete Einnahmen'
                         : language === 'en'
                           ? 'Projected Income'
                           : 'Entrate stimate'}
                     </div>
-                    <div className="text-emerald-400 font-bold tabular-nums mt-0.5">
+                    <div className="text-emerald-600 dark:text-emerald-400 font-bold tabular-nums mt-0.5">
                       +{formatCurrency(monthlyForecast.projectedMonthIncome, true, monthlyForecast.baseCurrency)}
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
-                    <div className="text-slate-400">
+                  <div className="p-2.5 rounded-xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80">
+                    <div className="text-slate-500 dark:text-slate-400">
                       {language === 'de'
                         ? 'Erwartete Ausgaben'
                         : language === 'en'
                           ? 'Projected Expenses'
                           : 'Spese stimate'}
                     </div>
-                    <div className="text-rose-400 font-bold tabular-nums mt-0.5">
+                    <div className="text-rose-600 dark:text-rose-400 font-bold tabular-nums mt-0.5">
                       -{formatCurrency(monthlyForecast.projectedMonthExpense, true, monthlyForecast.baseCurrency)}
                     </div>
                   </div>
                 </div>
 
-                <div className="text-[11px] text-slate-400 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
                   <span>
                     {language === 'de'
                       ? `${monthlyForecast.remainingDays} Tage übrig`
@@ -2833,12 +2894,25 @@ export default function App() {
                         : `${monthlyForecast.upcomingRecurringCount} scadenze attese`}
                   </span>
                   <span>·</span>
-                  <span className="tabular-nums text-slate-300">
+                  <span className="tabular-nums text-slate-600 dark:text-slate-300">
                     {formatCurrency(monthlyForecast.dailyVariablePace, true, monthlyForecast.baseCurrency)}/
                     {language === 'de' ? 'Tag' : language === 'en' ? 'day' : 'gg'}
                   </span>
                 </div>
               </div>
+
+              <SafeToSpendCard
+                summary={safeToSpend}
+                onQuickAddExpense={() => {
+                  setEditingTx(null);
+                  setIsTxModalOpen(true);
+                }}
+                onOpenBudgets={() => {
+                  setBudgetsSubTab('budgets');
+                  setCurrentTab('budgets');
+                }}
+                language={language}
+              />
 
               {(() => {
                 const activeAlerts = budgetAlerts.filter((a) => a.status !== 'OK');
@@ -2850,18 +2924,18 @@ export default function App() {
                     onClick={() => setCurrentTab('budgets')}
                     className={`w-full min-h-[48px] p-3.5 rounded-2xl border text-left flex items-center justify-between gap-2.5 transition active:scale-[0.99] ${
                       exceededCount > 0
-                        ? 'bg-rose-950/35 border-rose-500/40 text-rose-200 hover:bg-rose-950/50'
-                        : 'bg-amber-950/30 border-amber-500/35 text-amber-200 hover:bg-amber-950/45'
+                        ? 'bg-rose-50 dark:bg-rose-950/35 border-rose-500/40 text-rose-800 dark:text-rose-200 hover:bg-rose-950/50'
+                        : 'bg-amber-50 dark:bg-amber-950/30 border-amber-500/35 text-amber-800 dark:text-amber-200 hover:bg-amber-950/45'
                     }`}
                   >
                     <div className="flex items-start gap-2.5 min-w-0">
                       <AlertTriangle
                         className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
-                          exceededCount > 0 ? 'text-rose-400' : 'text-amber-400'
+                          exceededCount > 0 ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400'
                         }`}
                       />
                       <div className="min-w-0">
-                        <div className="text-xs font-bold text-white">
+                        <div className="text-xs font-bold text-slate-900 dark:text-white">
                           {language === 'de'
                             ? `${activeAlerts.length} Budget-Warnung(en)`
                             : language === 'en'
@@ -2885,37 +2959,81 @@ export default function App() {
               })()}
             </section>
 
-            {/* Scadenzario / Prossime Scadenze */}
+            {/* Scadenzario / Prossime Scadenze & Calendario Scadenze */}
             {(() => {
               const scheduledItems = getScheduledRecurringItems(recurring);
               return (
-                <section className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-                      <CalendarClock className="w-4 h-4 text-amber-400" />
-                      <span>
+                <section className="space-y-2.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5 min-w-0">
+                      <CalendarClock className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                      <span className="truncate">
                         {language === 'de'
-                          ? 'Fälligkeiten & Termine'
+                          ? 'Fälligkeiten & Kalender'
                           : language === 'en'
-                            ? 'Upcoming Bills'
-                            : 'Scadenzario'}
+                            ? 'Bills & Due Calendar'
+                            : 'Scadenzario & Calendario'}
                       </span>
                     </h3>
-                    <button
-                      type="button"
-                      onClick={() => setIsRecurringModalOpen(true)}
-                      className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 transition py-1"
-                    >
-                      <span>
-                        {language === 'de' ? 'Verwalten' : language === 'en' ? 'Manage' : 'Gestisci'}
-                      </span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
+
+                    <div className="flex items-center gap-1.5 flex-shrink-0">
+                      <div className="inline-flex items-center p-0.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <button
+                          type="button"
+                          onClick={() => setScadenzarioView('calendar')}
+                          className={`min-h-[30px] px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition ${
+                            scadenzarioView === 'calendar'
+                              ? 'bg-indigo-600 text-white shadow-sm'
+                              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                          }`}
+                        >
+                          <Calendar className="w-3 h-3" />
+                          <span>{language === 'de' ? 'Kalender' : language === 'en' ? 'Calendar' : 'Calendario'}</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setScadenzarioView('list')}
+                          className={`min-h-[30px] px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 transition ${
+                            scadenzarioView === 'list'
+                              ? 'bg-indigo-600 text-white shadow-sm'
+                              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                          }`}
+                        >
+                          <List className="w-3 h-3" />
+                          <span>{language === 'de' ? 'Liste' : language === 'en' ? 'List' : 'Lista'}</span>
+                        </button>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setIsRecurringModalOpen(true)}
+                        className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-1 transition py-1"
+                      >
+                        <span>
+                          {language === 'de' ? 'Verwalten' : language === 'en' ? 'Manage' : 'Gestisci'}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
                   </div>
 
-                  {scheduledItems.length === 0 ? (
-                    <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-center justify-between gap-3">
-                      <span className="text-xs text-slate-400">
+                  {scadenzarioView === 'calendar' ? (
+                    <DueCalendarSection
+                      recurring={recurring}
+                      debtsCredits={debtsCredits}
+                      accounts={accounts}
+                      fxSettings={fxSettings}
+                      onApplyRecurring={handleApplyRecurring}
+                      onOpenRecurringModal={() => setIsRecurringModalOpen(true)}
+                      onOpenDebtsCredits={() => {
+                        setBudgetsSubTab('debts');
+                        setCurrentTab('budgets');
+                      }}
+                      language={language}
+                    />
+                  ) : scheduledItems.length === 0 ? (
+                    <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+                      <span className="text-xs text-slate-500 dark:text-slate-400">
                         {language === 'de'
                           ? 'Keine fälligen Dauerbuchungen in den nächsten 14 Tagen.'
                           : language === 'en'
@@ -2925,7 +3043,7 @@ export default function App() {
                       <button
                         type="button"
                         onClick={() => setIsRecurringModalOpen(true)}
-                        className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-[11px] font-semibold text-indigo-300 flex-shrink-0"
+                        className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-[11px] font-semibold text-indigo-700 dark:text-indigo-300 flex-shrink-0"
                       >
                         {language === 'de' ? 'Planen' : language === 'en' ? 'Schedule' : 'Pianifica'}
                       </button>
@@ -2938,35 +3056,35 @@ export default function App() {
                         return (
                           <div
                             key={rule.id}
-                            className="p-3 rounded-2xl bg-slate-900 border border-slate-800/80 flex items-center justify-between gap-2.5"
+                            className="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between gap-2.5"
                           >
                             <div className="flex items-center gap-2.5 min-w-0 flex-1">
                               <div
                                 className={`p-2 rounded-xl border flex-shrink-0 ${
                                   isUrgent
-                                    ? 'bg-amber-500/10 text-amber-300 border-amber-500/30'
-                                    : 'bg-slate-800 text-indigo-300 border-slate-700'
+                                    ? 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/30'
+                                    : 'bg-slate-100 dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 border-slate-300 dark:border-slate-700'
                                 }`}
                               >
                                 <CategoryIcon categoryName={rule.category} className="w-4 h-4" />
                               </div>
                               <div className="min-w-0 flex-1">
                                 <div className="flex items-center gap-1.5 min-w-0">
-                                  <span className="text-xs font-semibold text-white truncate">
+                                  <span className="text-xs font-semibold text-slate-900 dark:text-white truncate">
                                     {rule.description}
                                   </span>
                                   {rule.autoExecute && (
                                     <span
                                       title="Automatico"
-                                      className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-emerald-400 flex-shrink-0"
+                                      className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 flex-shrink-0"
                                     >
                                       <Zap className="w-3 h-3" />
                                       <span>Auto</span>
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-[11px] text-slate-400 mt-0.5 truncate">
-                                  <span className={isUrgent ? 'text-amber-300 font-semibold' : 'text-cyan-300'}>
+                                <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
+                                  <span className={isUrgent ? 'text-amber-600 dark:text-amber-300 font-semibold' : 'text-cyan-700 dark:text-cyan-300'}>
                                     {formatDueStatusLabel(diffDays, language)}
                                   </span>
                                   {' · '}
@@ -2980,7 +3098,7 @@ export default function App() {
                             <div className="flex items-center gap-2 flex-shrink-0">
                               <span
                                 className={`text-xs font-bold tabular-nums ${
-                                  isExpense ? 'text-rose-400' : 'text-emerald-400'
+                                  isExpense ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'
                                 }`}
                               >
                                 {isExpense ? '-' : '+'}
@@ -2989,7 +3107,7 @@ export default function App() {
                               <button
                                 type="button"
                                 onClick={() => handleApplyRecurring(rule.id)}
-                                className="min-h-[36px] px-2.5 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/35 border border-indigo-500/30 text-indigo-300 text-[11px] font-semibold flex items-center gap-1 transition active:scale-95"
+                                className="min-h-[36px] px-2.5 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/35 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 text-[11px] font-semibold flex items-center gap-1 transition active:scale-95"
                               >
                                 <Check className="w-3.5 h-3.5" />
                                 <span>
@@ -3009,13 +3127,13 @@ export default function App() {
             {/* Quick Recent Transactions Section */}
             <section className="space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-                  <History className="w-4 h-4 text-indigo-400" />
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <History className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                   {t.recentTransactions}
                 </h3>
                 <button
                   onClick={() => setCurrentTab('transactions')}
-                  className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 transition"
+                  className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-1 transition"
                 >
                   <span>{t.viewAll}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -3024,7 +3142,7 @@ export default function App() {
 
               <div className="space-y-2">
                 {recentTransactions.length === 0 ? (
-                  <div className="p-6 bg-slate-900/60 rounded-2xl border border-slate-800 text-center text-xs text-slate-500">
+                  <div className="p-6 bg-white/60 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 text-center text-xs text-slate-500">
                     {t.noRecentTransactions}
                   </div>
                 ) : (
@@ -3032,10 +3150,10 @@ export default function App() {
                     const isExpense = tx.type === 'EXPENSE';
                     const isTransfer = tx.type === 'TRANSFER';
                     const amountColor = isExpense
-                      ? 'text-rose-400'
+                      ? 'text-rose-600 dark:text-rose-400'
                       : isTransfer
-                      ? 'text-indigo-300'
-                      : 'text-emerald-400';
+                      ? 'text-indigo-600 dark:text-indigo-300'
+                      : 'text-emerald-600 dark:text-emerald-400';
                     const prefix = isExpense ? '-' : isTransfer ? '↺ ' : '+';
 
                     const catColor = getCategoryColorDetails(tx.category);
@@ -3051,7 +3169,7 @@ export default function App() {
                           setEditingTx(tx);
                           setIsTxModalOpen(true);
                         }}
-                        className="flex items-center justify-between p-3 rounded-2xl bg-slate-900 border border-slate-800/80 hover:bg-slate-850 active:bg-slate-800 transition-all cursor-pointer"
+                        className="flex items-center justify-between p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-850 active:bg-slate-100 dark:active:bg-slate-800 transition-all cursor-pointer"
                       >
                         <div className="flex items-center space-x-2.5 overflow-hidden flex-1 min-w-0 mr-2">
                           <div
@@ -3060,10 +3178,10 @@ export default function App() {
                             <CategoryIcon categoryName={tx.category} className="w-4 h-4" />
                           </div>
                           <div className="truncate flex-1 min-w-0">
-                            <div className="text-xs font-semibold text-white truncate">
+                            <div className="text-xs font-semibold text-slate-900 dark:text-white truncate">
                               {tx.description}
                             </div>
-                            <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 truncate">
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1.5 truncate">
                               <span>{tx.date}</span>
                               <span>•</span>
                               <span className="truncate">{accLabel}</span>
@@ -3077,14 +3195,14 @@ export default function App() {
                               )}
                             </div>
                             {tx.tags && tx.tags.length > 0 && (
-                              <div className="text-[10px] text-cyan-300/90 mt-0.5 truncate">
+                              <div className="text-[10px] text-cyan-700 dark:text-cyan-300/90 mt-0.5 truncate">
                                 {tx.tags.map((tg) => `#${tg}`).join(' · ')}
                               </div>
                             )}
                             {tx.notes && (
-                              <div className="mt-1 flex items-center gap-1 text-[10px] text-indigo-300 bg-indigo-950/40 border border-indigo-500/20 px-2 py-0.5 rounded-lg truncate max-w-full">
-                                <FileText className="w-3 h-3 text-indigo-400 flex-shrink-0" />
-                                <span className="truncate italic text-slate-300">{tx.notes}</span>
+                              <div className="mt-1 flex items-center gap-1 text-[10px] text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-500/20 px-2 py-0.5 rounded-lg truncate max-w-full">
+                                <FileText className="w-3 h-3 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+                                <span className="truncate italic text-slate-600 dark:text-slate-300">{tx.notes}</span>
                               </div>
                             )}
                           </div>
@@ -3199,6 +3317,7 @@ export default function App() {
             privacyMode={privacyMode}
             language={language}
             t={t}
+            theme={theme}
           />
         )}
 
@@ -3242,6 +3361,8 @@ export default function App() {
             onOpenMonthlyStatement={() => setIsMonthlyStatementModalOpen(true)}
             onOpenPrivacyPolicy={() => setIsPrivacyModalOpen(true)}
             monthlyEmailSettings={monthlyEmailSettings}
+            theme={theme}
+            onToggleTheme={handleToggleTheme}
           />
         )}
 

@@ -428,12 +428,12 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-      <div className="bg-slate-900 border-t sm:border border-slate-700/80 rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl relative max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300/80 dark:border-slate-700/80 rounded-t-3xl sm:rounded-3xl max-w-2xl w-full p-4 sm:p-6 shadow-2xl relative max-h-[92vh] flex flex-col">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition hover:bg-slate-800"
+          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition hover:bg-slate-100 dark:hover:bg-slate-800"
         >
           <X className="w-5 h-5" />
         </button>
@@ -441,11 +441,11 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
         {/* Modal Header */}
         <div className="mb-4 pr-10">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
               <Scale className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <span>
                   {isDe
                     ? 'Salden prüfen & neu berechnen'
@@ -454,12 +454,12 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                       : 'Ricalcolo Saldo & Coerenza Dati'}
                 </span>
                 {auditData.totalIssuesCount === 0 ? (
-                  <span className="text-[10px] bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="text-[10px] bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                     <CheckCircle2 className="w-3 h-3" />{' '}
                     {isDe ? '100% Konsistent' : isEn ? '100% Consistent' : 'Coerente 100%'}
                   </span>
                 ) : (
-                  <span className="text-[10px] bg-amber-500/15 text-amber-400 border border-amber-500/20 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="text-[10px] bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
                     <AlertTriangle className="w-3 h-3" /> {auditData.totalIssuesCount}{' '}
                     {isDe
                       ? auditData.totalIssuesCount === 1 ? 'Abweichung' : 'Abweichungen'
@@ -469,7 +469,7 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                   </span>
                 )}
               </h3>
-              <p className="text-[11px] text-slate-400 mt-0.5">
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                 {isDe
                   ? 'Prüft die mathematische Übereinstimmung zwischen Buchungen und Kontoständen und behebt Unstimmigkeiten.'
                   : isEn
@@ -482,33 +482,33 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
 
         {/* Global KPI Summary Bar */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
-          <div className="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block font-medium">
+          <div className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-medium">
               {isDe ? 'Geprüfte Buchungen' : isEn ? 'Transactions Checked' : 'Movimenti Esaminati'}
             </span>
-            <span className="text-sm font-black text-white">{auditData.totalTxAnalyzed}</span>
+            <span className="text-sm font-black text-slate-900 dark:text-white">{auditData.totalTxAnalyzed}</span>
           </div>
-          <div className="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block font-medium">
+          <div className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-medium">
               {isDe ? 'Berechneter Gesamtsaldo' : isEn ? 'Calculated Total' : 'Saldo Totale Calcolato'}
             </span>
-            <span className="text-sm font-black text-indigo-400">
+            <span className="text-sm font-black text-indigo-600 dark:text-indigo-400">
               {formatCurrency(auditData.totalLedgerBalance)}
             </span>
           </div>
-          <div className="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block font-medium">
+          <div className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-medium">
               {isDe ? 'Geprüfte Konten' : isEn ? 'Accounts Verified' : 'Conti Verificati'}
             </span>
-            <span className="text-sm font-black text-white">{accounts.length}</span>
+            <span className="text-sm font-black text-slate-900 dark:text-white">{accounts.length}</span>
           </div>
-          <div className="bg-slate-950 p-2.5 rounded-2xl border border-slate-800">
-            <span className="text-[10px] text-slate-400 block font-medium">
+          <div className="bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-medium">
               {isDe ? 'Verwaiste Buchungen' : isEn ? 'Orphaned Items' : 'Movimenti Orfani'}
             </span>
             <span
               className={`text-sm font-black ${
-                auditData.orphans.length > 0 ? 'text-amber-400' : 'text-emerald-400'
+                auditData.orphans.length > 0 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'
               }`}
             >
               {auditData.orphans.length}
@@ -517,13 +517,13 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-2xl border border-slate-800 mb-4 text-xs font-semibold">
+        <div className="flex items-center gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 mb-4 text-xs font-semibold">
           <button
             onClick={() => setActiveTab('audit')}
             className={`flex-1 py-1.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 ${
               activeTab === 'audit'
                 ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
@@ -540,7 +540,7 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
             className={`flex-1 py-1.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 relative ${
               activeTab === 'orphans'
                 ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             <FolderInput className="w-3.5 h-3.5" />
@@ -573,78 +573,78 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                 return (
                   <div
                     key={acc.id}
-                    className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800/90 space-y-3"
+                    className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800/90 space-y-3"
                   >
                     {/* Account Title Row */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
                         <div
-                          className={`w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-tr ${acc.color} text-white shadow-md`}
+                          className={`w-9 h-9 rounded-xl flex items-center justify-center bg-gradient-to-tr ${acc.color} text-slate-900 dark:text-white shadow-md`}
                         >
                           <AccountIcon iconName={acc.icon} className="w-4 h-4" />
                         </div>
                         <div>
-                          <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
+                          <h4 className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
                             {acc.name}
                             <span className="text-[10px] text-slate-500 font-normal">
                               ({info.txCount} {info.txCount === 1 ? 'movimento' : 'movimenti'})
                             </span>
                           </h4>
-                          <span className="text-[10px] text-slate-400">ID: {acc.id}</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400">ID: {acc.id}</span>
                         </div>
                       </div>
 
                       {/* Calculated Ledger Balance */}
                       <div className="text-right">
-                        <span className="text-[10px] text-slate-400 block font-medium">
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 block font-medium">
                           Saldo da Storico
                         </span>
-                        <span className="text-sm font-black text-white">
+                        <span className="text-sm font-black text-slate-900 dark:text-white">
                           {formatCurrency(info.calculatedBalance)}
                         </span>
                       </div>
                     </div>
 
                     {/* Breakdown Details Pills */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] bg-slate-900/60 p-2 rounded-xl border border-slate-800/60">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] bg-white/60 dark:bg-slate-900/60 p-2 rounded-xl border border-slate-200/60 dark:border-slate-800/60">
                       <div className="flex items-center justify-between px-1.5 py-0.5">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <TrendingUp className="w-3 h-3 text-emerald-400" /> Entrate:
+                        <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                          <TrendingUp className="w-3 h-3 text-emerald-600 dark:text-emerald-400" /> Entrate:
                         </span>
-                        <span className="font-bold text-emerald-400">
+                        <span className="font-bold text-emerald-600 dark:text-emerald-400">
                           +{formatCurrency(info.incomeSum)}
                         </span>
                       </div>
                       <div className="flex items-center justify-between px-1.5 py-0.5">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <TrendingDown className="w-3 h-3 text-rose-400" /> Uscite:
+                        <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                          <TrendingDown className="w-3 h-3 text-rose-600 dark:text-rose-400" /> Uscite:
                         </span>
-                        <span className="font-bold text-rose-400">
+                        <span className="font-bold text-rose-600 dark:text-rose-400">
                           -{formatCurrency(info.expenseSum)}
                         </span>
                       </div>
                       <div className="flex items-center justify-between px-1.5 py-0.5">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <ArrowRightLeft className="w-3 h-3 text-indigo-400" /> Giroconti in:
+                        <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                          <ArrowRightLeft className="w-3 h-3 text-indigo-600 dark:text-indigo-400" /> Giroconti in:
                         </span>
-                        <span className="font-bold text-indigo-300">
+                        <span className="font-bold text-indigo-700 dark:text-indigo-300">
                           +{formatCurrency(info.transfersIn)}
                         </span>
                       </div>
                       <div className="flex items-center justify-between px-1.5 py-0.5">
-                        <span className="text-slate-400 flex items-center gap-1">
-                          <ArrowRightLeft className="w-3 h-3 text-purple-400" /> Giroconti out:
+                        <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                          <ArrowRightLeft className="w-3 h-3 text-purple-600 dark:text-purple-400" /> Giroconti out:
                         </span>
-                        <span className="font-bold text-purple-300">
+                        <span className="font-bold text-purple-700 dark:text-purple-300">
                           -{formatCurrency(info.transfersOut)}
                         </span>
                       </div>
                     </div>
 
                     {/* Real Balance Comparison & Correction Input */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 border-t border-slate-800/60">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1 border-t border-slate-200/60 dark:border-slate-800/60">
                       <div className="flex items-center gap-2 flex-1">
-                        <label className="text-[11px] text-slate-300 font-medium whitespace-nowrap">
+                        <label className="text-[11px] text-slate-600 dark:text-slate-300 font-medium whitespace-nowrap">
                           Saldo Reale Effettivo:
                         </label>
                         <div className="relative max-w-[130px]">
@@ -662,7 +662,7 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                                 [acc.id]: e.target.value,
                               }))
                             }
-                            className="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-6 pr-2 py-1 text-xs text-white font-bold focus:outline-none focus:border-indigo-500 transition"
+                            className="w-full bg-white dark:bg-slate-900 border border-slate-300/80 dark:border-slate-700/80 rounded-xl pl-6 pr-2 py-1 text-xs text-slate-900 dark:text-white font-bold focus:outline-none focus:border-indigo-500 transition"
                           />
                         </div>
                       </div>
@@ -674,8 +674,8 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                             <span
                               className={`text-[11px] font-extrabold px-2 py-0.5 rounded-lg border ${
                                 discrepancy > 0
-                                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
-                                  : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+                                  ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
+                                  : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/30'
                               }`}
                             >
                               Discrepanza: {discrepancy > 0 ? '+' : ''}
@@ -692,7 +692,7 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                             </button>
                           </>
                         ) : (
-                          <span className="text-[10px] text-emerald-400 flex items-center gap-1 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-xl">
+                          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-xl">
                             <CheckCircle2 className="w-3 h-3" /> Allineato
                           </span>
                         )}
@@ -708,12 +708,12 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
           {activeTab === 'orphans' && (
             <div className="space-y-4">
               {auditData.orphans.length === 0 ? (
-                <div className="p-8 text-center bg-slate-950/60 rounded-2xl border border-dashed border-slate-800 flex flex-col items-center justify-center gap-2">
-                  <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                <div className="p-8 text-center bg-slate-100/90 dark:bg-slate-950/60 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <p className="text-sm font-bold text-white">Nessun movimento orfano</p>
-                  <p className="text-xs text-slate-400 max-w-sm">
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">Nessun movimento orfano</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm">
                     Tutti i movimenti presenti nel registro storico sono correttamente collegati ai conti esistenti.
                   </p>
                 </div>
@@ -722,12 +722,12 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                   {/* Alert banner with batch reassign */}
                   <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-3">
                     <div className="flex items-start gap-2.5">
-                      <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                      <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                       <div>
-                        <h4 className="text-xs font-bold text-amber-200">
+                        <h4 className="text-xs font-bold text-amber-800 dark:text-amber-200">
                           Rilevati {auditData.orphans.length} movimenti non collegati a conti attivi
                         </h4>
-                        <p className="text-[11px] text-amber-300/80 mt-0.5 leading-relaxed">
+                        <p className="text-[11px] text-amber-700 dark:text-amber-300/80 mt-0.5 leading-relaxed">
                           Questi movimenti fanno riferimento a nomi o ID di conti non presenti (es. eliminati in precedenza o modificati a mano). Puoi riassegnarli o ricreare il conto mancante.
                         </p>
                       </div>
@@ -735,13 +735,13 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
 
                     {/* Batch Reassign Form */}
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 pt-2 border-t border-amber-500/20">
-                      <span className="text-[11px] font-semibold text-amber-200">
+                      <span className="text-[11px] font-semibold text-amber-800 dark:text-amber-200">
                         Riassegna tutti a:
                       </span>
                       <select
                         value={selectedOrphanTarget}
                         onChange={(e) => setSelectedOrphanTarget(e.target.value)}
-                        className="bg-slate-900 border border-amber-500/40 text-white rounded-xl px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-400"
+                        className="bg-white dark:bg-slate-900 border border-amber-500/40 text-slate-900 dark:text-white rounded-xl px-2.5 py-1.5 text-xs focus:outline-none focus:border-amber-400"
                       >
                         {accounts.map((a) => (
                           <option key={a.id} value={a.id}>
@@ -764,30 +764,30 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
                     {auditData.orphans.map(({ tx, missingAccountName }, idx) => (
                       <div
                         key={tx.id || idx}
-                        className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs gap-2"
+                        className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs gap-2"
                       >
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-white truncate">
+                            <span className="font-bold text-slate-900 dark:text-white truncate">
                               {tx.description}
                             </span>
                             <span className="text-[10px] text-slate-500">{tx.date}</span>
                           </div>
-                          <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 truncate">
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1.5 truncate">
                             <span
                               className={`font-bold ${
                                 tx.type === 'INCOME'
-                                  ? 'text-emerald-400'
+                                  ? 'text-emerald-600 dark:text-emerald-400'
                                   : tx.type === 'EXPENSE'
-                                  ? 'text-rose-400'
-                                  : 'text-indigo-400'
+                                  ? 'text-rose-600 dark:text-rose-400'
+                                  : 'text-indigo-600 dark:text-indigo-400'
                               }`}
                             >
                               {tx.type === 'EXPENSE' ? '-' : '+'}
                               {formatCurrency(tx.amount)}
                             </span>
                             <span>•</span>
-                            <span className="text-amber-400 truncate">
+                            <span className="text-amber-600 dark:text-amber-400 truncate">
                               Conto mancante: "{missingAccountName}"
                             </span>
                           </div>
@@ -795,7 +795,7 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
 
                         <button
                           onClick={() => handleRecreateMissingAccount(missingAccountName)}
-                          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-indigo-300 border border-slate-700 rounded-lg text-[10px] font-semibold flex items-center gap-1 shrink-0 transition"
+                          className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-indigo-700 dark:text-indigo-300 border border-slate-300 dark:border-slate-700 rounded-lg text-[10px] font-semibold flex items-center gap-1 shrink-0 transition"
                         >
                           <PlusCircle className="w-3 h-3" />
                           <span>Ricrea Conto</span>
@@ -810,9 +810,9 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
         </div>
 
         {/* Modal Footer Actions */}
-        <div className="pt-4 mt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+        <div className="pt-4 mt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             <span>
               {isDe
                 ? '2-Dezimal-Präzision & ID-Eindeutigkeitsprüfung'
@@ -825,7 +825,7 @@ export const BalanceReconcileModal: React.FC<BalanceReconcileModalProps> = ({
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               onClick={onClose}
-              className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition"
+              className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold transition"
             >
               {isDe ? 'Schließen' : isEn ? 'Close' : 'Chiudi'}
             </button>
