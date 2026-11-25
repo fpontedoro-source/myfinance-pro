@@ -161,8 +161,49 @@ export function printHtmlDocument({
             background: #f1f5f9;
             color: #475569;
           }
+          h2 {
+            font-size: 11.5pt;
+            font-weight: 800;
+            color: #1e1b4b;
+            margin: 0 0 5px 0;
+          }
+          p {
+            margin: 0 0 6px 0;
+            color: #1e293b;
+            font-size: 9.8pt;
+          }
+          p:last-child {
+            margin-bottom: 0;
+          }
+          ul {
+            margin: 4px 0 6px 0;
+            padding-left: 18px;
+            color: #1e293b;
+            font-size: 9.5pt;
+          }
+          li {
+            margin-bottom: 3px;
+          }
+          .policy-meta {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            font-size: 9.5pt;
+            color: #334155;
+          }
+          .policy-section {
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 9px 12px;
+            margin-bottom: 9px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+          }
           .footer {
-            margin-top: 30px;
+            margin-top: 20px;
             padding-top: 10px;
             border-top: 1px solid #e2e8f0;
             font-size: 8pt;
@@ -171,7 +212,11 @@ export function printHtmlDocument({
             justify-content: space-between;
           }
           @media print {
-            body { padding: 0; }
+            html, body {
+              height: auto !important;
+              overflow: visible !important;
+              padding: 0;
+            }
             .no-print { display: none !important; }
           }
         </style>

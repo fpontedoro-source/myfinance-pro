@@ -4,7 +4,7 @@ import {
   ShieldCheck,
   Lock,
   Globe,
-  Camera,
+  Smartphone,
   Database,
   Mail,
   Copy,
@@ -86,32 +86,125 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
 
     const sectionsHtml = isDe
       ? `
-        <p><strong>Entwickler:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · Stand: 23.11.2026</p>
-        <h2>1. Lokale Datenspeicherung (Privacy-First)</h2>
-        <p>Alle Konten, Transaktionen, Kategorien, Budgets, Sparziele, Dauerbuchungen und Ihr optionales lokales Profil werden ausschließlich lokal im Gerätespeicher (LocalStorage &amp; IndexedDB) gespeichert. Ihr Zugriffspasswort wird ausschließlich als gesalzener SHA-256-Hash abgelegt.</p>
-        <h2>2. Optionale Online-Dienste</h2>
-        <p>Die App funktioniert offline. Öffentliche Wechselkurse (EZB/Frankfurter API) oder E-Mail-Entwürfe (mailto:) werden nur auf ausdrückliche Nutzeraktion ausgelöst.</p>
-        <h2>3. Berechtigungen, Werbung &amp; Löschung</h2>
-        <p>Keine Werbung, kein Tracking, keine Kreditvermittlung. Dateizugriff oder lokale Benachrichtigungen werden nur auf Wunsch genutzt. Alle Daten können jederzeit exportiert oder durch Löschen der App-Daten vollständig entfernt werden.</p>
+        <div class="policy-meta">
+          <strong>Verantwortlicher / Entwickler:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · <strong>Stand:</strong> 23.11.2026
+        </div>
+        <div class="policy-section">
+          <h2>1. Verantwortlicher &amp; Kontakt</h2>
+          <p>MyFinance Pro wird von Federico Pontedoro entwickelt. Für Datenschutzfragen wenden Sie sich jederzeit an <a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>.</p>
+        </div>
+        <div class="policy-section">
+          <h2>2. 100% Lokale Datenspeicherung (Kein Cloud-Server)</h2>
+          <p>Alle Konten, Buchungen, Kategorien, Budgets, Sparziele, Dauerbuchungen, Schulden/Forderungen sowie Ihr optionales lokales Profil werden ausschließlich lokal im Gerätespeicher (LocalStorage &amp; IndexedDB) gespeichert. Ihr Passwort wird nur als gesalzener SHA-256-Hash abgelegt.</p>
+        </div>
+        <div class="policy-section">
+          <h2>3. Optionale Online-Funktionen (Nur auf Klick)</h2>
+          <ul>
+            <li><strong>Wechselkurse:</strong> Anonyme Leseabfrage öffentlicher Referenzkurse (EZB / Frankfurter API) ohne personenbezogene Daten.</li>
+            <li><strong>E-Mail / Wiederherstellung:</strong> Nutzt Ihre lokale E-Mail-App (mailto:) oder einen selbst hinterlegten Webhook.</li>
+          </ul>
+        </div>
+        <div class="policy-section">
+          <h2>4. Geräteberechtigungen</h2>
+          <p>Dateizugriff und lokale Benachrichtigungen werden ausschließlich genutzt, wenn Sie CSV/Excel/JSON importieren/exportieren oder Zahlungserinnerungen aktivieren.</p>
+        </div>
+        <div class="policy-section">
+          <h2>5. Keine Werbung, kein Tracking &amp; Finanzhinweis</h2>
+          <p>Keine Werbebanner, keine Drittanbieter-Tracker, kein Datenverkauf. MyFinance Pro ist ein reines persönliches Budget-Werkzeug und bietet keine Kredite oder regulierte Finanzberatung an.</p>
+        </div>
+        <div class="policy-section">
+          <h2>6. Ihre 6 DSGVO-Rechte &amp; Datenlöschung</h2>
+          <p>Gemäß DSGVO behalten Sie die volle Kontrolle über Ihre lokal gespeicherten Daten. Sie haben folgende 6 Rechte:</p>
+          <ul>
+            <li><strong>1. Auskunftsrecht (Art. 15):</strong> Alle gespeicherten Konten, Buchungen und Profildaten jederzeit direkt in der App einsehen.</li>
+            <li><strong>2. Recht auf Berichtigung (Art. 16):</strong> Jede Buchung, Kategorie oder Profilangabe direkt bearbeiten.</li>
+            <li><strong>3. Recht auf Löschung (Art. 17):</strong> Einzelne Einträge oder sämtliche App-Daten unwiderruflich über die Geräteeinstellungen bzw. Deinstallation löschen.</li>
+            <li><strong>4. Recht auf Einschränkung (Art. 18):</strong> Online-Abrufe (z. B. Wechselkurse) oder Erinnerungen jederzeit deaktiviert lassen; die App läuft 100% offline.</li>
+            <li><strong>5. Recht auf Datenübertragbarkeit (Art. 20):</strong> Vollständigen Datenexport jederzeit als <strong>.JSON, .CSV oder .PDF</strong> durchführen.</li>
+            <li><strong>6. Widerspruchsrecht (Art. 21):</strong> Keine Profilbildung, kein Tracking und keine Werbung; Beschwerden oder Anfragen an <a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>.</li>
+          </ul>
+        </div>
       `
       : isEn
         ? `
-        <p><strong>Developer:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · Updated: Nov 23, 2026</p>
-        <h2>1. 100% Local Storage (Privacy-First)</h2>
-        <p>All accounts, transactions, categories, budgets, goals, recurring entries, and optional profile info remain strictly on your device (LocalStorage &amp; IndexedDB). Passwords are stored exclusively as a salted SHA-256 cryptographic hash.</p>
-        <h2>2. Optional User-Initiated Online Features</h2>
-        <p>The app works offline. Anonymous reference FX rate lookup (ECB/Frankfurter) and email statement drafts (mailto:) are executed only when explicitly triggered by you.</p>
-        <h2>3. Permissions, Zero Ads &amp; Data Deletion</h2>
-        <p>No ads, no third-party tracking SDKs, and no lending/credit services. File access and local notifications are optional and user-triggered. Export (.JSON/.CSV/.PDF) or delete all data anytime from device settings.</p>
+        <div class="policy-meta">
+          <strong>Developer / Data Controller:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · <strong>Updated:</strong> Nov 23, 2026
+        </div>
+        <div class="policy-section">
+          <h2>1. Developer &amp; Contact</h2>
+          <p>MyFinance Pro is developed by Federico Pontedoro. For any privacy inquiry, contact <a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>.</p>
+        </div>
+        <div class="policy-section">
+          <h2>2. 100% Local Device Storage (Zero Cloud DB)</h2>
+          <p>All accounts, transactions, categories, budgets, goals, recurring schedules, debts/credits, and your optional local profile stay exclusively inside your device LocalStorage &amp; IndexedDB. Your unlock password is stored solely as a salted SHA-256 cryptographic hash.</p>
+        </div>
+        <div class="policy-section">
+          <h2>3. Optional Online Features (User-Initiated Only)</h2>
+          <ul>
+            <li><strong>FX Rates:</strong> Anonymous read-only lookup of public ECB/Frankfurter exchange rates with zero personal data transmitted.</li>
+            <li><strong>Email / Recovery:</strong> Uses your local device email app (mailto:) or a user-configured webhook.</li>
+          </ul>
+        </div>
+        <div class="policy-section">
+          <h2>4. Device Permissions</h2>
+          <p>File picker and local notifications are accessed only when you choose to import/export CSV, Excel, or JSON backups or enable reminders.</p>
+        </div>
+        <div class="policy-section">
+          <h2>5. No Ads, No Tracking &amp; Finance Disclosure</h2>
+          <p>No advertisements, no third-party tracking SDKs, and no data selling. MyFinance Pro is purely a personal expense tracker and does not provide loans or regulated financial advice.</p>
+        </div>
+        <div class="policy-section">
+          <h2>6. Your 6 GDPR Rights &amp; Data Deletion</h2>
+          <p>Under the GDPR, you retain full ownership of your locally stored records. Your 6 rights include:</p>
+          <ul>
+            <li><strong>1. Right of Access (Art. 15):</strong> Inspect all stored accounts, transactions, and profile info directly inside the app anytime.</li>
+            <li><strong>2. Right to Rectification (Art. 16):</strong> Edit or correct any transaction, account, category, or profile entry directly.</li>
+            <li><strong>3. Right to Erasure (Art. 17):</strong> Delete individual entries or permanently wipe all data by clearing app storage or uninstalling.</li>
+            <li><strong>4. Right to Restriction (Art. 18):</strong> Keep optional online FX lookups or notifications disabled; the app works 100% offline.</li>
+            <li><strong>5. Right to Data Portability (Art. 20):</strong> Export all your data anytime in <strong>.JSON, .CSV, or .PDF</strong> format.</li>
+            <li><strong>6. Right to Object (Art. 21):</strong> Zero profiling, tracking, or ads; direct any request or objection to <a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>.</li>
+          </ul>
+        </div>
       `
         : `
-        <p><strong>Titolare / Sviluppatore:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · Aggiornato: 23/11/2026</p>
-        <h2>1. Archiviazione 100% Locale (Privacy-First)</h2>
-        <p>Tutti i conti, movimenti, categorie, budget, obiettivi, scadenze e il profilo locale facoltativo restano esclusivamente sul tuo dispositivo (LocalStorage e IndexedDB). La password di sblocco è salvata solo come hash crittografico SHA-256 con salt casuale.</p>
-        <h2>2. Servizi Online Opzionali (Solo su Richiesta)</h2>
-        <p>L'app funziona interamente offline. Aggiornamento tassi di cambio (BCE/Frankfurter API) e bozze email (mailto:) vengono attivati solo su tua esplicita richiesta.</p>
-        <h2>3. Permessi, Zero Pubblicità e Cancellazione Dati</h2>
-        <p>Nessuna pubblicità, nessun tracker di terze parti e nessun servizio di prestito/credito. Accesso ai file e notifiche locali sono opzionali. Puoi esportare (.JSON/.CSV/.PDF) o cancellare tutti i dati in qualsiasi momento dal dispositivo.</p>
+        <div class="policy-meta">
+          <strong>Titolare / Sviluppatore:</strong> Federico Pontedoro (<a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>) · <strong>Aggiornato:</strong> 23/11/2026
+        </div>
+        <div class="policy-section">
+          <h2>1. Titolare &amp; Contatti</h2>
+          <p>Sviluppatore e Titolare del trattamento: Federico Pontedoro. Per qualsiasi richiesta sulla privacy scrivi a <a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>.</p>
+        </div>
+        <div class="policy-section">
+          <h2>2. Archiviazione 100% Locale sul Dispositivo</h2>
+          <p>Tutti i conti, movimenti, categorie, budget, obiettivi, scadenze, debiti/crediti e il profilo locale (Nome, Cognome, Email) restano esclusivamente nella memoria del tuo dispositivo (LocalStorage e IndexedDB). La password è salvata solo come hash crittografico SHA-256 con salt casuale.</p>
+        </div>
+        <div class="policy-section">
+          <h2>3. Servizi Online Facoltativi (Solo su Tua Azione)</h2>
+          <ul>
+            <li><strong>Tassi di Cambio:</strong> Chiamata anonima di sola lettura alle API pubbliche BCE/Frankfurter (nessun dato personale inviato).</li>
+            <li><strong>Email &amp; Estratto Conto:</strong> Utilizza l'app email del dispositivo (mailto:) o eventuale webhook configurato dall'utente.</li>
+          </ul>
+        </div>
+        <div class="policy-section">
+          <h2>4. Permessi Dispositivo</h2>
+          <p>Accesso ai file e notifiche locali sono richiesti solo quando scegli di importare/esportare CSV, Excel o JSON oppure attivare i promemoria.</p>
+        </div>
+        <div class="policy-section">
+          <h2>5. Zero Pubblicità, Tracker e Nota Finanziaria</h2>
+          <p>Nessun banner pubblicitario, nessun tracker di terze parti, nessuna vendita di dati. MyFinance Pro è uno strumento personale di gestione spese e budget: non eroga prestiti né consulenza finanziaria regolamentata.</p>
+        </div>
+        <div class="policy-section">
+          <h2>6. I 6 Diritti GDPR &amp; Cancellazione Totale</h2>
+          <p>In conformità con il GDPR, mantieni in ogni momento il controllo esclusivo dei tuoi dati locali. Ecco i tuoi 6 diritti:</p>
+          <ul>
+            <li><strong>1. Diritto di Accesso (Art. 15):</strong> Visualizzare in ogni momento tutti i conti, movimenti e dati del profilo salvati sul dispositivo.</li>
+            <li><strong>2. Diritto di Rettifica (Art. 16):</strong> Modificare o correggere liberamente qualsiasi movimento, conto, categoria o dato personale.</li>
+            <li><strong>3. Diritto alla Cancellazione / Oblio (Art. 17):</strong> Eliminare singoli elementi o cancellare definitivamente tutti i dati dalle impostazioni del dispositivo o disinstallando l'app.</li>
+            <li><strong>4. Diritto di Limitazione (Art. 18):</strong> Disattivare o non utilizzare funzioni online opzionali (tassi FX, promemoria); l'app opera al 100% offline.</li>
+            <li><strong>5. Diritto alla Portabilità (Art. 20):</strong> Esportare tutti i propri dati in qualsiasi momento nei formati <strong>.JSON, .CSV o .PDF</strong>.</li>
+            <li><strong>6. Diritto di Opposizione (Art. 21):</strong> Nessuna profilazione, pubblicità o tracciamento; per segnalazioni o reclami scrivi a <a href="mailto:fpontedoro@gmail.com">fpontedoro@gmail.com</a>.</li>
+          </ul>
+        </div>
       `;
 
     printHtmlDocument({
@@ -324,7 +417,7 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
           {/* 4. Permessi Dispositivo */}
           <div className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1.5">
             <div className="font-bold text-white flex items-center gap-1.5">
-              <Camera className="w-3.5 h-3.5 text-amber-400" />
+              <Smartphone className="w-3.5 h-3.5 text-amber-400" />
               <span>
                 {isDe
                   ? '4. Geräteberechtigungen'
@@ -363,25 +456,87 @@ export const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({
             </p>
           </div>
 
-          {/* 6. Esportazione & Cancellazione */}
+          {/* 6. I 6 Diritti GDPR & Cancellazione */}
           <div className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-1.5">
             <div className="font-bold text-white flex items-center gap-1.5">
               <Trash2 className="w-3.5 h-3.5 text-slate-300" />
               <span>
                 {isDe
-                  ? '6. Ihre Rechte & Datenlöschung (DSGVO)'
+                  ? '6. Ihre 6 DSGVO-Rechte & Datenlöschung'
                   : isEn
-                    ? '6. Your Rights & Data Deletion (GDPR)'
-                    : '6. Diritti GDPR & Cancellazione Totale'}
+                    ? '6. Your 6 GDPR Rights & Data Deletion'
+                    : '6. I 6 Diritti GDPR & Cancellazione Totale'}
               </span>
             </div>
             <p className="text-[11px] text-slate-300 leading-relaxed">
               {isDe
-                ? 'Sie können alle Daten jederzeit als .JSON/.CSV/.PDF exportieren oder durch Löschen der App-Daten bzw. Deinstallation unwiderruflich entfernen.'
+                ? 'Gemäß DSGVO behalten Sie die volle Kontrolle über Ihre Daten:'
                 : isEn
-                  ? 'You can export all data anytime (.JSON/.CSV/.PDF) or permanently wipe everything by clearing app data or uninstalling.'
-                  : 'Puoi esportare i tuoi dati in .JSON, .CSV o .PDF in ogni momento, oppure eliminarli definitivamente cancellando i dati dell\'app dalle impostazioni del dispositivo o disinstallandola.'}
+                  ? 'Under GDPR, you maintain full control over your local records:'
+                  : 'In conformità al GDPR, mantieni sempre i tuoi 6 diritti sui dati locali:'}
             </p>
+            <ul className="text-[11px] text-slate-300 space-y-1 list-disc list-inside leading-relaxed">
+              <li>
+                <strong className="text-white">
+                  {isDe ? '1. Auskunft (Art. 15):' : isEn ? '1. Access (Art. 15):' : '1. Accesso (Art. 15):'}
+                </strong>{' '}
+                {isDe
+                  ? 'Alle gespeicherten Daten jederzeit in der App einsehen.'
+                  : isEn
+                    ? 'View all stored accounts and records anytime.'
+                    : 'Consultare in ogni momento tutti i dati salvati sul dispositivo.'}
+              </li>
+              <li>
+                <strong className="text-white">
+                  {isDe ? '2. Berichtigung (Art. 16):' : isEn ? '2. Rectification (Art. 16):' : '2. Rettifica (Art. 16):'}
+                </strong>{' '}
+                {isDe
+                  ? 'Konten, Buchungen und Profilangaben direkt bearbeiten.'
+                  : isEn
+                    ? 'Edit accounts, transactions, and profile entries anytime.'
+                    : 'Modificare conti, movimenti e dati del profilo in qualsiasi momento.'}
+              </li>
+              <li>
+                <strong className="text-white">
+                  {isDe ? '3. Löschung (Art. 17):' : isEn ? '3. Erasure (Art. 17):' : '3. Cancellazione / Oblio (Art. 17):'}
+                </strong>{' '}
+                {isDe
+                  ? 'Alles dauerhaft über App-Daten löschen oder Deinstallation entfernen.'
+                  : isEn
+                    ? 'Permanently wipe everything by clearing app data or uninstalling.'
+                    : 'Eliminare tutto definitivamente cancellando i dati app o disinstallando.'}
+              </li>
+              <li>
+                <strong className="text-white">
+                  {isDe ? '4. Einschränkung (Art. 18):' : isEn ? '4. Restriction (Art. 18):' : '4. Limitazione (Art. 18):'}
+                </strong>{' '}
+                {isDe
+                  ? 'Optionale Online-Funktionen jederzeit deaktiviert lassen.'
+                  : isEn
+                    ? 'Keep optional online FX lookups or alerts disabled.'
+                    : 'Disattivare in ogni momento funzioni online facoltative e promemoria.'}
+              </li>
+              <li>
+                <strong className="text-white">
+                  {isDe ? '5. Datenübertragbarkeit (Art. 20):' : isEn ? '5. Portability (Art. 20):' : '5. Portabilità (Art. 20):'}
+                </strong>{' '}
+                {isDe
+                  ? 'Vollständiger Export als .JSON, .CSV oder .PDF.'
+                  : isEn
+                    ? 'Export all records anytime in .JSON, .CSV, or .PDF.'
+                    : 'Esportare tutti i dati in formato .JSON, .CSV o .PDF.'}
+              </li>
+              <li>
+                <strong className="text-white">
+                  {isDe ? '6. Widerspruch (Art. 21):' : isEn ? '6. Objection (Art. 21):' : '6. Opposizione (Art. 21):'}
+                </strong>{' '}
+                {isDe
+                  ? 'Kein Tracking/Werbung; Kontakt via fpontedoro@gmail.com.'
+                  : isEn
+                    ? 'Zero tracking/ads; contact fpontedoro@gmail.com.'
+                    : 'Zero profilazione/pubblicità; contatta fpontedoro@gmail.com.'}
+              </li>
+            </ul>
           </div>
         </div>
 
