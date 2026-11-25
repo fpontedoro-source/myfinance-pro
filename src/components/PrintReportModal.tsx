@@ -660,37 +660,37 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print animate-fade-in">
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl overflow-hidden text-slate-900 dark:text-slate-100">
+    <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print animate-fade-in">
+      <div className="bg-slate-900 border border-slate-800 rounded-t-3xl sm:rounded-3xl w-full max-w-lg max-h-[92vh] flex flex-col shadow-2xl overflow-hidden text-slate-100">
         {/* Header Modal */}
-        <div className="p-4 border-b border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between bg-white/90 dark:bg-slate-900/90 sticky top-0 z-10">
+        <div className="p-4 border-b border-slate-800/80 flex items-center justify-between bg-slate-900/90 sticky top-0 z-10">
           <div className="flex items-center gap-2.5">
             <MyFinanceIcon size={38} withGlow />
             <div>
-              <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-1.5 leading-tight">
+              <h2 className="text-base font-extrabold text-white flex items-center gap-1.5 leading-tight">
                 {t?.printCenterTitle || 'Centro Stampa & PDF'}
               </h2>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-slate-400">
                 {t?.printCenterSubtitle || 'Stampa diretta formattata A4 o esportazione PDF ufficiale'}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition"
+            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-950/50 px-3 pt-2 gap-1 overflow-x-auto no-scrollbar">
+        <div className="flex border-b border-slate-800 bg-slate-950/50 px-3 pt-2 gap-1 overflow-x-auto no-scrollbar">
           <button
             onClick={() => setActiveTab('statement')}
             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-t-xl transition border-b-2 whitespace-nowrap ${
               activeTab === 'statement'
-                ? 'border-cyan-400 text-cyan-700 dark:text-cyan-300 bg-white dark:bg-slate-900'
-                : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                ? 'border-cyan-400 text-cyan-300 bg-slate-900'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -701,8 +701,8 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
             onClick={() => setActiveTab('monthly')}
             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-t-xl transition border-b-2 whitespace-nowrap ${
               activeTab === 'monthly'
-                ? 'border-indigo-400 text-indigo-700 dark:text-indigo-300 bg-white dark:bg-slate-900'
-                : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                ? 'border-indigo-400 text-indigo-300 bg-slate-900'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <PieChart className="w-3.5 h-3.5" />
@@ -713,8 +713,8 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
             onClick={() => setActiveTab('accounts')}
             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-t-xl transition border-b-2 whitespace-nowrap ${
               activeTab === 'accounts'
-                ? 'border-emerald-400 text-emerald-700 dark:text-emerald-300 bg-white dark:bg-slate-900'
-                : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                ? 'border-emerald-400 text-emerald-300 bg-slate-900'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <Wallet className="w-3.5 h-3.5" />
@@ -725,8 +725,8 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
             onClick={() => setActiveTab('screen')}
             className={`flex items-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-t-xl transition border-b-2 whitespace-nowrap ${
               activeTab === 'screen'
-                ? 'border-amber-400 text-amber-700 dark:text-amber-300 bg-white dark:bg-slate-900'
-                : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                ? 'border-amber-400 text-amber-300 bg-slate-900'
+                : 'border-transparent text-slate-400 hover:text-slate-200'
             }`}
           >
             <Printer className="w-3.5 h-3.5" />
@@ -740,15 +740,15 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
           {activeTab === 'statement' && (
             <div className="space-y-4">
               {/* Filtri veloci */}
-              <div className="grid grid-cols-2 gap-2 bg-slate-100/90 dark:bg-slate-950/60 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+              <div className="grid grid-cols-2 gap-2 bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1 flex items-center gap-1">
-                    <Filter className="w-3 h-3 text-cyan-600 dark:text-cyan-400" /> {t?.filterAccountLabel || 'Conto'}
+                  <label className="block text-[10px] text-slate-400 font-semibold mb-1 flex items-center gap-1">
+                    <Filter className="w-3 h-3 text-cyan-400" /> {t?.filterAccountLabel || 'Conto'}
                   </label>
                   <select
                     value={selectedAccountId}
                     onChange={(e) => setSelectedAccountId(e.target.value)}
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                   >
                     <option value="ALL">{t?.allAccountsOption || 'Tutti i conti'}</option>
                     {accounts.map((acc) => (
@@ -760,13 +760,13 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1 flex items-center gap-1">
-                    <Calendar className="w-3 h-3 text-cyan-600 dark:text-cyan-400" /> {t?.filterPeriodLabel || 'Periodo'}
+                  <label className="block text-[10px] text-slate-400 font-semibold mb-1 flex items-center gap-1">
+                    <Calendar className="w-3 h-3 text-cyan-400" /> {t?.filterPeriodLabel || 'Periodo'}
                   </label>
                   <select
                     value={selectedPeriod}
                     onChange={(e) => setSelectedPeriod(e.target.value)}
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2 py-1.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
                   >
                     <option value="ALL">{t?.allTransactionsOption || 'Tutti i movimenti'}</option>
                     <option value="CUSTOM">{t?.periodCustom || 'Intervallo date'}</option>
@@ -777,27 +777,27 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
                 </div>
 
                 {selectedPeriod === 'CUSTOM' && (
-                  <div className="col-span-2 grid grid-cols-2 gap-2 bg-slate-100/90 dark:bg-slate-950/80 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                  <div className="col-span-2 grid grid-cols-2 gap-2 bg-slate-950/80 p-2.5 rounded-xl border border-slate-800">
                     <div>
-                      <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1">
+                      <label className="block text-[10px] text-slate-400 font-medium mb-1">
                         {t?.dateFromLabel || 'Dal'} {dateFrom ? `(${formatDateEuropean(dateFrom)})` : ''}
                       </label>
                       <input
                         type="date"
                         value={dateFrom}
                         onChange={(e) => setDateFrom(e.target.value)}
-                        className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-2 py-1 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-cyan-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1">
+                      <label className="block text-[10px] text-slate-400 font-medium mb-1">
                         {t?.dateToLabel || 'Al'} {dateTo ? `(${formatDateEuropean(dateTo)})` : ''}
                       </label>
                       <input
                         type="date"
                         value={dateTo}
                         onChange={(e) => setDateTo(e.target.value)}
-                        className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-2 py-1 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-cyan-500"
                       />
                     </div>
                   </div>
@@ -806,23 +806,23 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
 
               {/* Anteprima Riepilogo Totali */}
               <div className="grid grid-cols-3 gap-2">
-                <div className="bg-slate-100/90 dark:bg-slate-950/70 border border-emerald-500/20 p-2.5 rounded-2xl">
-                  <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">{t?.summaryIncome || 'Entrate'}</div>
-                  <div className="text-xs sm:text-sm font-black text-emerald-600 dark:text-emerald-400 mt-0.5 truncate">
+                <div className="bg-slate-950/70 border border-emerald-500/20 p-2.5 rounded-2xl">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase">{t?.summaryIncome || 'Entrate'}</div>
+                  <div className="text-xs sm:text-sm font-black text-emerald-400 mt-0.5 truncate">
                     +{formatCurrency(statementTotals.income)}
                   </div>
                 </div>
-                <div className="bg-slate-100/90 dark:bg-slate-950/70 border border-rose-500/20 p-2.5 rounded-2xl">
-                  <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">{t?.summaryExpenses || 'Uscite'}</div>
-                  <div className="text-xs sm:text-sm font-black text-rose-600 dark:text-rose-400 mt-0.5 truncate">
+                <div className="bg-slate-950/70 border border-rose-500/20 p-2.5 rounded-2xl">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase">{t?.summaryExpenses || 'Uscite'}</div>
+                  <div className="text-xs sm:text-sm font-black text-rose-400 mt-0.5 truncate">
                     -{formatCurrency(statementTotals.expense)}
                   </div>
                 </div>
-                <div className="bg-slate-100/90 dark:bg-slate-950/70 border border-indigo-500/20 p-2.5 rounded-2xl">
-                  <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase">{t?.summaryNetBalance || 'Saldo Netto'}</div>
+                <div className="bg-slate-950/70 border border-indigo-500/20 p-2.5 rounded-2xl">
+                  <div className="text-[10px] font-bold text-slate-400 uppercase">{t?.summaryNetBalance || 'Saldo Netto'}</div>
                   <div
                     className={`text-xs sm:text-sm font-black mt-0.5 truncate ${
-                      statementTotals.net >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                      statementTotals.net >= 0 ? 'text-emerald-400' : 'text-rose-400'
                     }`}
                   >
                     {statementTotals.net >= 0 ? '+' : ''}
@@ -832,9 +832,9 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
               </div>
 
               {/* Anteprima Lista Movimenti (max 4 per anteprima) */}
-              <div className="bg-slate-100/90 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 space-y-2">
-                <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
-                  <span className="font-semibold text-slate-600 dark:text-slate-300">
+              <div className="bg-slate-950/40 border border-slate-800 rounded-2xl p-3 space-y-2">
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span className="font-semibold text-slate-300">
                     {t?.documentPreview || 'Anteprima Documento'} ({filteredTransactions.length} {t?.rowsWord || 'righe'})
                   </span>
                   <span className="text-[10px]">{t?.bankingA4Format || 'Formato A4 bancario'}</span>
@@ -844,13 +844,13 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
                   {filteredTransactions.slice(0, 4).map((tx) => (
                     <div key={tx.id} className="py-2 flex items-center justify-between gap-2">
                       <div className="min-w-0 flex-1">
-                        <div className="font-medium text-slate-900 dark:text-white truncate text-[11px]">
+                        <div className="font-medium text-white truncate text-[11px]">
                           {tx.description}
                         </div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                        <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
                           <span>{tx.date}</span>
                           <span>•</span>
-                          <span className="text-slate-600 dark:text-slate-300">{tx.account || tx.fromAccount}</span>
+                          <span className="text-slate-300">{tx.account || tx.fromAccount}</span>
                           <span>•</span>
                           <span className="text-slate-500">{tx.category ? getCategoryDisplayName(tx.category, language) : ''}</span>
                         </div>
@@ -858,10 +858,10 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
                       <span
                         className={`text-xs font-bold flex-shrink-0 ${
                           tx.type === 'EXPENSE'
-                            ? 'text-rose-600 dark:text-rose-400'
+                            ? 'text-rose-400'
                             : tx.type === 'TRANSFER'
-                            ? 'text-indigo-600 dark:text-indigo-400'
-                            : 'text-emerald-600 dark:text-emerald-400'
+                            ? 'text-indigo-400'
+                            : 'text-emerald-400'
                         }`}
                       >
                         {tx.type === 'EXPENSE' ? '-' : tx.type === 'TRANSFER' ? '↺ ' : '+'}
@@ -895,7 +895,7 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
 
                 <button
                   onClick={handleDownloadStatementPdf}
-                  className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-indigo-700 dark:text-indigo-300 border border-slate-300/80 dark:border-slate-700/80 font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs transition active:scale-95"
+                  className="w-full py-3 bg-slate-800 hover:bg-slate-750 text-indigo-300 border border-slate-700/80 font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs transition active:scale-95"
                 >
                   <FileDown className="w-4 h-4" />
                   <span>{t?.downloadPdfA4Btn || 'Scarica PDF (A4)'}</span>
@@ -904,16 +904,16 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
 
               <button
                 onClick={handleCopyTextSummary}
-                className="w-full py-2 bg-slate-100/90 dark:bg-slate-950/60 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 text-[11px] rounded-xl flex items-center justify-center gap-1.5 transition"
+                className="w-full py-2 bg-slate-950/60 hover:bg-slate-800/80 text-slate-300 border border-slate-800 text-[11px] rounded-xl flex items-center justify-center gap-1.5 transition"
               >
                 {copiedSuccess ? (
                   <>
-                    <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">{t?.copiedBadge || 'Copiato!'}</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-emerald-400 font-bold">{t?.copiedBadge || 'Copiato!'}</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+                    <Copy className="w-3.5 h-3.5 text-slate-400" />
                     <span>{t?.copySummaryBtn || 'Copia Riepilogo per WhatsApp / Email'}</span>
                   </>
                 )}
@@ -924,39 +924,39 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
           {/* TAB 2: REPORT MENSILE */}
           {activeTab === 'monthly' && (
             <div className="space-y-4">
-              <div className="bg-gradient-to-br from-indigo-50/60 dark:from-indigo-950/60 to-white dark:to-slate-900 border border-indigo-500/20 p-4 rounded-2xl space-y-3">
+              <div className="bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/20 p-4 rounded-2xl space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] text-indigo-700 dark:text-indigo-300 font-bold uppercase tracking-wider">
+                    <span className="text-[10px] text-indigo-300 font-bold uppercase tracking-wider">
                       {t?.officialReportBadge || 'Report Ufficiale'}
                     </span>
-                    <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
+                    <h3 className="text-base font-extrabold text-white">
                       {t?.monthOf || 'Mese di'} {currentMonthData.name}
                     </h3>
                   </div>
-                  <span className="text-xs bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 font-bold px-2 py-0.5 rounded-lg border border-indigo-500/30">
+                  <span className="text-xs bg-indigo-500/20 text-indigo-300 font-bold px-2 py-0.5 rounded-lg border border-indigo-500/30">
                     {currentMonthData.txCount} {t?.transactionsCount || 'Movimenti'}
                   </span>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 pt-1">
-                  <div className="bg-white/80 dark:bg-slate-900/80 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
-                    <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-semibold">{t?.summaryIncome || 'Entrate'}</span>
-                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400">
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[9px] text-slate-400 block font-semibold">{t?.summaryIncome || 'Entrate'}</span>
+                    <span className="text-xs font-black text-emerald-400">
                       +{formatCurrency(currentMonthData.income)}
                     </span>
                   </div>
-                  <div className="bg-white/80 dark:bg-slate-900/80 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
-                    <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-semibold">{t?.summaryExpenses || 'Uscite'}</span>
-                    <span className="text-xs font-black text-rose-600 dark:text-rose-400">
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[9px] text-slate-400 block font-semibold">{t?.summaryExpenses || 'Uscite'}</span>
+                    <span className="text-xs font-black text-rose-400">
                       -{formatCurrency(currentMonthData.expense)}
                     </span>
                   </div>
-                  <div className="bg-white/80 dark:bg-slate-900/80 p-2 rounded-xl border border-slate-200 dark:border-slate-800">
-                    <span className="text-[9px] text-slate-500 dark:text-slate-400 block font-semibold">{t?.summarySavings || 'Risparmio'}</span>
+                  <div className="bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+                    <span className="text-[9px] text-slate-400 block font-semibold">{t?.summarySavings || 'Risparmio'}</span>
                     <span
                       className={`text-xs font-black ${
-                        currentMonthData.net >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                        currentMonthData.net >= 0 ? 'text-emerald-400' : 'text-rose-400'
                       }`}
                     >
                       {currentMonthData.net >= 0 ? '+' : ''}
@@ -966,15 +966,15 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
                 </div>
 
                 {currentMonthData.categories.length > 0 && (
-                  <div className="pt-2 border-t border-slate-200/80 dark:border-slate-800/80 space-y-1">
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold block">
+                  <div className="pt-2 border-t border-slate-800/80 space-y-1">
+                    <span className="text-[10px] text-slate-400 font-semibold block">
                       {t?.topSpendingCategories || 'Principali categorie di spesa:'}
                     </span>
                     <div className="space-y-1">
                       {currentMonthData.categories.slice(0, 3).map(([cat, amt]) => (
                         <div key={cat} className="flex justify-between text-xs">
-                          <span className="text-slate-600 dark:text-slate-300">{getCategoryDisplayName(cat, language)}</span>
-                          <span className="font-bold text-rose-600 dark:text-rose-400">-{formatCurrency(amt)}</span>
+                          <span className="text-slate-300">{getCategoryDisplayName(cat, language)}</span>
+                          <span className="font-bold text-rose-400">-{formatCurrency(amt)}</span>
                         </div>
                       ))}
                     </div>
@@ -995,7 +995,7 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
 
                 <button
                   onClick={handleDownloadMonthlyPdf}
-                  className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-indigo-700 dark:text-indigo-300 border border-slate-300/80 dark:border-slate-700/80 font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs transition active:scale-95"
+                  className="w-full py-3 bg-slate-800 hover:bg-slate-750 text-indigo-300 border border-slate-700/80 font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs transition active:scale-95"
                 >
                   <FileDown className="w-4 h-4" />
                   <span>{t?.downloadMonthlyPdfBtn || 'Scarica PDF Mensile'}</span>
@@ -1007,16 +1007,16 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
           {/* TAB 3: SALDI CONTI */}
           {activeTab === 'accounts' && (
             <div className="space-y-4">
-              <div className="bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 p-3.5 rounded-2xl space-y-3">
+              <div className="bg-slate-950/70 border border-slate-800 p-3.5 rounded-2xl space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-wider">
+                  <span className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">
                     {t?.consolidatedNetWorth || 'Patrimonio Totale Consolidato'}
                   </span>
-                  <span className="text-[10px] bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 rounded-full font-bold">
+                  <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">
                     {accounts.length} {t?.accountsCount || 'Conti'}
                   </span>
                 </div>
-                <div className="text-2xl font-black text-slate-900 dark:text-white">
+                <div className="text-2xl font-black text-white">
                   {formatCurrency(totalBalance)}
                 </div>
 
@@ -1026,12 +1026,12 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
                     return (
                       <div key={acc.id} className="py-2 flex items-center justify-between">
                         <div>
-                          <div className="font-semibold text-slate-900 dark:text-white">{acc.name}</div>
-                          <div className="text-[10px] text-slate-500 dark:text-slate-400">{acc.type || (t?.standardAccount || 'Conto Standard')}</div>
+                          <div className="font-semibold text-white">{acc.name}</div>
+                          <div className="text-[10px] text-slate-400">{acc.type || (t?.standardAccount || 'Conto Standard')}</div>
                         </div>
                         <div
                           className={`font-black text-xs ${
-                            bal >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                            bal >= 0 ? 'text-emerald-400' : 'text-rose-400'
                           }`}
                         >
                           {formatCurrency(bal)}
@@ -1054,7 +1054,7 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
 
                 <button
                   onClick={handleDownloadAccountsPdf}
-                  className="w-full py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-emerald-700 dark:text-emerald-300 border border-slate-300/80 dark:border-slate-700/80 font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs transition active:scale-95"
+                  className="w-full py-3 bg-slate-800 hover:bg-slate-750 text-emerald-300 border border-slate-700/80 font-bold rounded-2xl shadow-md flex items-center justify-center gap-2 text-xs transition active:scale-95"
                 >
                   <FileDown className="w-4 h-4" />
                   <span>{t?.downloadAccountBalancesPdfBtn || 'Scarica PDF Saldi'}</span>
@@ -1065,17 +1065,17 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
 
           {/* TAB 4: STAMPA SCHERMATA ATTIVA */}
           {activeTab === 'screen' && (
-            <div className="space-y-3 bg-slate-100/90 dark:bg-slate-950/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs">
+            <div className="space-y-3 bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-xs">
               <div className="flex items-start gap-2.5">
-                <Info className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                <div className="space-y-1 text-slate-600 dark:text-slate-300">
-                  <div className="font-bold text-slate-900 dark:text-white text-xs">
+                <Info className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                <div className="space-y-1 text-slate-300">
+                  <div className="font-bold text-white text-xs">
                     {t?.directBrowserPrintTitle || 'Stampa Diretta Finestra Browser'}
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
                     {t?.directBrowserPrintDesc || 'Questa opzione attiva il comando di stampa standard del tuo dispositivo (Ctrl + P su PC o Condividi > Stampa su Android/iOS).'}
                   </p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-[11px] text-slate-400 leading-relaxed">
                     {t?.directBrowserPrintTip || "💡 Consiglio: Se sei all'interno dell'anteprima web di AI Studio e il browser non apre la finestra, usa i tab sopra (Estratto Conto o Report Mensile) con il tasto Scarica PDF per un risultato perfetto al 100%!"}
                   </p>
                 </div>
@@ -1093,16 +1093,16 @@ export const PrintReportModal: React.FC<PrintReportModalProps> = ({
         </div>
 
         {/* Footer info note */}
-        <div className="p-3 bg-slate-100/90 dark:bg-slate-950/80 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500 px-4 flex-wrap gap-2">
+        <div className="p-3 bg-slate-950/80 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500 px-4 flex-wrap gap-2">
           <div className="flex items-center gap-1.5">
             <MyFinanceIcon size={16} />
-            <span className="text-slate-500 dark:text-slate-400">
+            <span className="text-slate-400">
               © 2026 Federico Pontedoro. All rights reserved. • My Finance Pro · Android Mobile Edition.
             </span>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold"
+            className="text-slate-400 hover:text-white font-semibold"
           >
             {t?.close || 'Chiudi'}
           </button>

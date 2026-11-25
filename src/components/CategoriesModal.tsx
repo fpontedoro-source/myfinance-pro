@@ -168,23 +168,23 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
   const selectedColorObj = getCategoryColorDetails(selectedColor);
 
   return (
-    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
+      <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[92vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-purple-500/10 text-purple-600 dark:text-purple-400 rounded-xl border border-purple-500/20">
+            <div className="p-2 bg-purple-500/10 text-purple-400 rounded-xl border border-purple-500/20">
               <Tags className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
+              <h3 className="text-base font-bold text-white leading-tight">
                 {language === 'de'
                   ? 'Ausgaben- & Einnahmenkategorien'
                   : language === 'en'
                   ? 'Expense & Income Categories'
                   : 'Categorie Spesa & Entrata'}
               </h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-slate-400">
                 {language === 'de'
                   ? 'Name, Symbol und Farbe für jede Kategorie anpassen'
                   : language === 'en'
@@ -196,7 +196,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+            className="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -206,15 +206,15 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
           {/* Form Inserimento / Modifica Categoria */}
           <form
             onSubmit={handleSubmit}
-            className={`space-y-3.5 bg-slate-50 dark:bg-slate-950 p-3.5 rounded-2xl border transition ${
+            className={`space-y-3.5 bg-slate-950 p-3.5 rounded-2xl border transition ${
               editingOldName
                 ? 'border-purple-500/70 ring-1 ring-purple-500/30'
-                : 'border-slate-200 dark:border-slate-800'
+                : 'border-slate-800'
             }`}
           >
             {editingOldName && (
-              <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
-                <span className="text-[11px] font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1.5 truncate">
+              <div className="flex items-center justify-between gap-2 pb-2 border-b border-slate-800">
+                <span className="text-[11px] font-bold text-purple-300 flex items-center gap-1.5 truncate">
                   <Pencil className="w-3.5 h-3.5 flex-shrink-0" />
                   <span className="truncate">
                     {language === 'de'
@@ -227,7 +227,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold flex-shrink-0"
+                  className="text-[11px] text-slate-400 hover:text-white font-semibold flex-shrink-0"
                 >
                   {t?.cancel || (language === 'de' ? 'Abbrechen' : language === 'en' ? 'Cancel' : 'Annulla')}
                 </button>
@@ -235,7 +235,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
             )}
 
             {/* Anteprima Live Categoria */}
-            <div className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between">
+            <div className="p-3 rounded-xl bg-slate-900 border border-slate-800/80 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div
                   className={`p-2.5 rounded-xl ${selectedColorObj.bgLight} ${selectedColorObj.textColor} border ${selectedColorObj.borderColor} flex items-center justify-center shadow-sm`}
@@ -243,7 +243,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                   <CategoryIcon iconName={selectedIcon} className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-slate-900 dark:text-white truncate max-w-[200px]">
+                  <div className="text-xs font-bold text-white truncate max-w-[200px]">
                     {inputVal.trim() ||
                       (language === 'de'
                         ? 'Neue Kategorie'
@@ -251,21 +251,21 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                           ? 'New Category Name'
                           : 'Nome Nuova Categoria')}
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5">
-                    <span>{language === 'de' ? 'Symbol' : language === 'en' ? 'Icon' : 'Icona'}: <strong className="text-slate-800 dark:text-slate-200">{selectedIconObj?.label || selectedIcon}</strong></span>
+                  <div className="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5">
+                    <span>{language === 'de' ? 'Symbol' : language === 'en' ? 'Icon' : 'Icona'}: <strong className="text-slate-200">{selectedIconObj?.label || selectedIcon}</strong></span>
                     <span>•</span>
                     <span>{language === 'de' ? 'Farbe' : language === 'en' ? 'Color' : 'Colore'}: <strong className={selectedColorObj.textColor}>{selectedColorObj.label}</strong></span>
                   </div>
                 </div>
               </div>
-              <span className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold px-2 py-0.5 rounded-lg border border-slate-300 dark:border-slate-700">
+              <span className="text-[10px] bg-slate-800 text-slate-300 font-semibold px-2 py-0.5 rounded-lg border border-slate-700">
                 {language === 'de' ? 'Vorschau' : language === 'en' ? 'Preview' : 'Anteprima'}
               </span>
             </div>
 
             {/* Input Nome Categoria */}
             <div>
-              <label className="block text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
+              <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-1">
                 {language === 'de' ? 'Kategoriename' : language === 'en' ? 'Category Name' : 'Nome Categoria'}
               </label>
               <input
@@ -275,15 +275,15 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                 onChange={(e) => handleNameChange(e.target.value)}
                 required
                 placeholder={language === 'de' ? 'z. B. Restaurants, Tanken, Fitness, Rechnungen...' : language === 'en' ? 'e.g. Restaurants, Fuel, Gym, Utilities...' : 'es. Ristoranti, Benzina, Palestra, Bollette...'}
-                className="w-full select-text bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500"
+                className="w-full select-text bg-slate-900 border border-slate-800 text-white rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500"
               />
             </div>
 
             {/* Selezione Colore Categoria */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Palette className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Palette className="w-3.5 h-3.5 text-purple-400" />
                   <span>{language === 'de' ? 'Kategoriefarbe wählen' : language === 'en' ? 'Choose Category Color' : 'Scegli Colore Categoria'}</span>
                 </label>
                 <span className={`text-[11px] font-bold ${selectedColorObj.textColor}`}>
@@ -292,7 +292,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
               </div>
 
               {/* Palette cromatica a 12 tonalità */}
-              <div className="grid grid-cols-6 sm:grid-cols-12 gap-1.5 p-2 bg-white/90 dark:bg-slate-900/90 rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="grid grid-cols-6 sm:grid-cols-12 gap-1.5 p-2 bg-slate-900/90 rounded-xl border border-slate-800">
                 {CATEGORY_COLOR_OPTIONS.map((c) => {
                   const isSelected = selectedColor === c.id;
                   return (
@@ -307,7 +307,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                           : 'opacity-70 hover:opacity-100 hover:scale-105'
                       }`}
                     >
-                      {isSelected && <Check className="w-4 h-4 text-slate-900 dark:text-white stroke-[3]" />}
+                      {isSelected && <Check className="w-4 h-4 text-white stroke-[3]" />}
                     </button>
                   );
                 })}
@@ -317,10 +317,10 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
             {/* Griglia Selezione Icona Categoria */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                   {language === 'de' ? 'Symbol für die Kategorie wählen' : language === 'en' ? 'Choose Category Icon' : 'Scegli Icona per la Categoria'}
                 </label>
-                <span className="text-[10px] text-purple-600 dark:text-purple-400 font-medium truncate max-w-[150px]">
+                <span className="text-[10px] text-purple-400 font-medium truncate max-w-[150px]">
                   {selectedIconObj?.label}
                 </span>
               </div>
@@ -335,7 +335,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                     className={`px-2 py-1 rounded-lg text-[10px] font-medium whitespace-nowrap transition ${
                       activeGroup === grp.id
                         ? 'bg-purple-600 text-white font-bold'
-                        : 'bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800'
+                        : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
                     }`}
                   >
                     {grp.label}
@@ -344,7 +344,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
               </div>
 
               {/* Icon Buttons Grid */}
-              <div className="grid grid-cols-6 sm:grid-cols-8 gap-1.5 p-2 bg-white/90 dark:bg-slate-900/90 rounded-xl border border-slate-200 dark:border-slate-800 max-h-36 overflow-y-auto no-scrollbar">
+              <div className="grid grid-cols-6 sm:grid-cols-8 gap-1.5 p-2 bg-slate-900/90 rounded-xl border border-slate-800 max-h-36 overflow-y-auto no-scrollbar">
                 {filteredIcons.map((opt) => {
                   const isSelected = selectedIcon === opt.id;
                   return (
@@ -372,7 +372,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 py-2.5 rounded-xl text-xs font-semibold transition"
+                  className="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-semibold transition"
                 >
                   {t?.cancel || (language === 'de' ? 'Abbrechen' : language === 'en' ? 'Cancel' : 'Annulla')}
                 </button>
@@ -398,7 +398,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
 
           {/* Elenco Categorie Esistenti con Icona e Colore */}
           <div>
-            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-2 px-1">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2 px-1">
               {language === 'de'
                 ? `Verfügbare Kategorien (${categories.length})`
                 : language === 'en'
@@ -417,8 +417,8 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                     key={cat}
                     className={`flex justify-between items-center p-2.5 rounded-xl border text-xs transition ${
                       isBeingEdited
-                        ? 'bg-purple-50 dark:bg-purple-950/40 border-purple-500/60'
-                        : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                        ? 'bg-purple-950/40 border-purple-500/60'
+                        : 'bg-slate-950 border-slate-800 hover:border-slate-700'
                     }`}
                   >
                     <button
@@ -433,13 +433,13 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                         <CategoryIcon iconName={catIcon} categoryName={cat} className="w-4 h-4" />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <span className="text-slate-900 dark:text-slate-100 font-bold block truncate group-hover:text-purple-300 transition">
+                        <span className="text-slate-100 font-bold block truncate group-hover:text-purple-300 transition">
                           {displayName}
                           {displayName !== cat && (
                             <span className="text-[10px] font-normal text-slate-500 ml-1.5">({cat})</span>
                           )}
                         </span>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-mono truncate">
+                        <div className="text-[10px] text-slate-400 flex items-center gap-1.5 font-mono truncate">
                           <span>{language === 'de' ? 'Symbol' : language === 'en' ? 'icon' : 'icona'}: {catIcon}</span>
                           <span>•</span>
                           <span className={catColorDetails.textColor}>{language === 'de' ? 'Farbe' : language === 'en' ? 'color' : 'colore'}: {catColorDetails.label}</span>
@@ -452,8 +452,8 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                         onClick={() => handleStartEdit(cat)}
                         className={`min-w-[36px] min-h-[36px] rounded-lg flex items-center justify-center transition ${
                           isBeingEdited
-                            ? 'text-purple-700 dark:text-purple-300 bg-purple-500/20'
-                            : 'text-slate-500 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-white dark:hover:bg-slate-900'
+                            ? 'text-purple-300 bg-purple-500/20'
+                            : 'text-slate-400 hover:text-purple-400 hover:bg-slate-900'
                         }`}
                         title={t?.edit || 'Modifica nome, icona o colore'}
                       >
@@ -462,7 +462,7 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleDelete(cat)}
-                        className="min-w-[36px] min-h-[36px] text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 rounded-lg hover:bg-white dark:hover:bg-slate-900 flex items-center justify-center transition"
+                        className="min-w-[36px] min-h-[36px] text-slate-500 hover:text-rose-400 rounded-lg hover:bg-slate-900 flex items-center justify-center transition"
                         title={t?.delete || 'Elimina categoria'}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -476,11 +476,11 @@ export const CategoriesModal: React.FC<CategoriesModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="pt-2 border-t border-slate-200 dark:border-slate-800 text-right">
+        <div className="pt-2 border-t border-slate-800 text-right">
           <button
             type="button"
             onClick={onClose}
-            className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white px-3 py-1 font-semibold"
+            className="text-xs text-slate-400 hover:text-white px-3 py-1 font-semibold"
           >
             {t?.close || 'Chiudi'}
           </button>

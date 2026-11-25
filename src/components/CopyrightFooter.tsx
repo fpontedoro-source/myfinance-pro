@@ -15,10 +15,10 @@ export const CopyrightFooter: React.FC<CopyrightFooterProps> = ({
 }) => {
   if (variant === 'minimal') {
     return (
-      <footer className={`text-center py-3 px-4 text-slate-500 dark:text-slate-400 no-print select-none ${className}`}>
+      <footer className={`text-center py-3 px-4 text-slate-400 no-print select-none ${className}`}>
         <div className="flex items-center justify-center gap-2 mb-1">
           <MyFinanceIcon size={18} />
-          <span className="text-xs font-bold text-slate-600 dark:text-slate-300 tracking-tight">
+          <span className="text-xs font-bold text-slate-300 tracking-tight">
             My Finance Pro · Android Mobile Edition.
           </span>
         </div>
@@ -30,7 +30,7 @@ export const CopyrightFooter: React.FC<CopyrightFooterProps> = ({
               <button
                 type="button"
                 onClick={onOpenPrivacyPolicy}
-                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline font-semibold transition"
+                className="text-indigo-400 hover:text-indigo-300 underline font-semibold transition"
               >
                 Privacy Policy
               </button>
@@ -43,7 +43,7 @@ export const CopyrightFooter: React.FC<CopyrightFooterProps> = ({
 
   return (
     <footer
-      className={`p-4 rounded-3xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden text-center no-print ${className}`}
+      className={`p-4 rounded-3xl bg-slate-900/90 border border-slate-800 shadow-xl relative overflow-hidden text-center no-print ${className}`}
     >
       {/* Decorative gradient corner */}
       <div className="absolute -top-12 -right-12 w-32 h-32 bg-indigo-600/10 rounded-full blur-2xl pointer-events-none" />
@@ -58,42 +58,42 @@ export const CopyrightFooter: React.FC<CopyrightFooterProps> = ({
         {/* Title and Edition */}
         <div>
           <div className="flex items-center justify-center gap-1.5 flex-wrap">
-            <h3 className="text-sm font-extrabold text-slate-900 dark:text-white tracking-tight">
+            <h3 className="text-sm font-extrabold text-white tracking-tight">
               My Finance Pro
             </h3>
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold">•</span>
-            <span className="text-xs font-semibold text-indigo-700 dark:text-indigo-300">
+            <span className="text-indigo-400 font-bold">•</span>
+            <span className="text-xs font-semibold text-indigo-300">
               Android Mobile Edition.
             </span>
           </div>
           
           {/* Copyright notice */}
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
+          <p className="text-xs text-slate-400 font-medium mt-1">
             © 2026 Federico Pontedoro. All rights reserved.
           </p>
         </div>
 
         {/* Badges */}
         <div className="flex items-center justify-center gap-2 pt-1 flex-wrap text-[10px]">
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-medium">
-            <ShieldCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950 border border-slate-800 text-slate-400 font-medium">
+            <ShieldCheck className="w-3 h-3 text-emerald-400" />
             100% Privacy Locale
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-medium">
-            <Smartphone className="w-3 h-3 text-indigo-600 dark:text-indigo-400" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950 border border-slate-800 text-slate-400 font-medium">
+            <Smartphone className="w-3 h-3 text-indigo-400" />
             WebAPK Nativo
           </span>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-medium">
-            <Sparkles className="w-3 h-3 text-amber-600 dark:text-amber-400" />
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950 border border-slate-800 text-slate-400 font-medium">
+            <Sparkles className="w-3 h-3 text-amber-400" />
             Zero Pubblicità
           </span>
           {onOpenPrivacyPolicy && (
             <button
               type="button"
               onClick={onOpenPrivacyPolicy}
-              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 font-semibold transition"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 font-semibold transition"
             >
-              <ShieldCheck className="w-3 h-3 text-indigo-600 dark:text-indigo-400" />
+              <ShieldCheck className="w-3 h-3 text-indigo-400" />
               <span>Privacy Policy</span>
             </button>
           )}

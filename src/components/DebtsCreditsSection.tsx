@@ -135,8 +135,8 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
       {/* Header */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <HandCoins className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+          <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <HandCoins className="w-4 h-4 text-indigo-400" />
             <span>
               {isDe
                 ? 'Schulden, Raten & Forderungen'
@@ -145,7 +145,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                   : 'Debiti, Rate & Crediti'}
             </span>
           </h2>
-          <p className="text-[11px] text-slate-500 dark:text-slate-400">
+          <p className="text-[11px] text-slate-400">
             {isDe
               ? 'Geteilte Ausgaben, Ratenpläne und Darlehen im Nettovermögen'
               : isEn
@@ -157,7 +157,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
         <button
           type="button"
           onClick={onOpenAdd}
-          className="min-h-[40px] text-xs text-indigo-700 dark:text-indigo-300 hover:text-white font-bold flex items-center gap-1.5 bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/40 px-3 py-1.5 rounded-xl transition flex-shrink-0"
+          className="min-h-[40px] text-xs text-indigo-300 hover:text-white font-bold flex items-center gap-1.5 bg-indigo-600/20 hover:bg-indigo-600 border border-indigo-500/40 px-3 py-1.5 rounded-xl transition flex-shrink-0"
         >
           <Plus className="w-4 h-4" />
           <span>{isDe ? 'Neu' : isEn ? 'Add' : 'Nuovo'}</span>
@@ -167,7 +167,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
       {/* Summary Metrics Strip */}
       <div className="grid grid-cols-2 gap-2.5">
         <div className="bg-emerald-500/10 border border-emerald-500/25 rounded-2xl p-3">
-          <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+          <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
             <ArrowDownLeft className="w-3 h-3" />
             <span>
               {isDe
@@ -177,13 +177,13 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                   : `Crediti da incassare (${summary.openCreditsCount})`}
             </span>
           </div>
-          <div className="text-base font-black text-emerald-700 dark:text-emerald-300 tabular-nums mt-1">
+          <div className="text-base font-black text-emerald-300 tabular-nums mt-1">
             +{formatCurrency(summary.totalCredits, true, baseCurr)}
           </div>
         </div>
 
         <div className="bg-rose-500/10 border border-rose-500/25 rounded-2xl p-3">
-          <div className="text-[10px] font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider flex items-center gap-1">
+          <div className="text-[10px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1">
             <ArrowUpRight className="w-3 h-3" />
             <span>
               {isDe
@@ -193,22 +193,22 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                   : `Debiti & Rate (${summary.openDebtsCount})`}
             </span>
           </div>
-          <div className="text-base font-black text-rose-700 dark:text-rose-300 tabular-nums mt-1">
+          <div className="text-base font-black text-rose-300 tabular-nums mt-1">
             -{formatCurrency(summary.totalDebts, true, baseCurr)}
           </div>
         </div>
       </div>
 
       {summary.monthlyInstallmentsCommitment > 0 && (
-        <div className="px-3.5 py-2.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
-          <span className="text-slate-500 dark:text-slate-400">
+        <div className="px-3.5 py-2.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs">
+          <span className="text-slate-400">
             {isDe
               ? 'Monatliche Ratenbelastung'
               : isEn
                 ? 'Monthly Installment Commitment'
                 : 'Impegno mensile rate attive'}
           </span>
-          <span className="font-bold text-amber-700 dark:text-amber-300 tabular-nums">
+          <span className="font-bold text-amber-300 tabular-nums">
             {formatCurrency(summary.monthlyInstallmentsCommitment, true, baseCurr)}/
             {isDe ? 'Mon' : isEn ? 'mo' : 'mese'}
           </span>
@@ -216,7 +216,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
       )}
 
       {/* Filter Tabs */}
-      <div className="grid grid-cols-4 gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 text-[11px] font-semibold">
+      <div className="grid grid-cols-4 gap-1 bg-slate-950 p-1 rounded-2xl border border-slate-800 text-[11px] font-semibold">
         {(
           [
             {
@@ -244,7 +244,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
             className={`min-h-[38px] rounded-xl transition ${
               filterMode === tab.id
                 ? 'bg-indigo-600 text-white shadow'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             {tab.label}
@@ -254,9 +254,9 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
 
       {/* Items List */}
       {filteredItems.length === 0 ? (
-        <div className="text-center py-8 px-4 bg-white/60 dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-2">
+        <div className="text-center py-8 px-4 bg-slate-900/60 rounded-3xl border border-slate-800 space-y-2">
           <HandCoins className="w-8 h-8 text-slate-600 mx-auto" />
-          <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+          <p className="text-xs font-semibold text-slate-300">
             {isDe
               ? 'Keine Einträge in dieser Ansicht.'
               : isEn
@@ -287,8 +287,8 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                 key={entry.id}
                 className={`p-3.5 rounded-2xl border space-y-2.5 transition ${
                   isSettled
-                    ? 'bg-white/40 dark:bg-slate-900/40 border-slate-200/70 dark:border-slate-800/70 opacity-80'
-                    : 'bg-white/85 dark:bg-slate-900/85 border-slate-200 dark:border-slate-800'
+                    ? 'bg-slate-900/40 border-slate-800/70 opacity-80'
+                    : 'bg-slate-900/85 border-slate-800'
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
@@ -296,8 +296,8 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     <div
                       className={`p-2 rounded-xl border flex-shrink-0 ${
                         isCredit
-                          ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
-                          : 'bg-rose-500/15 text-rose-600 dark:text-rose-400 border-rose-500/30'
+                          ? 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30'
+                          : 'bg-rose-500/15 text-rose-400 border-rose-500/30'
                       }`}
                     >
                       {isCredit ? (
@@ -309,11 +309,11 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                        <span className="text-xs font-bold text-white truncate">
                           {entry.title}
                         </span>
                         {isSettled && (
-                          <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 inline-flex items-center gap-0.5">
+                          <span className="text-[10px] font-bold text-emerald-400 inline-flex items-center gap-0.5">
                             <CheckCircle2 className="w-3 h-3" />
                             <span>
                               {isDe ? 'Erledigt' : isEn ? 'Settled' : 'Saldato'}
@@ -322,8 +322,8 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                         )}
                       </div>
 
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
-                        <span className="text-slate-800 dark:text-slate-200 font-medium">
+                      <div className="text-[11px] text-slate-400 mt-0.5 truncate">
+                        <span className="text-slate-200 font-medium">
                           {entry.counterparty}
                         </span>
                         {' · '}
@@ -331,7 +331,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                         {entry.dueDate && (
                           <>
                             {' · '}
-                            <span className="inline-flex items-center gap-0.5 text-cyan-700 dark:text-cyan-300">
+                            <span className="inline-flex items-center gap-0.5 text-cyan-300">
                               <Calendar className="w-3 h-3 inline" />
                               {entry.dueDate}
                             </span>
@@ -345,10 +345,10 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     <div
                       className={`text-sm font-black tabular-nums ${
                         isSettled
-                          ? 'text-slate-500 dark:text-slate-400'
+                          ? 'text-slate-400'
                           : isCredit
-                            ? 'text-emerald-600 dark:text-emerald-400'
-                            : 'text-rose-600 dark:text-rose-400'
+                            ? 'text-emerald-400'
+                            : 'text-rose-400'
                       }`}
                     >
                       {isSettled
@@ -364,7 +364,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
 
                 {/* Progress Bar */}
                 <div className="space-y-1">
-                  <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                     <div
                       className={`h-full transition-all duration-500 ${
                         isSettled
@@ -377,10 +377,10 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     />
                   </div>
 
-                  <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400">
+                  <div className="flex items-center justify-between text-[10px] text-slate-400">
                     <span className="truncate">
                       {entry.totalInstallments && entry.totalInstallments > 0 ? (
-                        <span className="tabular-nums text-indigo-700 dark:text-indigo-300 font-semibold">
+                        <span className="tabular-nums text-indigo-300 font-semibold">
                           {entry.paidInstallments || 0}/{entry.totalInstallments}{' '}
                           {isDe ? 'Raten' : isEn ? 'installments' : 'rate'}
                           {entry.monthlyInstallment
@@ -401,22 +401,22 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                         </span>
                       )}
                     </span>
-                    <span className="tabular-nums font-bold text-slate-600 dark:text-slate-300 flex-shrink-0">
+                    <span className="tabular-nums font-bold text-slate-300 flex-shrink-0">
                       {isSettled ? 100 : pct}%
                     </span>
                   </div>
                 </div>
 
                 {/* Actions Row */}
-                <div className="flex items-center justify-between gap-2 pt-1 border-t border-slate-200/70 dark:border-slate-800/70">
+                <div className="flex items-center justify-between gap-2 pt-1 border-t border-slate-800/70">
                   {!isSettled ? (
                     <button
                       type="button"
                       onClick={() => openPaymentModal(entry)}
                       className={`min-h-[38px] px-3 py-1.5 rounded-xl text-[11px] font-bold border flex items-center gap-1.5 transition active:scale-95 ${
                         isCredit
-                          ? 'bg-emerald-600/20 hover:bg-emerald-600/35 text-emerald-700 dark:text-emerald-300 border-emerald-500/35'
-                          : 'bg-indigo-600/20 hover:bg-indigo-600/35 text-indigo-700 dark:text-indigo-300 border-indigo-500/35'
+                          ? 'bg-emerald-600/20 hover:bg-emerald-600/35 text-emerald-300 border-emerald-500/35'
+                          : 'bg-indigo-600/20 hover:bg-indigo-600/35 text-indigo-300 border-indigo-500/35'
                       }`}
                     >
                       <CheckCircle2 className="w-3.5 h-3.5" />
@@ -444,7 +444,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     <button
                       type="button"
                       onClick={() => onReopenEntry(entry.id)}
-                      className="min-h-[38px] px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center gap-1.5 transition"
+                      className="min-h-[38px] px-3 py-1.5 rounded-xl text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center gap-1.5 transition"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>
@@ -458,7 +458,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                       type="button"
                       onClick={() => onEdit(entry)}
                       title={isDe ? 'Bearbeiten' : isEn ? 'Edit' : 'Modifica'}
-                      className="min-h-[38px] min-w-[38px] flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition"
+                      className="min-h-[38px] min-w-[38px] flex items-center justify-center text-slate-400 hover:text-indigo-400 bg-slate-800/80 hover:bg-slate-800 rounded-xl transition"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                     </button>
@@ -466,7 +466,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                       type="button"
                       onClick={() => onDelete(entry.id)}
                       title={isDe ? 'Löschen' : isEn ? 'Delete' : 'Elimina'}
-                      className="min-h-[38px] min-w-[38px] flex items-center justify-center text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition"
+                      className="min-h-[38px] min-w-[38px] flex items-center justify-center text-slate-500 hover:text-rose-400 bg-slate-800/80 hover:bg-slate-800 rounded-xl transition"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -480,17 +480,17 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
 
       {/* Payment / Settlement Modal */}
       {payModalEntry && (
-        <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
-          <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-sm w-full p-5 shadow-2xl relative animate-slide-up">
+        <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
+          <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-sm w-full p-5 shadow-2xl relative animate-slide-up">
             <button
               type="button"
               onClick={() => setPayModalEntry(null)}
-              className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl transition"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl transition"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-base font-bold text-slate-900 dark:text-white pr-10 mb-1">
+            <h3 className="text-base font-bold text-white pr-10 mb-1">
               {payModalEntry.direction === 'CREDIT'
                 ? isDe
                   ? 'Rückzahlung erfassen'
@@ -503,10 +503,10 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     ? 'Record Debt Payment'
                     : 'Registra Pagamento / Rata'}
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 truncate">
+            <p className="text-xs text-slate-400 mb-3 truncate">
               {payModalEntry.title} · {payModalEntry.counterparty} (
               {isDe ? 'Offen' : isEn ? 'Remaining' : 'Residuo'}:{' '}
-              <strong className="text-slate-900 dark:text-white tabular-nums">
+              <strong className="text-white tabular-nums">
                 {formatCurrency(
                   payModalEntry.remainingAmount,
                   true,
@@ -528,7 +528,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                         setPayAmount(String(payModalEntry.monthlyInstallment));
                         setPayError(null);
                       }}
-                      className="flex-1 min-h-[38px] px-2 rounded-xl bg-indigo-600/20 border border-indigo-500/40 text-indigo-700 dark:text-indigo-300 font-bold"
+                      className="flex-1 min-h-[38px] px-2 rounded-xl bg-indigo-600/20 border border-indigo-500/40 text-indigo-300 font-bold"
                     >
                       {isDe ? '1 Rate' : isEn ? '1 Rate' : '1 Rata'} (
                       {payModalEntry.monthlyInstallment})
@@ -541,7 +541,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                       setPayAmount((payModalEntry.remainingAmount / 2).toFixed(2));
                       setPayError(null);
                     }}
-                    className="flex-1 min-h-[38px] px-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 font-bold"
+                    className="flex-1 min-h-[38px] px-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 font-bold"
                   >
                     50%
                   </button>
@@ -552,14 +552,14 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     setPayAmount(String(payModalEntry.remainingAmount));
                     setPayError(null);
                   }}
-                  className="flex-1 min-h-[38px] px-2 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-bold"
+                  className="flex-1 min-h-[38px] px-2 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-emerald-300 font-bold"
                 >
                   {isDe ? 'Alles' : isEn ? 'Full' : 'Salda Tutto'}
                 </button>
               </div>
 
               <div>
-                <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[11px] text-slate-400 mb-1">
                   {isDe
                     ? `Betrag (${payModalEntry.currency || 'EUR'})`
                     : isEn
@@ -576,14 +576,14 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                     if (payError) setPayError(null);
                   }}
                   autoFocus
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2.5 text-base font-bold tabular-nums focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-950 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-base font-bold tabular-nums focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               {/* Optional account transaction sync */}
-              <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
                 <label className="flex items-center justify-between gap-2 cursor-pointer">
-                  <span className="text-[11px] font-medium text-slate-800 dark:text-slate-200">
+                  <span className="text-[11px] font-medium text-slate-200">
                     {payModalEntry.direction === 'CREDIT'
                       ? isDe
                         ? 'Als Einnahme auf Konto buchen'
@@ -608,7 +608,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                   <select
                     value={payAccountId}
                     onChange={(e) => setPayAccountId(e.target.value)}
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                   >
                     {accounts.map((acc) => (
                       <option key={acc.id} value={acc.id}>
@@ -620,7 +620,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
               </div>
 
               {payError && (
-                <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 flex items-center gap-2">
+                <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                   <span>{payError}</span>
                 </div>
@@ -630,7 +630,7 @@ export const DebtsCreditsSection: React.FC<DebtsCreditsSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => setPayModalEntry(null)}
-                  className="flex-1 min-h-[44px] bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl font-semibold transition"
+                  className="flex-1 min-h-[44px] bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-semibold transition"
                 >
                   {isDe ? 'Abbrechen' : isEn ? 'Cancel' : 'Annulla'}
                 </button>

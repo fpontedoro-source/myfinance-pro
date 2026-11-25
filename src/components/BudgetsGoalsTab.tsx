@@ -148,14 +148,14 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
   return (
     <div className="space-y-5">
       {/* Segmented View Switcher: Budgets & Goals vs Debts, Installments & Credits */}
-      <div className="grid grid-cols-2 gap-1 bg-white dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-semibold">
+      <div className="grid grid-cols-2 gap-1 bg-slate-900 p-1 rounded-2xl border border-slate-800 text-xs font-semibold">
         <button
           type="button"
           onClick={() => setSubTab('budgets')}
           className={`min-h-[42px] px-3 rounded-xl flex items-center justify-center gap-1.5 transition ${
             activeSubTab === 'budgets'
               ? 'bg-indigo-600 text-white shadow'
-              : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              : 'text-slate-400 hover:text-white'
           }`}
         >
           <Target className="w-3.5 h-3.5" />
@@ -174,7 +174,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
           className={`min-h-[42px] px-3 rounded-xl flex items-center justify-center gap-1.5 transition ${
             activeSubTab === 'debts'
               ? 'bg-indigo-600 text-white shadow'
-              : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              : 'text-slate-400 hover:text-white'
           }`}
         >
           <HandCoins className="w-3.5 h-3.5" />
@@ -189,8 +189,8 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
             <span
               className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold tabular-nums ${
                 activeSubTab === 'debts'
-                  ? 'bg-white/20 text-slate-900 dark:text-white'
-                  : 'bg-indigo-500/20 text-indigo-700 dark:text-indigo-300'
+                  ? 'bg-white/20 text-white'
+                  : 'bg-indigo-500/20 text-indigo-300'
               }`}
             >
               {openDebtsCreditsCount}
@@ -216,12 +216,12 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
       {/* SECTION 1: Monthly Budgets */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Target className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.monthlySpendingBudgets || 'Budget Mensili'}
+          <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <Target className="w-4 h-4 text-indigo-400" /> {t?.monthlySpendingBudgets || 'Budget Mensili'}
           </h2>
           <button
             onClick={onOpenEditBudgets}
-            className="text-xs text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-xl transition"
+            className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl transition"
           >
             <Settings className="w-3.5 h-3.5" /> {t?.setBudgetBtn || 'Imposta Budget'}
           </button>
@@ -231,8 +231,8 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
           const activeAlerts = budgetAlerts.filter((a) => a.status !== 'OK');
           if (activeAlerts.length === 0) return null;
           return (
-            <div className="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/35 border border-amber-500/35 space-y-1.5">
-              <div className="flex items-center gap-2 text-xs font-bold text-amber-700 dark:text-amber-300">
+            <div className="p-3.5 rounded-2xl bg-amber-950/35 border border-amber-500/35 space-y-1.5">
+              <div className="flex items-center gap-2 text-xs font-bold text-amber-300">
                 <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                 <span>
                   {language === 'de'
@@ -244,7 +244,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
               </div>
               <div className="space-y-1">
                 {activeAlerts.slice(0, 3).map((al) => (
-                  <div key={al.category} className="text-[11px] text-slate-800 dark:text-slate-200 flex items-center justify-between gap-2">
+                  <div key={al.category} className="text-[11px] text-slate-200 flex items-center justify-between gap-2">
                     <span className="truncate">
                       {getCategoryDisplayName(al.category, language)} ·{' '}
                       <span className={al.status === 'EXCEEDED' ? 'text-rose-400 font-semibold' : 'text-amber-300 font-semibold'}>
@@ -267,7 +267,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                                 : 'Ritmo oltre soglia'}
                       </span>
                     </span>
-                    <span className="text-[11px] font-bold tabular-nums text-slate-600 dark:text-slate-300 flex-shrink-0">
+                    <span className="text-[11px] font-bold tabular-nums text-slate-300 flex-shrink-0">
                       {Math.round(al.pctUsed)}%
                     </span>
                   </div>
@@ -278,9 +278,9 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
         })()}
 
         {categoriesWithBudgets.length === 0 ? (
-          <div className="text-center py-8 bg-white/60 dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800">
+          <div className="text-center py-8 bg-slate-900/60 rounded-3xl border border-slate-800">
             <Target className="w-8 h-8 text-slate-600 mx-auto mb-2" />
-            <p className="text-xs text-slate-500 dark:text-slate-400">{t?.noBudgetsSet || 'Nessun budget configurato.'}</p>
+            <p className="text-xs text-slate-400">{t?.noBudgetsSet || 'Nessun budget configurato.'}</p>
             <p className="text-[10px] text-slate-500 mt-0.5">
               {t?.noBudgetsSetSub || 'Clicca su Imposta Budget in alto per definire i tuoi limiti di spesa.'}
             </p>
@@ -334,7 +334,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
               return (
                 <div
                   key={cat}
-                  className="bg-white/80 dark:bg-slate-900/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2.5"
+                  className="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 space-y-2.5"
                 >
                   <div className="flex justify-between items-center text-xs gap-2">
                     <div className="flex items-center gap-2 truncate max-w-[200px]">
@@ -343,19 +343,19 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                       >
                         <CategoryIcon categoryName={cat} className="w-3.5 h-3.5" />
                       </div>
-                      <span className="font-semibold text-slate-900 dark:text-white truncate">{displayName}</span>
+                      <span className="font-semibold text-white truncate">{displayName}</span>
                     </div>
                     <span className={`${textColor} text-[11px] tabular-nums flex-shrink-0`}>
                       {formatCurrency(spent, true, baseCurrency)} / {formatCurrency(limit, true, baseCurrency)}
                     </span>
                   </div>
-                  <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                     <div
                       className={`${barColor} h-full transition-all duration-500`}
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
-                  <div className="flex justify-between items-center text-[10px] text-slate-500 dark:text-slate-400 gap-2">
+                  <div className="flex justify-between items-center text-[10px] text-slate-400 gap-2">
                     <span className="truncate">
                       <span className={status === 'EXCEEDED' ? 'text-rose-400 font-semibold' : status !== 'OK' ? 'text-amber-300 font-semibold' : 'text-emerald-400'}>
                         {statusLabel}
@@ -382,23 +382,23 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
       </div>
 
       {/* SECTION 2: Savings Goals */}
-      <div className="space-y-3 pt-4 border-t border-slate-200/80 dark:border-slate-800/80">
+      <div className="space-y-3 pt-4 border-t border-slate-800/80">
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Trophy className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> {t?.savingsGoalsTitle || 'Obiettivi di Risparmio'}
+          <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <Trophy className="w-4 h-4 text-emerald-400" /> {t?.savingsGoalsTitle || 'Obiettivi di Risparmio'}
           </h2>
           <button
             onClick={onOpenAddGoal}
-            className="text-xs text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-1.5 rounded-xl transition"
+            className="text-xs text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl transition"
           >
             <Plus className="w-3.5 h-3.5" /> {t?.newGoalBtn || 'Nuovo Obiettivo'}
           </button>
         </div>
 
         {goals.length === 0 ? (
-          <div className="text-center py-8 bg-white/60 dark:bg-slate-900/60 rounded-3xl border border-slate-200 dark:border-slate-800">
+          <div className="text-center py-8 bg-slate-900/60 rounded-3xl border border-slate-800">
             <Trophy className="w-8 h-8 text-slate-600 mx-auto mb-2" />
-            <p className="text-xs text-slate-500 dark:text-slate-400">{t?.noGoalsSet || 'Nessun obiettivo di risparmio impostato.'}</p>
+            <p className="text-xs text-slate-400">{t?.noGoalsSet || 'Nessun obiettivo di risparmio impostato.'}</p>
             <p className="text-[10px] text-slate-500 mt-0.5">
               {t?.noGoalsSetSub || 'Clicca su Nuovo Obiettivo per fissare un traguardo finanziario.'}
             </p>
@@ -414,20 +414,20 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
               return (
                 <div
                   key={goal.id}
-                  className="bg-white/80 dark:bg-slate-900/80 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-2.5 relative"
+                  className="bg-slate-900/80 p-3.5 rounded-2xl border border-slate-800 space-y-2.5 relative"
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <div className="text-xs font-bold text-white flex items-center gap-2">
                         <span>{goal.title}</span>
                         {isCompleted && (
-                          <span className="text-[9px] bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-md font-extrabold border border-emerald-500/30 flex items-center gap-1">
+                          <span className="text-[9px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-md font-extrabold border border-emerald-500/30 flex items-center gap-1">
                             <CheckCircle2 className="w-2.5 h-2.5" /> {t?.goalCompleted || 'Raggiunto!'}
                           </span>
                         )}
                       </div>
                       {goal.targetDate && (
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 flex items-center gap-1">
+                        <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1">
                           <Calendar className="w-3 h-3 text-slate-500" /> {t?.goalDeadline || 'Scadenza'}: {goal.targetDate}
                         </div>
                       )}
@@ -437,21 +437,21 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                       <button
                         onClick={() => openDepositModal(goal)}
                         title={t?.addFundsBtn || 'Aggiungi Risparmio'}
-                        className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition"
+                        className="p-1.5 text-slate-400 hover:text-emerald-400 bg-slate-800/80 hover:bg-slate-800 rounded-lg transition"
                       >
                         <PlusCircle className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => onEditGoal(goal)}
                         title={t?.edit || 'Modifica'}
-                        className="p-1.5 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition"
+                        className="p-1.5 text-slate-400 hover:text-indigo-400 bg-slate-800/80 hover:bg-slate-800 rounded-lg transition"
                       >
                         <Pencil className="w-3.5 h-3.5" />
                       </button>
                       <button
                         onClick={() => onDeleteGoal(goal.id)}
                         title={t?.delete || 'Elimina'}
-                        className="p-1.5 text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 bg-slate-100/80 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition"
+                        className="p-1.5 text-slate-500 hover:text-rose-400 bg-slate-800/80 hover:bg-slate-800 rounded-lg transition"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -459,19 +459,19 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                   </div>
 
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    <span className="text-[11px] text-slate-400">
                       {t?.savedOf || 'Risparmiato'}:{' '}
-                      <strong className="text-emerald-600 dark:text-emerald-400 font-bold">
+                      <strong className="text-emerald-400 font-bold">
                         {formatCurrency(current)}
                       </strong>
                     </span>
-                    <span className="text-[11px] text-slate-600 dark:text-slate-300">
+                    <span className="text-[11px] text-slate-300">
                       {language === 'de' ? 'Ziel' : language === 'en' ? 'Target' : 'Target'}:{' '}
                       <strong className="font-bold">{formatCurrency(target)}</strong>
                     </span>
                   </div>
 
-                  <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
                     <div
                       className={`h-full transition-all duration-500 ${
                         isCompleted ? 'bg-emerald-500' : 'bg-emerald-400'
@@ -482,7 +482,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
 
                   <div className="flex justify-between items-center text-[10px] text-slate-500">
                     <span>{t?.goalProgress || 'Avanzamento'}</span>
-                    <span className="font-bold text-slate-600 dark:text-slate-300">{percentage}%</span>
+                    <span className="font-bold text-slate-300">{percentage}%</span>
                   </div>
                 </div>
               );
@@ -495,18 +495,18 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
 
       {/* IN-APP DEPOSIT MODAL (No native browser prompt() — APK/WebView safe) */}
       {depositGoal && (
-        <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
-          <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-sm w-full p-5 shadow-2xl relative animate-slide-up">
+        <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 no-print">
+          <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-sm w-full p-5 shadow-2xl relative animate-slide-up">
             <button
               type="button"
               onClick={() => setDepositGoal(null)}
-              className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-1.5 rounded-xl transition"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-1.5 rounded-xl transition"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-1 pr-8">
-              <PlusCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+            <h3 className="text-base font-bold text-white flex items-center gap-2 mb-1 pr-8">
+              <PlusCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
               <span className="truncate">
                 {language === 'de'
                   ? 'Betrag einzahlen'
@@ -515,7 +515,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                     : 'Aggiungi Risparmio'}
               </span>
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 truncate">
+            <p className="text-xs text-slate-400 mb-3 truncate">
               {depositGoal.title} ({formatCurrency(depositGoal.current)} / {formatCurrency(depositGoal.target)})
             </p>
 
@@ -531,8 +531,8 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                     }}
                     className={`flex-1 py-1.5 rounded-xl text-xs font-bold border transition ${
                       depositAmount === preset.toString()
-                        ? 'bg-emerald-600/20 border-emerald-500 text-emerald-700 dark:text-emerald-300'
-                        : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
+                        ? 'bg-emerald-600/20 border-emerald-500 text-emerald-300'
+                        : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700'
                     }`}
                   >
                     +{preset}
@@ -541,7 +541,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[11px] text-slate-400 mb-1">
                   {language === 'de'
                     ? 'Einzahlungsbetrag'
                     : language === 'en'
@@ -558,12 +558,12 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                     if (depositError) setDepositError(null);
                   }}
                   autoFocus
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3.5 py-2.5 text-base font-bold focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-slate-950 border border-slate-700 text-white rounded-xl px-3.5 py-2.5 text-base font-bold focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               {depositError && (
-                <div className="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2">
+                <div className="p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                   <span>{depositError}</span>
                 </div>
@@ -573,7 +573,7 @@ export const BudgetsGoalsTab: React.FC<BudgetsGoalsTabProps> = ({
                 <button
                   type="button"
                   onClick={() => setDepositGoal(null)}
-                  className="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 py-2.5 rounded-xl text-xs font-semibold transition"
+                  className="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-semibold transition"
                 >
                   {t?.cancel || 'Annulla'}
                 </button>

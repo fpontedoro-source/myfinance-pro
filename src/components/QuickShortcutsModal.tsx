@@ -170,12 +170,12 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+      <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition"
           aria-label={isDe ? 'Schließen' : isEn ? 'Close' : 'Chiudi'}
         >
           <X className="w-5 h-5" />
@@ -183,18 +183,18 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
 
         {/* Header */}
         <div className="flex items-center gap-3 pr-8 mb-4">
-          <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/35 text-amber-700 dark:text-amber-300 flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-500/35 text-amber-300 flex items-center justify-center flex-shrink-0">
             <Zap className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">
+            <h3 className="text-base font-bold text-white">
               {isDe
                 ? 'Favoriten-Verknüpfungen (1-Klick)'
                 : isEn
                   ? 'Favorite Quick Actions (1-Tap)'
                   : 'Spese Preferite (1-Tap)'}
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-400 mt-0.5">
               {isDe
                 ? 'Voreingestellte Tasten für tägliche Zahlungen in der Home-Ansicht'
                 : isEn
@@ -208,7 +208,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
           {/* Existing Shortcuts List */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                 {isDe
                   ? `Aktive Favoriten (${shortcuts.length})`
                   : isEn
@@ -218,7 +218,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
               <button
                 type="button"
                 onClick={handleRestoreDefaults}
-                className="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-1"
+                className="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
               >
                 <RotateCcw className="w-3 h-3" />
                 <span>
@@ -228,7 +228,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
             </div>
 
             {shortcuts.length === 0 ? (
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-center text-slate-500 dark:text-slate-400">
+              <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-center text-slate-400">
                 {isDe
                   ? 'Keine Favoriten gespeichert. Füge unten einen neuen hinzu.'
                   : isEn
@@ -246,8 +246,8 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                       key={sc.id}
                       className={`p-3 rounded-2xl border flex items-center justify-between gap-2.5 transition ${
                         isBeingEdited
-                          ? 'bg-indigo-50 dark:bg-indigo-950/35 border-indigo-500/70'
-                          : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                          ? 'bg-indigo-950/35 border-indigo-500/70'
+                          : 'bg-slate-950 border-slate-800 hover:border-slate-700'
                       }`}
                     >
                       <button
@@ -256,24 +256,24 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                         className="min-w-0 flex-1 text-left"
                       >
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-slate-900 dark:text-white truncate">{sc.label}</span>
+                          <span className="font-bold text-white truncate">{sc.label}</span>
                           <span
                             className={`text-xs font-extrabold tabular-nums ${
-                              isExp ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'
+                              isExp ? 'text-rose-400' : 'text-emerald-400'
                             }`}
                           >
                             {isExp ? '-' : '+'}
                             {formatCurrency(sc.amount, true, accObj?.currency)}
                           </span>
                         </div>
-                        <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                        <div className="text-[11px] text-slate-400 truncate mt-0.5">
                           <span>{accObj?.name || sc.account}</span>
                           <span> · </span>
                           <span>{getCategoryDisplayName(sc.category, language)}</span>
                           {sc.tags && sc.tags.length > 0 && (
                             <>
                               <span> · </span>
-                              <span className="text-cyan-700 dark:text-cyan-300">
+                              <span className="text-cyan-300">
                                 {sc.tags.map((t) => `#${t}`).join(' ')}
                               </span>
                             </>
@@ -284,7 +284,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                         <button
                           type="button"
                           onClick={() => startEdit(sc)}
-                          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 transition"
+                          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition"
                           aria-label={isDe ? 'Bearbeiten' : isEn ? 'Edit' : 'Modifica'}
                         >
                           <Pencil className="w-3.5 h-3.5" />
@@ -292,7 +292,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleDelete(sc.id)}
-                          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl bg-white dark:bg-slate-900 hover:bg-rose-950/60 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-800 transition"
+                          className="min-w-[36px] min-h-[36px] flex items-center justify-center rounded-xl bg-slate-900 hover:bg-rose-950/60 text-rose-400 border border-slate-800 transition"
                           aria-label={isDe ? 'Löschen' : isEn ? 'Delete' : 'Elimina'}
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -309,13 +309,13 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className={`p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border space-y-3 transition ${
+            className={`p-4 rounded-2xl bg-slate-950 border space-y-3 transition ${
               editingId ? 'border-amber-500/70 ring-1 ring-amber-500/25' : 'border-indigo-500/30'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                {editingId ? <Pencil className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> : <Plus className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />}
+              <span className="font-bold text-white flex items-center gap-1.5">
+                {editingId ? <Pencil className="w-3.5 h-3.5 text-amber-400" /> : <Plus className="w-3.5 h-3.5 text-indigo-400" />}
                 <span>
                   {editingId
                     ? isDe
@@ -334,7 +334,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  className="text-[11px] text-slate-400 hover:text-white"
                 >
                   {isDe ? 'Abbrechen' : isEn ? 'Cancel edit' : 'Annulla modifica'}
                 </button>
@@ -348,8 +348,8 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                 onClick={() => setType('EXPENSE')}
                 className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition ${
                   type === 'EXPENSE'
-                    ? 'bg-rose-500/20 border-rose-500/50 text-rose-700 dark:text-rose-300'
-                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400'
+                    ? 'bg-rose-500/20 border-rose-500/50 text-rose-300'
+                    : 'bg-slate-900 border-slate-800 text-slate-400'
                 }`}
               >
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -360,8 +360,8 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                 onClick={() => setType('INCOME')}
                 className={`py-2 px-3 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition ${
                   type === 'INCOME'
-                    ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-700 dark:text-emerald-300'
-                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400'
+                    ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-300'
+                    : 'bg-slate-900 border-slate-800 text-slate-400'
                 }`}
               >
                 <ArrowDownLeft className="w-3.5 h-3.5" />
@@ -371,7 +371,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
 
             <div className="grid grid-cols-2 gap-2.5">
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] text-slate-400 mb-1">
                   {isDe ? 'Tastenname' : isEn ? 'Button Label' : 'Nome Pulsante'}
                 </label>
                 <input
@@ -381,11 +381,11 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                   onChange={(e) => setLabel(e.target.value)}
                   placeholder={isDe ? 'z. B. Kaffee' : isEn ? 'e.g. Coffee' : 'es. Caffè'}
                   maxLength={22}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500 select-text"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500 select-text"
                 />
               </div>
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] text-slate-400 mb-1">
                   {isDe ? 'Betrag' : isEn ? 'Amount' : 'Importo'}
                 </label>
                 <input
@@ -394,20 +394,20 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   placeholder="1.50"
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white tabular-nums focus:outline-none focus:border-indigo-500 select-text"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white tabular-nums focus:outline-none focus:border-indigo-500 select-text"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-2.5">
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] text-slate-400 mb-1">
                   {isDe ? 'Konto' : isEn ? 'Account' : 'Conto'}
                 </label>
                 <select
                   value={account}
                   onChange={(e) => setAccount(e.target.value)}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 >
                   {accounts.map((acc) => (
                     <option key={acc.id} value={acc.id}>
@@ -417,13 +417,13 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                 </select>
               </div>
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] text-slate-400 mb-1">
                   {isDe ? 'Kategorie' : isEn ? 'Category' : 'Categoria'}
                 </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-2.5 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -436,7 +436,7 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
 
             <div className="grid grid-cols-2 gap-2.5">
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] text-slate-400 mb-1">
                   {isDe ? 'Beschreibung (optional)' : isEn ? 'Description (optional)' : 'Descrizione (opzionale)'}
                 </label>
                 <input
@@ -444,11 +444,11 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder={isDe ? 'z. B. Kaffee Bar' : isEn ? 'e.g. Morning coffee' : 'es. Caffè al bar'}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                <label className="block text-[10px] text-slate-400 mb-1">
                   {isDe ? '#Tags (optional)' : isEn ? '#Tags (optional)' : '#Tag (opzionali)'}
                 </label>
                 <input
@@ -456,13 +456,13 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
                   value={tagsInput}
                   onChange={(e) => setTagsInput(e.target.value)}
                   placeholder="#caffe #bar"
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
             </div>
 
             {formError && (
-              <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-[11px]">
+              <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-[11px]">
                 {formError}
               </div>
             )}
@@ -489,11 +489,11 @@ export const QuickShortcutsModal: React.FC<QuickShortcutsModalProps> = ({
           </form>
         </div>
 
-        <div className="pt-3 border-t border-slate-200 dark:border-slate-800 mt-3 flex justify-end">
+        <div className="pt-3 border-t border-slate-800 mt-3 flex justify-end">
           <button
             type="button"
             onClick={onClose}
-            className="min-h-[40px] px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs transition"
+            className="min-h-[40px] px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition"
           >
             {isDe ? 'Schließen' : isEn ? 'Close' : 'Chiudi'}
           </button>

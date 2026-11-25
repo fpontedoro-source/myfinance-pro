@@ -37,8 +37,6 @@ import {
   Globe,
   Wand2,
   Fingerprint,
-  Sun,
-  Moon,
 } from 'lucide-react';
 import JSZip from 'jszip';
 import { Account, FxSettings, Goal, RecurringMovement, Transaction } from '../types/finance';
@@ -117,8 +115,6 @@ interface SettingsTabProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   t: Translations;
-  theme?: 'light' | 'dark';
-  onToggleTheme?: () => void;
 }
 
 export const SettingsTab: React.FC<SettingsTabProps> = ({
@@ -155,8 +151,6 @@ export const SettingsTab: React.FC<SettingsTabProps> = ({
   onLanguageChange,
   t,
   getBackupPayload,
-  theme = 'dark',
-  onToggleTheme,
 }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isSecurityModalOpen, setIsSecurityModalOpen] = useState(false);
@@ -738,34 +732,34 @@ INSTRUCTIONS (ENGLISH):
 
   return (
     <div className="space-y-4">
-      <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-1">
-        <Sliders className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.settingsTitle || 'Opzioni & Gestione Dati'}
+      <h2 className="text-base font-bold text-white flex items-center gap-2 mb-1">
+        <Sliders className="w-4 h-4 text-indigo-400" /> {t?.settingsTitle || 'Opzioni & Gestione Dati'}
       </h2>
 
       {/* 1. SEZIONE CONFIGURAZIONE */}
       <div className="space-y-3">
-        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">
           {t?.configSectionTitle || 'Configurazione Dati'}
         </span>
 
         {/* Basic options: Conti & Categorie */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl divide-y divide-slate-800/80 overflow-hidden">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl divide-y divide-slate-800/80 overflow-hidden">
           <button
             onClick={onOpenAccounts}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition"
           >
             <span className="flex items-center gap-2.5">
-              <Settings2 className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.manageAccountsBtn || 'Gestisci & Modifica Conti'}
+              <Settings2 className="w-4 h-4 text-indigo-400" /> {t?.manageAccountsBtn || 'Gestisci & Modifica Conti'}
             </span>
             <ChevronRight className="w-4 h-4 text-slate-500" />
           </button>
 
           <button
             onClick={onOpenCategories}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition"
           >
             <span className="flex items-center gap-2.5">
-              <Tags className="w-4 h-4 text-purple-600 dark:text-purple-400" /> {t?.manageCategoriesBtn || 'Gestione Categorie'}
+              <Tags className="w-4 h-4 text-purple-400" /> {t?.manageCategoriesBtn || 'Gestione Categorie'}
             </span>
             <ChevronRight className="w-4 h-4 text-slate-500" />
           </button>
@@ -774,19 +768,19 @@ INSTRUCTIONS (ENGLISH):
             <button
               type="button"
               onClick={onOpenFxSettings}
-              className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition"
+              className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition"
             >
               <div className="flex items-center gap-2.5 min-w-0">
-                <Globe className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
+                <Globe className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                 <div className="min-w-0">
-                  <span className="font-medium text-slate-800 dark:text-slate-200 block truncate">
+                  <span className="font-medium text-slate-200 block truncate">
                     {language === 'de'
                       ? 'Basiswährung & Wechselkurse'
                       : language === 'en'
                         ? 'Base Currency & FX Rates'
                         : 'Valuta Base & Tassi di Cambio'}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
+                  <span className="text-[10px] text-slate-400 block truncate">
                     {fxSettings?.baseCurrency || 'EUR'} · USD {fxSettings?.rates?.USD ?? 1.08} · GBP {fxSettings?.rates?.GBP ?? 0.85}
                   </span>
                 </div>
@@ -799,19 +793,19 @@ INSTRUCTIONS (ENGLISH):
             <button
               type="button"
               onClick={onOpenRules}
-              className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition"
+              className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition"
             >
               <div className="flex items-center gap-2.5 min-w-0">
-                <Wand2 className="w-4 h-4 text-purple-700 dark:text-purple-300 flex-shrink-0" />
+                <Wand2 className="w-4 h-4 text-purple-300 flex-shrink-0" />
                 <div className="min-w-0">
-                  <span className="font-medium text-slate-800 dark:text-slate-200 block truncate">
+                  <span className="font-medium text-slate-200 block truncate">
                     {language === 'de'
                       ? 'Auto-Regeln & Tags'
                       : language === 'en'
                         ? 'Auto-Categorization & Tags'
                         : 'Regole Automatiche & Tag'}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
+                  <span className="text-[10px] text-slate-400 block truncate">
                     {rulesCount}{' '}
                     {language === 'de'
                       ? 'Regeln konfiguriert'
@@ -827,21 +821,21 @@ INSTRUCTIONS (ENGLISH):
 
           <button
             onClick={() => setIsReconcileModalOpen(true)}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850 group"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850 group"
           >
             <div className="flex items-center gap-2.5">
-              <Scale className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <Scale className="w-4 h-4 text-emerald-400" />
               <div>
-                <span className="font-medium text-slate-800 dark:text-slate-200 block">
+                <span className="font-medium text-slate-200 block">
                   {t?.reconcileBalancesBtn || 'Ricalcolo Saldo & Verifica Coerenza'}
                 </span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
+                <span className="text-[10px] text-slate-400 block">
                   {t?.reconcileBalancesDesc || 'Verifica congruenza transazioni e correggi discrepanze'}
                 </span>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-semibold px-2 py-0.5 rounded-full border border-emerald-500/20">
+              <span className="text-[10px] bg-emerald-500/10 text-emerald-300 font-semibold px-2 py-0.5 rounded-full border border-emerald-500/20">
                 {t?.verifyBadge || 'Verifica'}
               </span>
               <ChevronRight className="w-4 h-4 text-slate-500" />
@@ -856,15 +850,15 @@ INSTRUCTIONS (ENGLISH):
                 setIsSecurityModalOpen(true);
               }
             }}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850 group"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850 group"
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400 flex-shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-cyan-400 flex-shrink-0" />
               <div className="min-w-0">
-                <span className="font-medium text-slate-800 dark:text-slate-200 block truncate">
+                <span className="font-medium text-slate-200 block truncate">
                   {t?.securitySectionTitle || 'Profilo Utente & Sicurezza Accesso'}
                 </span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
+                <span className="text-[10px] text-slate-400 block truncate">
                   {isRegisteredUser
                     ? `${securitySettings?.firstName} ${securitySettings?.lastName} • ${securitySettings?.email || securitySettings?.recoveryEmail}`
                     : securitySettings?.enabled
@@ -886,7 +880,7 @@ INSTRUCTIONS (ENGLISH):
             <div className="flex items-center gap-2 flex-shrink-0">
               {securitySettings?.useFingerprint && securitySettings?.credentialId && (
                 <span
-                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-500/25 inline-flex items-center gap-1"
+                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full border bg-cyan-500/10 text-cyan-300 border-cyan-500/25 inline-flex items-center gap-1"
                   title="Fingerprint attivo"
                 >
                   <Fingerprint className="w-3 h-3" />
@@ -896,8 +890,8 @@ INSTRUCTIONS (ENGLISH):
               <span
                 className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
                   isRegisteredUser || securitySettings?.enabled
-                    ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20'
-                    : 'bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-500/30'
+                    ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20'
+                    : 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30'
                 }`}
               >
                 {isRegisteredUser
@@ -912,20 +906,20 @@ INSTRUCTIONS (ENGLISH):
         </div>
 
         {/* Card dedicata per Ricerca e Gestione Movimenti Ricorrenti */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 space-y-3">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400">
+              <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">
                 <Repeat className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-xs font-bold text-slate-900 dark:text-white">{t?.recurringTitle || 'Movimenti Ricorrenti'}</h3>
-                <p className="text-[10px] text-slate-500 dark:text-slate-400">{recurring.length} {t?.recurringConfigured || 'modelli configurati'}</p>
+                <h3 className="text-xs font-bold text-white">{t?.recurringTitle || 'Movimenti Ricorrenti'}</h3>
+                <p className="text-[10px] text-slate-400">{recurring.length} {t?.recurringConfigured || 'modelli configurati'}</p>
               </div>
             </div>
             <button
               onClick={onOpenRecurring}
-              className="text-xs text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-semibold flex items-center gap-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-2.5 py-1.5 rounded-xl transition"
+              className="text-xs text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-2.5 py-1.5 rounded-xl transition"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>{t?.manageAllRecurringBtn || 'Gestisci Tutti'}</span>
@@ -934,18 +928,18 @@ INSTRUCTIONS (ENGLISH):
 
           {/* Filtro di Ricerca Modelli per Nome o Categoria */}
           <div className="relative">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400" />
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="search"
               value={recurringSearchQuery}
               onChange={(e) => setRecurringSearchQuery(e.target.value)}
               placeholder={t?.searchRecurringPlaceholder || 'Cerca modello per nome o categoria...'}
-              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl pl-8 pr-7 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-8 pr-7 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 transition"
             />
             {recurringSearchQuery && (
               <button
                 onClick={() => setRecurringSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-0.5"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-0.5"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -955,7 +949,7 @@ INSTRUCTIONS (ENGLISH):
           {/* Risultati filtrati dei modelli ricorrenti */}
           <div className="space-y-1.5 max-h-52 overflow-y-auto no-scrollbar pt-0.5">
             {filteredRecurringSettings.length === 0 ? (
-              <div className="p-4 text-center text-[11px] text-slate-500 dark:text-slate-400 bg-slate-100/90 dark:bg-slate-950/60 rounded-xl border border-slate-200/80 dark:border-slate-800/80">
+              <div className="p-4 text-center text-[11px] text-slate-400 bg-slate-950/60 rounded-xl border border-slate-800/80">
                 <Search className="w-4 h-4 mx-auto mb-1 text-slate-500" />
                 <span>
                   {recurringSearchQuery
@@ -966,22 +960,22 @@ INSTRUCTIONS (ENGLISH):
             ) : (
               filteredRecurringSettings.map((rec) => {
                 const isExpense = rec.type === 'EXPENSE';
-                const colorClass = isExpense ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400';
+                const colorClass = isExpense ? 'text-rose-400' : 'text-emerald-400';
                 const categoryDisplay = getCategoryDisplayName(rec.category, language);
 
                 return (
                   <div
                     key={rec.id}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 text-xs transition"
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-slate-700 text-xs transition"
                   >
                     <div className="truncate mr-2 flex-1 min-w-0">
-                      <div className="font-semibold text-slate-800 dark:text-slate-200 truncate">{rec.description}</div>
-                      <div className="text-[10px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5 mt-0.5 truncate">
+                      <div className="font-semibold text-slate-200 truncate">{rec.description}</div>
+                      <div className="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5 truncate">
                         <span className={`font-bold ${colorClass}`}>
                           {isExpense ? '-' : '+'}{formatCurrency(rec.amount)}
                         </span>
                         <span>•</span>
-                        <span className="truncate text-indigo-700 dark:text-indigo-300 font-medium">{categoryDisplay}</span>
+                        <span className="truncate text-indigo-300 font-medium">{categoryDisplay}</span>
                         <span>•</span>
                         <span className="truncate">{rec.account}</span>
                       </div>
@@ -989,7 +983,7 @@ INSTRUCTIONS (ENGLISH):
                     <button
                       onClick={() => onApplyRecurring(rec.id)}
                       title={t?.applyRecurringBtn || 'Registra movimento ad oggi'}
-                      className="bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 flex-shrink-0 transition active:scale-95"
+                      className="bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1 flex-shrink-0 transition active:scale-95"
                     >
                       <Play className="w-3 h-3 fill-current" />
                       <span>{t?.applyRecurringBtn || 'Applica'}</span>
@@ -1002,83 +996,16 @@ INSTRUCTIONS (ENGLISH):
         </div>
       </div>
 
-      {/* SEZIONE ASPETTO: TEMA CHIARO / SCURO */}
-      {onToggleTheme && (
-        <div className="space-y-1.5">
-          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
-            <span>
-              {language === 'de'
-                ? 'Erscheinungsbild'
-                : language === 'en'
-                  ? 'Appearance'
-                  : 'Aspetto e Tema'}
-            </span>
-            <span className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold flex items-center gap-1">
-              {theme === 'dark' ? <Moon className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
-              <span>
-                {theme === 'dark'
-                  ? language === 'de'
-                    ? 'Dunkel'
-                    : language === 'en'
-                      ? 'Dark'
-                      : 'Scuro'
-                  : language === 'de'
-                    ? 'Hell'
-                    : language === 'en'
-                      ? 'Light'
-                      : 'Chiaro'}
-              </span>
-            </span>
-          </span>
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => {
-                  if (theme !== 'light') onToggleTheme();
-                }}
-                className={`min-h-[48px] p-2.5 rounded-xl border transition flex items-center justify-center gap-2 active:scale-95 ${
-                  theme === 'light'
-                    ? 'bg-amber-500/15 border-amber-500/60 text-amber-800 dark:text-amber-200 shadow-sm'
-                    : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Sun className={`w-4 h-4 ${theme === 'light' ? 'text-amber-600' : 'text-amber-500'}`} />
-                <span className="text-xs font-bold">
-                  {language === 'de' ? 'Helles Design' : language === 'en' ? 'Light Mode' : 'Tema Chiaro'}
-                </span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  if (theme !== 'dark') onToggleTheme();
-                }}
-                className={`min-h-[48px] p-2.5 rounded-xl border transition flex items-center justify-center gap-2 active:scale-95 ${
-                  theme === 'dark'
-                    ? 'bg-indigo-600/20 border-indigo-500/60 text-indigo-700 dark:text-indigo-200 shadow-sm'
-                    : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                }`}
-              >
-                <Moon className={`w-4 h-4 ${theme === 'dark' ? 'text-indigo-400' : 'text-indigo-500'}`} />
-                <span className="text-xs font-bold">
-                  {language === 'de' ? 'Dunkles Design' : language === 'en' ? 'Dark Mode' : 'Tema Scuro'}
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* SEZIONE LINGUA DELL'APPLICAZIONE (ITALIANO, TEDESCO, INGLESE) */}
       <div className="space-y-1.5">
-        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
           <span>{t.languageSection}</span>
-          <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-amber-600 dark:text-amber-400" /> Italiano · Deutsch · English
+          <span className="text-[10px] text-indigo-400 font-semibold flex items-center gap-1">
+            <Sparkles className="w-3 h-3 text-amber-400" /> Italiano · Deutsch · English
           </span>
         </span>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 space-y-3">
-          <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-3">
+          <p className="text-[11px] text-slate-400 leading-relaxed">
             {t.languageDesc}
           </p>
           <div className="grid grid-cols-3 gap-2">
@@ -1096,11 +1023,11 @@ INSTRUCTIONS (ENGLISH):
                   className={`p-2.5 rounded-xl border text-center transition flex flex-col items-center justify-center gap-1 active:scale-95 ${
                     isSelected
                       ? 'bg-indigo-600/20 border-indigo-500/60 text-white shadow-md shadow-indigo-500/10'
-                      : 'bg-slate-100/90 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700'
+                      : 'bg-slate-950/70 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
                   }`}
                 >
                   <span className="text-lg leading-none">{item.flag}</span>
-                  <span className={`text-xs font-bold leading-tight ${isSelected ? 'text-indigo-700 dark:text-indigo-300' : 'text-slate-800 dark:text-slate-200'}`}>
+                  <span className={`text-xs font-bold leading-tight ${isSelected ? 'text-indigo-300' : 'text-slate-200'}`}>
                     {item.label}
                   </span>
                   <span className="text-[9px] text-slate-500 leading-none">
@@ -1115,7 +1042,7 @@ INSTRUCTIONS (ENGLISH):
 
       {/* SEZIONE BACKUP AUTOMATICO GIORNALIERO (ONE DRIVE, GOOGLE DRIVE, DISPOSITIVO) */}
       <div className="space-y-1.5">
-        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
           <span>
             {language === 'de'
               ? 'Tägliches automatisches Backup (.JSON)'
@@ -1123,20 +1050,20 @@ INSTRUCTIONS (ENGLISH):
                 ? 'Daily Automatic Backup (.JSON)'
                 : 'Backup Automatico Giornaliero (.JSON)'}
           </span>
-          <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-semibold flex items-center gap-1">
+          <span className="text-[10px] text-cyan-400 font-semibold flex items-center gap-1">
             <Cloud className="w-3 h-3" /> OneDrive · Google Drive · Dispositivo
           </span>
         </span>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5 space-y-3">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex items-start gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-600/20 to-indigo-600/20 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-600/20 to-indigo-600/20 border border-cyan-500/30 text-cyan-300 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Cloud className="w-4 h-4" />
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                  <h4 className="text-xs font-bold text-white truncate">
                     {language === 'de'
                       ? 'Automatisches Backup'
                       : language === 'en'
@@ -1144,16 +1071,16 @@ INSTRUCTIONS (ENGLISH):
                         : 'Backup Automatico Giornaliero'}
                   </h4>
                   {autoBackupSettings.enabled ? (
-                    <span className="text-[9px] bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold px-1.5 py-0.2 rounded-full border border-emerald-500/25">
+                    <span className="text-[9px] bg-emerald-500/15 text-emerald-300 font-bold px-1.5 py-0.2 rounded-full border border-emerald-500/25">
                       {language === 'de' ? 'Aktiv' : language === 'en' ? 'Active' : 'Attivo'}
                     </span>
                   ) : (
-                    <span className="text-[9px] bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold px-1.5 py-0.2 rounded-full border border-slate-300 dark:border-slate-700">
+                    <span className="text-[9px] bg-slate-800 text-slate-400 font-bold px-1.5 py-0.2 rounded-full border border-slate-700">
                       OFF
                     </span>
                   )}
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate font-mono">
+                <p className="text-[11px] text-slate-400 mt-0.5 truncate font-mono">
                   {autoBackupSettings.customPath || 'OneDrive/Documenti/MyFinance_Backups'}
                 </p>
                 {autoBackupSettings.lastBackupDate && (
@@ -1180,7 +1107,7 @@ INSTRUCTIONS (ENGLISH):
       {/* SEZIONE ESTRATTO CONTO MENSILE AUTOMATICO PER EMAIL */}
       {onOpenMonthlyStatement && (
         <div className="space-y-1.5">
-          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
             <span>
               {language === 'de'
                 ? 'Monatlicher E-Mail-Kontoauszug'
@@ -1188,20 +1115,20 @@ INSTRUCTIONS (ENGLISH):
                   ? 'Automatic Monthly Email Statement'
                   : 'Estratto Conto Mensile per Email'}
             </span>
-            <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold flex items-center gap-1">
+            <span className="text-[10px] text-indigo-400 font-semibold flex items-center gap-1">
               <Mail className="w-3 h-3" /> PDF A4 · Multi-Valuta
             </span>
           </span>
 
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3.5">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-3.5">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-start gap-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600/20 to-cyan-600/20 border border-indigo-500/30 text-indigo-700 dark:text-indigo-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600/20 to-cyan-600/20 border border-indigo-500/30 text-indigo-300 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                    <h4 className="text-xs font-bold text-white truncate">
                       {language === 'de'
                         ? 'Automatischer Kontoauszug'
                         : language === 'en'
@@ -1209,11 +1136,11 @@ INSTRUCTIONS (ENGLISH):
                           : 'Estratto Conto Automatico'}
                     </h4>
                     {activeMonthlySettings.enabled && activeMonthlySettings.recipientEmail ? (
-                      <span className="text-[9px] bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold px-1.5 py-0.2 rounded-full border border-emerald-500/25">
+                      <span className="text-[9px] bg-emerald-500/15 text-emerald-300 font-bold px-1.5 py-0.2 rounded-full border border-emerald-500/25">
                         {language === 'de' ? 'Aktiv' : language === 'en' ? 'Active' : 'Attivo'}
                       </span>
                     ) : (
-                      <span className="text-[9px] bg-amber-500/15 text-amber-700 dark:text-amber-300 font-bold px-1.5 py-0.2 rounded-full border border-amber-500/25">
+                      <span className="text-[9px] bg-amber-500/15 text-amber-300 font-bold px-1.5 py-0.2 rounded-full border border-amber-500/25">
                         {activeMonthlySettings.recipientEmail
                           ? 'OFF'
                           : language === 'de'
@@ -1224,7 +1151,7 @@ INSTRUCTIONS (ENGLISH):
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 truncate">
+                  <p className="text-[11px] text-slate-400 mt-0.5 truncate">
                     {activeMonthlySettings.recipientEmail
                       ? `${activeMonthlySettings.recipientEmail} • ${language === 'de' ? 'Tag' : language === 'en' ? 'Day' : 'Giorno'} ${activeMonthlySettings.sendDayOfMonth}`
                       : language === 'de'
@@ -1261,10 +1188,10 @@ INSTRUCTIONS (ENGLISH):
 
       {/* 2. SEZIONE ESPORTAZIONE & BACKUP */}
       <div className="space-y-1.5">
-        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">
           {t?.exportBackupSection || 'Esportazione & Salva Dati'}
         </span>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl divide-y divide-slate-800/80 overflow-hidden">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl divide-y divide-slate-800/80 overflow-hidden">
           {/* Guida Completa App (PDF) - IT / DE / EN & Trilingue */}
           <div className="px-4 py-3.5 space-y-2.5">
             <button
@@ -1279,21 +1206,21 @@ INSTRUCTIONS (ENGLISH):
                       : `Guida completa PDF scaricata: ${fn}`
                 );
               }}
-              className="w-full text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between transition group"
+              className="w-full text-left text-xs font-medium text-slate-200 flex items-center justify-between transition group"
             >
               <div className="flex items-center gap-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-xl bg-indigo-500/15 border border-indigo-500/25 text-indigo-700 dark:text-indigo-300 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-500/25 transition">
+                <div className="w-8 h-8 rounded-xl bg-indigo-500/15 border border-indigo-500/25 text-indigo-300 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-500/25 transition">
                   <FileText className="w-4 h-4" />
                 </div>
                 <div className="min-w-0">
-                  <span className="font-semibold text-slate-900 dark:text-white block truncate">
+                  <span className="font-semibold text-white block truncate">
                     {language === 'de'
                       ? 'Vollständige Funktionsanleitung (PDF)'
                       : language === 'en'
                         ? 'Complete App Feature Guide (PDF)'
                         : 'Guida Completa Funzioni App (PDF)'}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
+                  <span className="text-[10px] text-slate-400 block truncate">
                     {language === 'de'
                       ? 'Alle 10 Module · IT, DE, EN oder dreisprachige Gesamtausgabe'
                       : language === 'en'
@@ -1302,7 +1229,7 @@ INSTRUCTIONS (ENGLISH):
                   </span>
                 </div>
               </div>
-              <span className="text-[10px] bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 font-semibold px-2.5 py-1 rounded-lg border border-indigo-500/25 flex-shrink-0">
+              <span className="text-[10px] bg-indigo-500/15 text-indigo-300 font-semibold px-2.5 py-1 rounded-lg border border-indigo-500/25 flex-shrink-0">
                 PDF A4
               </span>
             </button>
@@ -1324,8 +1251,8 @@ INSTRUCTIONS (ENGLISH):
                   }}
                   className={`min-h-[34px] px-2 rounded-xl text-[11px] font-bold border transition active:scale-95 ${
                     language === gLang
-                      ? 'bg-indigo-600/25 border-indigo-500/50 text-indigo-800 dark:text-indigo-200'
-                      : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700 hover:text-slate-900 dark:hover:text-white'
+                      ? 'bg-indigo-600/25 border-indigo-500/50 text-indigo-200'
+                      : 'bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white'
                   }`}
                 >
                   {gLang.toUpperCase()}
@@ -1343,7 +1270,7 @@ INSTRUCTIONS (ENGLISH):
                         : `Guida trilingue scaricata: ${fn}`
                   );
                 }}
-                className="min-h-[34px] px-2 rounded-xl text-[10px] font-bold bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-cyan-800 dark:text-cyan-200 transition active:scale-95 truncate"
+                className="min-h-[34px] px-2 rounded-xl text-[10px] font-bold bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/40 text-cyan-200 transition active:scale-95 truncate"
                 title="IT + DE + EN"
               >
                 IT+DE+EN
@@ -1354,53 +1281,53 @@ INSTRUCTIONS (ENGLISH):
           {/* Report PDF Mensile */}
           <button
             onClick={() => setIsReportModalOpen(true)}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850 group"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850 group"
           >
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-500/20 transition">
+              <div className="w-8 h-8 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center flex-shrink-0 group-hover:bg-rose-500/20 transition">
                 <FileDown className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-semibold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <span className="font-semibold text-white flex items-center gap-1.5">
                   {t?.monthlyReportBtn || 'Report PDF Mensile Riassuntivo'}
                 </span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 block">
+                <span className="text-[10px] text-slate-400 block">
                   {t?.monthlyReportDesc || 'Saldo totale, spese principali e avanzamento obiettivi'}
                 </span>
               </div>
             </div>
-            <span className="text-[10px] bg-rose-500/15 text-rose-700 dark:text-rose-300 font-semibold px-2 py-0.5 rounded-full border border-rose-500/25 flex items-center gap-1">
+            <span className="text-[10px] bg-rose-500/15 text-rose-300 font-semibold px-2 py-0.5 rounded-full border border-rose-500/25 flex items-center gap-1">
               {currentMonthData.monthName}
             </span>
           </button>
 
           <button
             onClick={onExportJson}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850"
           >
             <span className="flex items-center gap-2.5">
-              <Download className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> {t?.exportJsonBtn || 'Esporta File Backup (.JSON)'}
+              <Download className="w-4 h-4 text-emerald-400" /> {t?.exportJsonBtn || 'Esporta File Backup (.JSON)'}
             </span>
-            <span className="text-[10px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-semibold px-2 py-0.5 rounded-full border border-emerald-500/20">
+            <span className="text-[10px] bg-emerald-500/10 text-emerald-300 font-semibold px-2 py-0.5 rounded-full border border-emerald-500/20">
               Download File
             </span>
           </button>
 
           <button
             onClick={onCopyBackupJson}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850"
           >
             <span className="flex items-center gap-2.5">
-              <Copy className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.copyBackupBtn || 'Copia Backup negli Appunti'}
+              <Copy className="w-4 h-4 text-indigo-400" /> {t?.copyBackupBtn || 'Copia Backup negli Appunti'}
             </span>
-            <span className="text-[10px] bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/20">
+            <span className="text-[10px] bg-indigo-500/10 text-indigo-300 font-semibold px-2 py-0.5 rounded-full border border-indigo-500/20">
               1-Click
             </span>
           </button>
 
           <button
             onClick={onExportCsv}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850"
           >
             <span className="flex items-center gap-2.5">
               <FileSpreadsheet className="w-4 h-4 text-teal-400" /> {t?.exportCsvBtn || 'Esporta Movimenti in Excel (.CSV)'}
@@ -1411,12 +1338,12 @@ INSTRUCTIONS (ENGLISH):
           {/* Download File ZIP (myfinance_app.zip) - Soluzione anti-blocco */}
           <button
             onClick={handleDownloadZip}
-            className="w-full px-4 py-3.5 text-left text-xs font-semibold text-slate-900 dark:text-white flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850 bg-gradient-to-r from-indigo-50/40 dark:from-indigo-950/40 to-transparent"
+            className="w-full px-4 py-3.5 text-left text-xs font-semibold text-white flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850 bg-gradient-to-r from-indigo-950/40 to-transparent"
           >
             <span className="flex items-center gap-2.5">
-              <Archive className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.downloadZipBtn || 'Scarica File ZIP (myfinance_app.zip)'}
+              <Archive className="w-4 h-4 text-indigo-400" /> {t?.downloadZipBtn || 'Scarica File ZIP (myfinance_app.zip)'}
             </span>
-            <span className="text-[10px] bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 font-bold px-2 py-0.5 rounded-full border border-indigo-500/30">
+            <span className="text-[10px] bg-indigo-500/20 text-indigo-300 font-bold px-2 py-0.5 rounded-full border border-indigo-500/30">
               {isZipping ? 'Download...' : t?.downloadZipBadge || 'Consigliato · 100% Offline'}
             </span>
           </button>
@@ -1426,12 +1353,12 @@ INSTRUCTIONS (ENGLISH):
               handleDownloadHtml();
               setIsHtmlModalOpen(true);
             }}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850"
           >
             <span className="flex items-center gap-2.5">
-              <Code className="w-4 h-4 text-cyan-600 dark:text-cyan-400" /> {t?.downloadHtmlBtn || 'Scarica Codice HTML (myfinance_app.html)'}
+              <Code className="w-4 h-4 text-cyan-400" /> {t?.downloadHtmlBtn || 'Scarica Codice HTML (myfinance_app.html)'}
             </span>
-            <span className="text-[10px] bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 font-semibold px-2 py-0.5 rounded-full border border-cyan-500/20">
+            <span className="text-[10px] bg-cyan-500/10 text-cyan-300 font-semibold px-2 py-0.5 rounded-full border border-cyan-500/20">
               {t?.downloadHtmlBadge || 'Download & Guida'}
             </span>
           </button>
@@ -1440,28 +1367,28 @@ INSTRUCTIONS (ENGLISH):
 
       {/* 4. SEZIONE IMPORTAZIONE & RIPRISTINO BACKUP */}
       <div className="space-y-1.5">
-        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1">
+        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">
           {t?.restoreSection || 'Ripristino Dati'}
         </span>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl divide-y divide-slate-800/80 overflow-hidden">
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl divide-y divide-slate-800/80 overflow-hidden">
           {onOpenCsvImport && (
             <button
               onClick={onOpenCsvImport}
-              className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850 bg-gradient-to-r from-emerald-950/35 to-transparent"
+              className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850 bg-gradient-to-r from-emerald-950/35 to-transparent"
             >
               <div className="flex items-center gap-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-xl bg-emerald-500/15 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 flex items-center justify-center flex-shrink-0">
                   <FileSpreadsheet className="w-4 h-4" />
                 </div>
                 <div className="min-w-0">
-                  <span className="font-bold text-slate-900 dark:text-white block truncate">
+                  <span className="font-bold text-white block truncate">
                     {language === 'de'
                       ? 'Kontoauszug importieren (CSV / Excel)'
                       : language === 'en'
                         ? 'Import Bank Statement (CSV / Excel)'
                         : 'Importa Estratto Conto (CSV / Excel)'}
                   </span>
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
+                  <span className="text-[10px] text-slate-400 block truncate">
                     {language === 'de'
                       ? 'Spaltenerkennung, Duplikat-Filter & Auto-Kategorien'
                       : language === 'en'
@@ -1470,7 +1397,7 @@ INSTRUCTIONS (ENGLISH):
                   </span>
                 </div>
               </div>
-              <span className="text-[10px] bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-500/25 flex-shrink-0">
+              <span className="text-[10px] bg-emerald-500/15 text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-500/25 flex-shrink-0">
                 CSV · XLS
               </span>
             </button>
@@ -1478,10 +1405,10 @@ INSTRUCTIONS (ENGLISH):
 
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850"
           >
             <span className="flex items-center gap-2.5">
-              <Upload className="w-4 h-4 text-amber-600 dark:text-amber-400" /> {t?.importJsonBtn || 'Ripristina da File Backup (.JSON)'}
+              <Upload className="w-4 h-4 text-amber-400" /> {t?.importJsonBtn || 'Ripristina da File Backup (.JSON)'}
             </span>
             <Upload className="w-4 h-4 text-slate-500" />
           </button>
@@ -1492,10 +1419,10 @@ INSTRUCTIONS (ENGLISH):
               setPasteText('');
               setIsPasteModalOpen(true);
             }}
-            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-800 dark:text-slate-200 flex items-center justify-between active:bg-slate-100 dark:active:bg-slate-800 transition hover:bg-slate-100 dark:hover:bg-slate-850"
+            className="w-full px-4 py-3.5 text-left text-xs font-medium text-slate-200 flex items-center justify-between active:bg-slate-800 transition hover:bg-slate-850"
           >
             <span className="flex items-center gap-2.5">
-              <FileText className="w-4 h-4 text-cyan-600 dark:text-cyan-400" /> {t?.pasteJsonBtn || 'Incolla Testo Backup JSON'}
+              <FileText className="w-4 h-4 text-cyan-400" /> {t?.pasteJsonBtn || 'Incolla Testo Backup JSON'}
             </span>
             <span className="text-[10px] text-slate-500">
               {language === 'de' ? 'Kopieren & Einfügen' : language === 'en' ? 'Copy & Paste' : 'Copia & Incolla'}
@@ -1515,8 +1442,8 @@ INSTRUCTIONS (ENGLISH):
       />
 
       {/* Info card */}
-      <div className="p-3.5 rounded-2xl bg-white/60 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-start gap-2.5 text-[11px] text-slate-500 dark:text-slate-400">
-        <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
+      <div className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800 flex items-start gap-2.5 text-[11px] text-slate-400">
+        <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
         <span>
           {t?.localStorageSecurityInfo || 'Tutti i dati sono salvati in sicurezza localmente sul tuo dispositivo tramite LocalStorage. I file di backup esportati contengono tutti i tuoi conti, movimenti, note, categorie e budget.'}
         </span>
@@ -1525,7 +1452,7 @@ INSTRUCTIONS (ENGLISH):
       {/* Privacy Policy (Google Play Store & GDPR) */}
       {onOpenPrivacyPolicy && (
         <div className="space-y-1.5">
-          <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1 flex items-center justify-between">
             <span>
               {language === 'de'
                 ? 'Rechtliches & Datenschutz'
@@ -1533,28 +1460,28 @@ INSTRUCTIONS (ENGLISH):
                   ? 'Legal & Privacy'
                   : 'Note Legali & Privacy'}
             </span>
-            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">
+            <span className="text-[10px] text-emerald-400 font-semibold">
               Google Play Ready
             </span>
           </span>
           <button
             type="button"
             onClick={onOpenPrivacyPolicy}
-            className="w-full p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/40 active:bg-slate-100 dark:active:bg-slate-850 transition flex items-center justify-between gap-3 text-left"
+            className="w-full p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/40 active:bg-slate-850 transition flex items-center justify-between gap-3 text-left"
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 flex items-center justify-center flex-shrink-0">
                 <Shield className="w-4.5 h-4.5" />
               </div>
               <div className="min-w-0">
-                <div className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                <div className="text-xs font-bold text-white truncate">
                   {language === 'de'
                     ? 'Datenschutzerklärung (Privacy Policy)'
                     : language === 'en'
                       ? 'Privacy Policy & Data Protection'
                       : 'Privacy Policy (Informativa Privacy)'}
                 </div>
-                <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                <div className="text-[10px] text-slate-400 truncate mt-0.5">
                   {language === 'de'
                     ? 'Lokale Speicherung, volle Offline-Kontrolle & Play-Store-Link'
                     : language === 'en'
@@ -1563,7 +1490,7 @@ INSTRUCTIONS (ENGLISH):
                 </div>
               </div>
             </div>
-            <ChevronRight className="w-4 h-4 text-slate-500 dark:text-slate-400 flex-shrink-0" />
+            <ChevronRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
           </button>
         </div>
       )}
@@ -1577,19 +1504,19 @@ INSTRUCTIONS (ENGLISH):
 
       {/* MODAL: Incolla Testo Backup JSON */}
       {isPasteModalOpen && (
-        <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-          <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+          <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative max-h-[90vh] flex flex-col">
             <button
               onClick={() => setIsPasteModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-1">
-              <FileText className="w-5 h-5 text-cyan-600 dark:text-cyan-400" /> {t?.pasteJsonBtn || 'Incolla Testo Backup JSON'}
+            <h3 className="text-base font-bold text-white flex items-center gap-2 mb-1">
+              <FileText className="w-5 h-5 text-cyan-400" /> {t?.pasteJsonBtn || 'Incolla Testo Backup JSON'}
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
+            <p className="text-xs text-slate-400 mb-3">
               {language === 'de'
                 ? 'Fügen Sie hier den zuvor exportierten JSON-Code ein, um alle Buchungen und Konten sofort wiederherzustellen.'
                 : language === 'en'
@@ -1603,11 +1530,11 @@ INSTRUCTIONS (ENGLISH):
                 onChange={(e) => setPasteText(e.target.value)}
                 placeholder='{ "accounts": [...], "transactions": [...] }'
                 rows={7}
-                className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-xl p-3 text-xs font-mono focus:outline-none focus:border-cyan-500 resize-none"
+                className="w-full bg-slate-950 border border-slate-800 text-white rounded-xl p-3 text-xs font-mono focus:outline-none focus:border-cyan-500 resize-none"
               />
 
               {pasteError && (
-                <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2">
+                <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                   <span>{pasteError}</span>
                 </div>
@@ -1617,7 +1544,7 @@ INSTRUCTIONS (ENGLISH):
                 <button
                   type="button"
                   onClick={() => setIsPasteModalOpen(false)}
-                  className="flex-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 py-2.5 rounded-xl text-xs font-semibold"
+                  className="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-semibold"
                 >
                   {t?.cancel || 'Annulla'}
                 </button>
@@ -1636,24 +1563,24 @@ INSTRUCTIONS (ENGLISH):
 
       {/* MODAL: Report PDF Mensile Riassuntivo */}
       {isReportModalOpen && (
-        <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-          <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
+        <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+          <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
             <button
               onClick={() => setIsReportModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-2.5 mb-1">
-              <div className="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center flex-shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center flex-shrink-0">
                 <FileDown className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <h3 className="text-base font-bold text-white flex items-center gap-1.5">
                   {t?.monthlyReportModalTitle || 'Report PDF •'} {currentMonthData.monthName}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+                <p className="text-xs text-slate-400">
                   {t?.monthlyReportModalSubtitle || 'Riepilogo saldo, spese principali e avanzamento obiettivi'}
                 </p>
               </div>
@@ -1662,11 +1589,11 @@ INSTRUCTIONS (ENGLISH):
             <div className="mt-4 space-y-4 overflow-y-auto pr-1 flex-1 text-xs">
               {/* Saldo & Metriche Mese */}
               <div className="grid grid-cols-2 gap-2">
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80">
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider mb-0.5">
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800/80">
+                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-0.5">
                     {t?.totalAccountsBalanceLabel || 'Saldo Totale Conti'}
                   </div>
-                  <div className="text-sm font-bold text-slate-900 dark:text-white">
+                  <div className="text-sm font-bold text-white">
                     {formatCurrency(currentMonthData.totalBalance)}
                   </div>
                   <div className="text-[10px] text-slate-500 mt-0.5">
@@ -1674,13 +1601,13 @@ INSTRUCTIONS (ENGLISH):
                   </div>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80">
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider mb-0.5">
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800/80">
+                  <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-0.5">
                     {t?.monthlyNetSavingsLabel || 'Risparmio Netto Mese'}
                   </div>
                   <div
                     className={`text-sm font-bold ${
-                      currentMonthData.netSavings >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                      currentMonthData.netSavings >= 0 ? 'text-emerald-400' : 'text-rose-400'
                     }`}
                   >
                     {currentMonthData.netSavings >= 0 ? '+' : ''}
@@ -1692,19 +1619,19 @@ INSTRUCTIONS (ENGLISH):
                 </div>
 
                 <div className="p-2.5 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-                  <div className="text-[10px] text-emerald-700 dark:text-emerald-300 font-medium">
+                  <div className="text-[10px] text-emerald-300 font-medium">
                     {t?.monthlyIncomeLabel || 'Entrate Mese'}
                   </div>
-                  <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
+                  <div className="text-xs font-bold text-emerald-400 mt-0.5">
                     +{formatCurrency(currentMonthData.income)}
                   </div>
                 </div>
 
                 <div className="p-2.5 rounded-xl bg-rose-500/5 border border-rose-500/15">
-                  <div className="text-[10px] text-rose-700 dark:text-rose-300 font-medium">
+                  <div className="text-[10px] text-rose-300 font-medium">
                     {t?.monthlyExpensesLabel || 'Uscite Mese'}
                   </div>
-                  <div className="text-xs font-bold text-rose-600 dark:text-rose-400 mt-0.5">
+                  <div className="text-xs font-bold text-rose-400 mt-0.5">
                     -{formatCurrency(currentMonthData.expense)}
                   </div>
                 </div>
@@ -1712,9 +1639,9 @@ INSTRUCTIONS (ENGLISH):
 
               {/* Spese Principali per Categoria */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-[11px] font-bold text-slate-600 dark:text-slate-300">
+                <div className="flex items-center justify-between text-[11px] font-bold text-slate-300">
                   <span className="flex items-center gap-1.5">
-                    <TrendingDown className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" /> {t?.topExpensesByCategory || 'Spese Principali per Categoria'}
+                    <TrendingDown className="w-3.5 h-3.5 text-rose-400" /> {t?.topExpensesByCategory || 'Spese Principali per Categoria'}
                   </span>
                   <span className="text-[10px] text-slate-500 font-normal">
                     {currentMonthData.topCategories.length} {t?.categoriesCount || 'categorie'}
@@ -1722,22 +1649,22 @@ INSTRUCTIONS (ENGLISH):
                 </div>
 
                 {currentMonthData.topCategories.length === 0 ? (
-                  <div className="p-3 rounded-xl bg-slate-100/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 text-center text-slate-500 text-xs">
+                  <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-center text-slate-500 text-xs">
                     {t?.noExpensesThisMonth || 'Nessuna spesa registrata per questo mese.'}
                   </div>
                 ) : (
-                  <div className="space-y-2 bg-slate-100/90 dark:bg-slate-950/60 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+                  <div className="space-y-2 bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
                     {currentMonthData.topCategories.slice(0, 5).map((cat, idx) => (
                       <div key={idx} className="space-y-1">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="text-slate-600 dark:text-slate-300 font-medium truncate max-w-[170px]">
+                          <span className="text-slate-300 font-medium truncate max-w-[170px]">
                             {idx + 1}. {getCategoryDisplayName(cat.category, language)}
                           </span>
-                          <span className="font-semibold text-rose-700 dark:text-rose-300">
+                          <span className="font-semibold text-rose-300">
                             -{formatCurrency(cat.total)} ({cat.percentage.toFixed(0)}%)
                           </span>
                         </div>
-                        <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                           <div
                             className="bg-indigo-500 h-full rounded-full transition-all"
                             style={{ width: `${Math.min(100, Math.max(5, cat.percentage))}%` }}
@@ -1751,9 +1678,9 @@ INSTRUCTIONS (ENGLISH):
 
               {/* Stato di Avanzamento Obiettivi di Risparmio */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-[11px] font-bold text-slate-600 dark:text-slate-300">
+                <div className="flex items-center justify-between text-[11px] font-bold text-slate-300">
                   <span className="flex items-center gap-1.5">
-                    <Target className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" /> {t?.savingsGoals || 'Obiettivi di Risparmio'}
+                    <Target className="w-3.5 h-3.5 text-indigo-400" /> {t?.savingsGoals || 'Obiettivi di Risparmio'}
                   </span>
                   <span className="text-[10px] text-slate-500 font-normal">
                     {goals.length} {t?.activeCount || 'attivi'}
@@ -1761,11 +1688,11 @@ INSTRUCTIONS (ENGLISH):
                 </div>
 
                 {goals.length === 0 ? (
-                  <div className="p-3 rounded-xl bg-slate-100/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 text-center text-slate-500 text-xs">
+                  <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-center text-slate-500 text-xs">
                     {t?.noGoalsConfigured || 'Nessun obiettivo di risparmio impostato.'}
                   </div>
                 ) : (
-                  <div className="space-y-2 bg-slate-100/90 dark:bg-slate-950/60 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800">
+                  <div className="space-y-2 bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800">
                     {goals.map((g) => {
                       const cur = Math.max(0, g.current || 0);
                       const tar = Math.max(1, g.target || 1);
@@ -1773,14 +1700,14 @@ INSTRUCTIONS (ENGLISH):
                       return (
                         <div key={g.id} className="space-y-1">
                           <div className="flex items-center justify-between text-xs">
-                            <span className="text-slate-800 dark:text-slate-200 font-medium truncate max-w-[180px]">
+                            <span className="text-slate-200 font-medium truncate max-w-[180px]">
                               {g.title}
                             </span>
-                            <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                            <span className="text-slate-400 text-[11px]">
                               {formatCurrency(cur)} / {formatCurrency(tar)} ({pct}%)
                             </span>
                           </div>
-                          <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                          <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full transition-all ${
                                 pct >= 100 ? 'bg-emerald-400' : pct >= 50 ? 'bg-indigo-500' : 'bg-amber-400'
@@ -1797,18 +1724,18 @@ INSTRUCTIONS (ENGLISH):
             </div>
 
             {/* Actions */}
-            <div className="pt-4 border-t border-slate-200 dark:border-slate-800 mt-2 flex gap-2">
+            <div className="pt-4 border-t border-slate-800 mt-2 flex gap-2">
               <button
                 type="button"
                 onClick={() => setIsReportModalOpen(false)}
-                className="py-3 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold text-xs transition"
+                className="py-3 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
               >
                 {t?.cancel || 'Annulla'}
               </button>
               <button
                 type="button"
                 onClick={handlePrintMonthlyReport}
-                className="py-3 px-3.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-cyan-700 dark:text-cyan-300 border border-slate-300 dark:border-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
+                className="py-3 px-3.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-cyan-300 border border-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
               >
                 <Printer className="w-4 h-4" />
                 <span>{t?.printBtn || 'Stampa'}</span>
@@ -1829,28 +1756,28 @@ INSTRUCTIONS (ENGLISH):
 
       {/* MODAL: Come Scaricare il Codice HTML */}
       {isHtmlModalOpen && (
-        <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-          <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
+        <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+          <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
             <button
               onClick={() => setIsHtmlModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center flex-shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
                 <Code className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <h3 className="text-base font-bold text-white flex items-center gap-1.5">
                   {language === 'de'
                     ? 'HTML-Code herunterladen'
                     : language === 'en'
                       ? 'How to Download Standalone HTML'
                       : 'Come Scaricare il Codice HTML'}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+                <p className="text-xs text-slate-400">
                   {language === 'de'
                     ? 'Eigenständige HTML-Datei und Offline-Exportmethoden'
                     : language === 'en'
@@ -1863,16 +1790,16 @@ INSTRUCTIONS (ENGLISH):
             <div className="mt-3 space-y-3.5 overflow-y-auto pr-1 flex-1 text-xs">
               {/* Banner Successo Download / Suggerimento ZIP */}
               <div className="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-start gap-2.5">
-                <Archive className="w-5 h-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" />
+                <Archive className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <div className="font-bold text-indigo-700 dark:text-indigo-300">
+                  <div className="font-bold text-indigo-300">
                     {language === 'de'
                       ? 'ZIP-Paket empfohlen (verhindert Browser-Blockaden)'
                       : language === 'en'
                         ? 'ZIP Package Recommended (Prevents browser blocks)'
                         : 'Pacchetto ZIP Consigliato (evita blocchi del browser)'}
                   </div>
-                  <div className="text-[11px] text-indigo-800 dark:text-indigo-200/90 mt-0.5 leading-relaxed">
+                  <div className="text-[11px] text-indigo-200/90 mt-0.5 leading-relaxed">
                     {language === 'de'
                       ? 'Laden Sie die ZIP-Datei "myfinance_app.zip" herunter. Einige Browser blockieren den direkten Download von .html-Dateien oder zeigen nur Text. Im ZIP ist "myfinance_app.html" sicher verpackt und startet sofort!'
                       : language === 'en'
@@ -1884,61 +1811,61 @@ INSTRUCTIONS (ENGLISH):
 
               {/* Istruzioni Dettagliate */}
               <div className="space-y-2">
-                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block px-0.5">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block px-0.5">
                   Come Usare il File HTML Standalone
                 </span>
 
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                  <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 flex items-center justify-center text-[10px] font-mono">1</span>
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <div className="font-bold text-slate-200 flex items-center gap-1.5">
+                    <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-[10px] font-mono">1</span>
                     <span>Download e Apertura con 1 Clic</span>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 pl-6 leading-relaxed">
-                    Tocca <strong className="text-slate-900 dark:text-white">"Scarica File HTML"</strong> qui sotto per salvare <strong className="text-slate-900 dark:text-white">myfinance_app.html</strong>. Fai doppio clic sul file scaricato per avviarlo subito in Chrome, Edge, Safari o Firefox con tutti i grafici, i conti e i budget attivi.
+                  <p className="text-[11px] text-slate-400 pl-6 leading-relaxed">
+                    Tocca <strong className="text-white">"Scarica File HTML"</strong> qui sotto per salvare <strong className="text-white">myfinance_app.html</strong>. Fai doppio clic sul file scaricato per avviarlo subito in Chrome, Edge, Safari o Firefox con tutti i grafici, i conti e i budget attivi.
                   </p>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                  <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 flex items-center justify-center text-[10px] font-mono">2</span>
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <div className="font-bold text-slate-200 flex items-center gap-1.5">
+                    <span className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-[10px] font-mono">2</span>
                     <span>Visualizza Sorgente dal Browser (PC & Smartphone)</span>
                   </div>
-                  <ul className="text-[11px] text-slate-500 dark:text-slate-400 pl-6 space-y-1 list-disc list-inside">
+                  <ul className="text-[11px] text-slate-400 pl-6 space-y-1 list-disc list-inside">
                     <li>
-                      <strong className="text-slate-600 dark:text-slate-300">Da Computer (Chrome, Edge, Firefox, Safari):</strong> Fai clic con il tasto destro sulla pagina e seleziona <strong className="text-slate-900 dark:text-white">"Visualizza sorgente pagina"</strong>, oppure premi la combinazione rapida <kbd className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Ctrl + U</kbd> (su Mac: <kbd className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Cmd + Option + U</kbd>).
+                      <strong className="text-slate-300">Da Computer (Chrome, Edge, Firefox, Safari):</strong> Fai clic con il tasto destro sulla pagina e seleziona <strong className="text-white">"Visualizza sorgente pagina"</strong>, oppure premi la combinazione rapida <kbd className="bg-slate-800 text-slate-200 px-1.5 py-0.5 rounded border border-slate-700 font-mono text-[10px]">Ctrl + U</kbd> (su Mac: <kbd className="bg-slate-800 text-slate-200 px-1.5 py-0.5 rounded border border-slate-700 font-mono text-[10px]">Cmd + Option + U</kbd>).
                     </li>
                     <li>
-                      <strong className="text-slate-600 dark:text-slate-300">Da Smartphone Android (Chrome):</strong> Tocca la barra degli indirizzi in alto, inserisci il prefisso <code className="bg-slate-100 dark:bg-slate-800 text-cyan-700 dark:text-cyan-300 px-1 rounded font-mono text-[10px]">view-source:</code> davanti all'URL corrente e premi Invio.
+                      <strong className="text-slate-300">Da Smartphone Android (Chrome):</strong> Tocca la barra degli indirizzi in alto, inserisci il prefisso <code className="bg-slate-800 text-cyan-300 px-1 rounded font-mono text-[10px]">view-source:</code> davanti all'URL corrente e premi Invio.
                     </li>
                   </ul>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1.5">
-                  <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                    <span className="w-5 h-5 rounded-full bg-purple-500/20 text-purple-700 dark:text-purple-300 flex items-center justify-center text-[10px] font-mono">3</span>
+                <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <div className="font-bold text-slate-200 flex items-center gap-1.5">
+                    <span className="w-5 h-5 rounded-full bg-purple-500/20 text-purple-300 flex items-center justify-center text-[10px] font-mono">3</span>
                     <span>Salva Pagina Web Completa da Browser</span>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 pl-6 leading-relaxed">
-                    Dal menu del browser (<strong className="text-slate-600 dark:text-slate-300">File &gt; Salva con nome</strong> o scorciatoia <kbd className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-1.5 py-0.5 rounded border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Ctrl + S</kbd>), scegli <strong className="text-slate-900 dark:text-white">"Solo HTML"</strong> o "Pagina web completa" per salvare l'HTML su disco.
+                  <p className="text-[11px] text-slate-400 pl-6 leading-relaxed">
+                    Dal menu del browser (<strong className="text-slate-300">File &gt; Salva con nome</strong> o scorciatoia <kbd className="bg-slate-800 text-slate-200 px-1.5 py-0.5 rounded border border-slate-700 font-mono text-[10px]">Ctrl + S</kbd>), scegli <strong className="text-white">"Solo HTML"</strong> o "Pagina web completa" per salvare l'HTML su disco.
                   </p>
                 </div>
               </div>
 
               {/* Finestra Anteprima Codice */}
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[11px] font-bold text-slate-600 dark:text-slate-300 px-0.5">
+                <div className="flex items-center justify-between text-[11px] font-bold text-slate-300 px-0.5">
                   <span className="flex items-center gap-1.5">
-                    <FileCode className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" /> Anteprima Codice Sorgente (index.html)
+                    <FileCode className="w-3.5 h-3.5 text-cyan-400" /> Anteprima Codice Sorgente (index.html)
                   </span>
                   <button
                     type="button"
                     onClick={handleCopyHtml}
-                    className="text-[10px] text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-semibold flex items-center gap-1 bg-cyan-500/10 px-2 py-0.5 rounded-lg border border-cyan-500/20 transition active:scale-95"
+                    className="text-[10px] text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1 bg-cyan-500/10 px-2 py-0.5 rounded-lg border border-cyan-500/20 transition active:scale-95"
                   >
                     {hasCopiedHtml ? (
                       <>
-                        <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
-                        <span className="text-emerald-700 dark:text-emerald-300">Copiato!</span>
+                        <Check className="w-3 h-3 text-emerald-400" />
+                        <span className="text-emerald-300">Copiato!</span>
                       </>
                     ) : (
                       <>
@@ -1949,25 +1876,25 @@ INSTRUCTIONS (ENGLISH):
                   </button>
                 </div>
 
-                <pre className="p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl font-mono text-[10px] text-slate-600 dark:text-slate-300 max-h-40 overflow-y-auto overflow-x-auto no-scrollbar selection:bg-cyan-500/30">
+                <pre className="p-3 bg-slate-950 border border-slate-800 rounded-2xl font-mono text-[10px] text-slate-300 max-h-40 overflow-y-auto overflow-x-auto no-scrollbar selection:bg-cyan-500/30">
                   {indexHtmlCode}
                 </pre>
               </div>
             </div>
 
             {/* Footer Azioni */}
-            <div className="pt-3 border-t border-slate-200 dark:border-slate-800 mt-2 flex flex-col sm:flex-row gap-2">
+            <div className="pt-3 border-t border-slate-800 mt-2 flex flex-col sm:flex-row gap-2">
               <button
                 type="button"
                 onClick={() => setIsHtmlModalOpen(false)}
-                className="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold text-xs transition order-last sm:order-first"
+                className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition order-last sm:order-first"
               >
                 {t?.close || 'Chiudi'}
               </button>
               <button
                 type="button"
                 onClick={handleCopyHtml}
-                className="py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-cyan-700 dark:text-cyan-300 border border-slate-300 dark:border-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
+                className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-cyan-300 border border-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
               >
                 <Copy className="w-3.5 h-3.5" />
                 <span>
@@ -1987,18 +1914,18 @@ INSTRUCTIONS (ENGLISH):
               <button
                 type="button"
                 onClick={() => handleDownloadHtml('myfinance_app.html')}
-                className="py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
+                className="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
               >
-                <Download className="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+                <Download className="w-3.5 h-3.5 text-slate-400" />
                 <span>{language === 'de' ? '.HTML laden' : language === 'en' ? 'Download .HTML' : 'Scarica .HTML'}</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleDownloadHtml('index.html')}
-                className="py-2.5 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
+                className="py-2.5 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
                 title="Scarica come index.html per convertitori HTML-to-APK"
               >
-                <Download className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <Download className="w-3.5 h-3.5 text-emerald-400" />
                 <span>index.html (APK)</span>
               </button>
               <button
@@ -2007,7 +1934,7 @@ INSTRUCTIONS (ENGLISH):
                 disabled={isZipping}
                 className="flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 transition active:scale-98"
               >
-                <Archive className="w-4 h-4 text-slate-900 dark:text-white" />
+                <Archive className="w-4 h-4 text-white" />
                 <span>
                   {isZipping
                     ? language === 'de'

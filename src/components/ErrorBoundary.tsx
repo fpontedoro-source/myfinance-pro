@@ -115,23 +115,23 @@ export class ErrorBoundary extends Component<Props, State> {
       const isEn = lang === 'en';
 
       return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col items-center justify-center p-4">
-          <div className="max-w-md w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-2xl space-y-5 text-center">
+        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col items-center justify-center p-4">
+          <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-5 text-center">
             <div className="flex justify-center">
               <MyFinanceIcon size={56} shape="square" />
             </div>
 
             <div className="space-y-1.5">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-semibold">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 text-xs font-semibold">
                 <AlertTriangle className="w-3.5 h-3.5" />
                 <span>
                   {isDe ? 'Startfehler' : isEn ? 'Startup error' : "Errore durante l'avvio"}
                 </span>
               </div>
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+              <h2 className="text-lg font-bold text-white">
                 {isDe ? 'MyFinance Wiederherstellung' : isEn ? 'MyFinance Recovery' : 'Ripristino di MyFinance'}
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              <p className="text-xs text-slate-400 leading-relaxed">
                 {isDe
                   ? 'Beim Laden der App ist ein Problem aufgetreten. Ihre lokal auf dem Gerät gespeicherten Daten sind weiterhin sicher.'
                   : isEn
@@ -140,14 +140,14 @@ export class ErrorBoundary extends Component<Props, State> {
               </p>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-100/90 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 text-left space-y-2">
-              <div className="flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <div className="p-3.5 rounded-2xl bg-slate-950/80 border border-slate-800 text-left space-y-2">
+              <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
                 <ShieldCheck className="w-4 h-4" />
                 <span>
                   {isDe ? 'Ihre Daten sind sicher' : isEn ? 'Your data is safe' : 'I tuoi dati sono al sicuro'}
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-[11px] text-slate-400">
                 {isDe
                   ? 'Sie können die App neu laden oder eine Cache-Bereinigung erzwingen, um veraltete Dateien zu aktualisieren.'
                   : isEn
@@ -157,7 +157,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </div>
 
             {this.state.exportError && (
-              <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2 text-left">
+              <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2 text-left">
                 <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                 <span>{this.state.exportError}</span>
               </div>
@@ -176,9 +176,9 @@ export class ErrorBoundary extends Component<Props, State> {
               <button
                 type="button"
                 onClick={this.handleClearCacheAndReload}
-                className="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 text-xs font-semibold flex items-center justify-center gap-2 transition active:scale-98"
+                className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center justify-center gap-2 transition active:scale-98"
               >
-                <Trash2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                <Trash2 className="w-3.5 h-3.5 text-amber-400" />
                 <span>
                   {isDe
                     ? 'Cache leeren & neu starten'
@@ -191,9 +191,9 @@ export class ErrorBoundary extends Component<Props, State> {
               <button
                 type="button"
                 onClick={this.handleEmergencyExport}
-                className="w-full py-2 px-3 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-850 text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-[11px] font-medium flex items-center justify-center gap-1.5 transition"
+                className="w-full py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-850 text-slate-400 hover:text-slate-300 text-[11px] font-medium flex items-center justify-center gap-1.5 transition"
               >
-                <Download className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <Download className="w-3.5 h-3.5 text-emerald-400" />
                 <span>
                   {isDe
                     ? 'Notfall-Backup herunterladen (.JSON)'
@@ -205,11 +205,11 @@ export class ErrorBoundary extends Component<Props, State> {
             </div>
 
             {this.state.error && (
-              <details className="text-left text-[10px] text-slate-500 pt-2 border-t border-slate-200/80 dark:border-slate-800/80">
-                <summary className="cursor-pointer hover:text-slate-500 dark:hover:text-slate-400 font-mono">
+              <details className="text-left text-[10px] text-slate-500 pt-2 border-t border-slate-800/80">
+                <summary className="cursor-pointer hover:text-slate-400 font-mono">
                   {isDe ? 'Technische Fehlerdetails' : isEn ? 'Technical error details' : 'Dettagli tecnici errore'}
                 </summary>
-                <pre className="mt-2 p-2 bg-slate-50 dark:bg-slate-950 rounded-lg overflow-x-auto text-rose-700 dark:text-rose-300 font-mono text-[9px] leading-tight">
+                <pre className="mt-2 p-2 bg-slate-950 rounded-lg overflow-x-auto text-rose-300 font-mono text-[9px] leading-tight">
                   {this.state.error.toString()}
                   {this.state.errorInfo?.componentStack}
                 </pre>

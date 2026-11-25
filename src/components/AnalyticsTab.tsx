@@ -51,7 +51,6 @@ interface AnalyticsTabProps {
   privacyMode?: boolean;
   language?: Language;
   t?: Translations;
-  theme?: 'light' | 'dark';
 }
 
 type TimeRange = '30D' | '90D' | '1Y' | 'ALL';
@@ -98,9 +97,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
   privacyMode = false,
   language = 'it',
   t,
-  theme = 'dark',
 }) => {
-  const isDark = theme === 'dark';
   const [chartType, setChartType] = useState<ChartViewType>('line');
   const [timeRange, setTimeRange] = useState<TimeRange>('ALL');
   const [expensePeriod, setExpensePeriod] = useState<ExpensePeriod>('MONTH');
@@ -607,7 +604,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
               data,
               backgroundColor: chartColors.slice(0, accounts.length),
               borderWidth: 2,
-              borderColor: isDark ? '#020617' : '#ffffff',
+              borderColor: '#020617',
             },
           ],
         },
@@ -618,7 +615,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             legend: {
               position: 'bottom',
               labels: {
-                color: isDark ? '#94a3b8' : '#475569',
+                color: '#94a3b8',
                 font: { size: 10, family: 'Plus Jakarta Sans' },
                 boxWidth: 8,
                 padding: 10,
@@ -694,7 +691,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             legend: {
               position: 'bottom',
               labels: {
-                color: isDark ? '#94a3b8' : '#475569',
+                color: '#94a3b8',
                 font: { size: 10 },
               },
             },
@@ -709,16 +706,16 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
           },
           scales: {
             x: {
-              ticks: { color: isDark ? '#64748b' : '#475569', font: { size: 9 } },
+              ticks: { color: '#64748b', font: { size: 9 } },
               grid: { display: false },
             },
             y: {
               ticks: {
-                color: isDark ? '#64748b' : '#475569',
+                color: '#64748b',
                 font: { size: 9 },
                 callback: (val) => (privacyMode || getAppPrivacyMode() ? '••••' : val),
               },
-              grid: { color: isDark ? '#1e293b' : '#e2e8f0' },
+              grid: { color: '#1e293b' },
             },
           },
         },
@@ -731,26 +728,26 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
         chartInstanceRef.current = null;
       }
     };
-  }, [chartType, accounts, balances, transactions, baseCurrency, fxSettings.rates, dateLocale, language, t, privacyMode, isDark]);
+  }, [chartType, accounts, balances, transactions, baseCurrency, fxSettings.rates, dateLocale, language, t, privacyMode]);
 
   // Custom Dark Recharts Tooltip for Balance Area Chart
   const renderBalanceTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
       const data: BalancePoint = payload[0].payload;
       return (
-        <div className="bg-white/95 dark:bg-slate-900/95 border border-indigo-500/40 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs z-50">
-          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1 flex items-center gap-1">
-            <Calendar className="w-3 h-3 text-slate-500 dark:text-slate-400" />
+        <div className="bg-slate-900/95 border border-indigo-500/40 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs z-50">
+          <p className="text-[10px] text-slate-400 font-semibold mb-1 flex items-center gap-1">
+            <Calendar className="w-3 h-3 text-slate-400" />
             {data.fullDate}
           </p>
-          <div className="flex items-center gap-1.5 text-slate-900 dark:text-white font-extrabold text-sm">
+          <div className="flex items-center gap-1.5 text-white font-extrabold text-sm">
             <span className="w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-sm shadow-indigo-500/50" />
             <span>{formatCurrency(data.balance, true, baseCurrency)}</span>
           </div>
           {data.dailyChange !== 0 && (
             <div
               className={`text-[10px] font-bold mt-1.5 flex items-center gap-1 ${
-                data.dailyChange > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                data.dailyChange > 0 ? 'text-emerald-400' : 'text-rose-400'
               }`}
             >
               {data.dailyChange > 0 ? (
@@ -776,18 +773,18 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-white/95 dark:bg-slate-900/95 border border-slate-300/80 dark:border-slate-700/80 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs z-50 min-w-[150px]">
+        <div className="bg-slate-900/95 border border-slate-700/80 p-3 rounded-2xl shadow-2xl backdrop-blur-md text-xs z-50 min-w-[150px]">
           <div className="flex items-center gap-2 mb-1.5">
             <span
               className="w-2.5 h-2.5 rounded-full shrink-0 shadow-sm"
               style={{ backgroundColor: data.color }}
             />
-            <span className="font-bold text-slate-900 dark:text-white text-xs truncate">{data.name}</span>
+            <span className="font-bold text-white text-xs truncate">{data.name}</span>
           </div>
-          <div className="text-base font-black text-rose-600 dark:text-rose-400">
+          <div className="text-base font-black text-rose-400">
             {formatCurrency(data.value, true, baseCurrency)}
           </div>
-          <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 font-medium">
+          <div className="text-[10px] text-slate-400 mt-0.5 font-medium">
             {data.percentage.toFixed(1)}% {isDe ? 'der Gesamtausgaben' : isEn ? 'of period total' : 'del totale periodo'}
           </div>
         </div>
@@ -802,11 +799,11 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
     if (!hasData) {
       return (
-        <div className="p-8 text-center bg-slate-100/90 dark:bg-slate-950/60 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2">
-          <div className="w-12 h-12 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-500">
+        <div className="p-8 text-center bg-slate-950/60 rounded-2xl border border-dashed border-slate-800 flex flex-col items-center justify-center gap-2">
+          <div className="w-12 h-12 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500">
             <PieChartIcon className="w-6 h-6" />
           </div>
-          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+          <p className="text-sm font-semibold text-slate-300">
             {isDe ? 'Keine Ausgaben im Zeitraum' : isEn ? 'No expenses in period' : 'Nessuna spesa nel periodo'}
           </p>
           <p className="text-xs text-slate-500 max-w-xs">
@@ -858,25 +855,25 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center px-4">
             {activeItem ? (
               <>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold truncate max-w-[120px] uppercase tracking-wide">
+                <span className="text-[10px] text-slate-400 font-semibold truncate max-w-[120px] uppercase tracking-wide">
                   {activeItem.name}
                 </span>
-                <span className="text-base sm:text-lg font-black text-rose-600 dark:text-rose-400">
+                <span className="text-base sm:text-lg font-black text-rose-400">
                   {formatCurrency(activeItem.value, true, baseCurrency)}
                 </span>
-                <span className="text-[10px] font-bold text-slate-600 dark:text-slate-300 bg-slate-100/80 dark:bg-slate-800/80 px-2 py-0.5 rounded-full mt-0.5">
+                <span className="text-[10px] font-bold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded-full mt-0.5">
                   {activeItem.percentage.toFixed(1)}%
                 </span>
               </>
             ) : (
               <>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wide">
+                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wide">
                   {t?.totalExpenseLabel || (isDe ? 'Gesamtausgaben' : isEn ? 'Total Expenses' : 'Totale Uscite')}
                 </span>
-                <span className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
+                <span className="text-base sm:text-lg font-black text-white">
                   {formatCurrency(totalExpense, true, baseCurrency)}
                 </span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
+                <span className="text-[10px] text-slate-400 mt-0.5">
                   {chartData.length}{' '}
                   {isDe
                     ? chartData.length === 1 ? 'Kategorie' : 'Kategorien'
@@ -903,8 +900,8 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                 onMouseLeave={() => setActivePieIndex(null)}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-[11px] font-medium transition-all ${
                   isSelected
-                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white ring-1 ring-slate-600 shadow-md scale-105'
-                    : 'bg-slate-100/90 dark:bg-slate-950/70 text-slate-600 dark:text-slate-300 hover:bg-slate-100/70 dark:hover:bg-slate-800/70 hover:text-slate-900 dark:hover:text-white border border-slate-200/80 dark:border-slate-800/80'
+                    ? 'bg-slate-800 text-white ring-1 ring-slate-600 shadow-md scale-105'
+                    : 'bg-slate-950/70 text-slate-300 hover:bg-slate-800/70 hover:text-white border border-slate-800/80'
                 }`}
               >
                 <span
@@ -912,7 +909,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                   style={{ backgroundColor: item.color }}
                 />
                 <span className="truncate max-w-[90px]">{item.name}</span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold">
+                <span className="text-[10px] text-slate-400 font-semibold">
                   {item.percentage.toFixed(0)}%
                 </span>
               </button>
@@ -927,17 +924,17 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
     <div className="space-y-4">
       {/* Header and Chart Switcher */}
       <div className="flex flex-col gap-2.5">
-        <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <TrendingUp className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> {t?.analyticsTitle || 'Analisi Grafica'}
+        <h2 className="text-base font-bold text-white flex items-center gap-2">
+          <TrendingUp className="w-4 h-4 text-indigo-400" /> {t?.analyticsTitle || 'Analisi Grafica'}
         </h2>
-        <div className="grid grid-cols-3 gap-1 bg-white dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-slate-800 text-[11px] font-semibold">
+        <div className="grid grid-cols-3 gap-1 bg-slate-900 p-1 rounded-2xl border border-slate-800 text-[11px] font-semibold">
           <button
             type="button"
             onClick={() => setChartType('line')}
             className={`min-h-[38px] flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl transition-all ${
               chartType === 'line'
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" />
@@ -949,7 +946,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             className={`min-h-[38px] flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl transition-all ${
               chartType === 'pie'
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <PieChartIcon className="w-3.5 h-3.5 flex-shrink-0" />
@@ -961,7 +958,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             className={`min-h-[38px] flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl transition-all ${
               chartType === 'doughnut'
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <Wallet className="w-3.5 h-3.5 flex-shrink-0" />
@@ -973,7 +970,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             className={`min-h-[38px] flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl transition-all ${
               chartType === 'bar'
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <BarChart2 className="w-3.5 h-3.5 flex-shrink-0" />
@@ -985,7 +982,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             className={`min-h-[38px] flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl transition-all ${
               chartType === 'mom'
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <ArrowLeftRight className="w-3.5 h-3.5 flex-shrink-0" />
@@ -999,7 +996,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             className={`min-h-[38px] flex items-center justify-center gap-1 px-2 py-1.5 rounded-xl transition-all ${
               chartType === 'tags'
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                : 'text-slate-400 hover:text-white'
             }`}
           >
             <Hash className="w-3.5 h-3.5 flex-shrink-0" />
@@ -1014,19 +1011,19 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
       {chartType === 'line' && (
         <div className="space-y-3">
           {/* Key Trend Highlights Card */}
-          <div className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-xl relative overflow-hidden">
+          <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-4 shadow-xl relative overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
               <div>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block">
+                <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block">
                   {t?.balanceHistoryTitle || 'Andamento Saldo nel Tempo'}
                 </span>
                 <div className="flex items-baseline gap-2 mt-0.5">
-                  <span className="text-2xl font-black text-slate-900 dark:text-white tabular-nums">
+                  <span className="text-2xl font-black text-white tabular-nums">
                     {formatCurrency(currentTotalBalance, true, baseCurrency)}
                   </span>
                   <span
                     className={`text-xs font-bold flex items-center tabular-nums ${
-                      balanceDelta >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                      balanceDelta >= 0 ? 'text-emerald-400' : 'text-rose-400'
                     }`}
                   >
                     {balanceDelta >= 0 ? (
@@ -1038,7 +1035,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                       {balanceDelta >= 0 ? '+' : ''}
                       {formatCurrency(balanceDelta, true, baseCurrency)}
                     </span>
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 ml-1">
+                    <span className="text-[10px] text-slate-400 ml-1">
                       ({balanceDeltaPercent >= 0 ? '+' : ''}
                       {balanceDeltaPercent.toFixed(1)}%)
                     </span>
@@ -1047,7 +1044,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
               </div>
 
               {/* Time Range Filter Buttons */}
-              <div className="flex items-center gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 self-start sm:self-auto">
+              <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
                 {(['30D', '90D', '1Y', 'ALL'] as TimeRange[]).map((range) => {
                   const labels: Record<TimeRange, string> = {
                     '30D': t?.period30D || '30G',
@@ -1063,7 +1060,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                       className={`px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all ${
                         active
                           ? 'bg-indigo-600 text-white shadow-sm'
-                          : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                          : 'text-slate-400 hover:text-white'
                       }`}
                     >
                       {labels[range]}
@@ -1089,20 +1086,20 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                   </defs>
                   <CartesianGrid
                     strokeDasharray="3 3"
-                    stroke={isDark ? '#1e293b' : '#e2e8f0'}
+                    stroke="#1e293b"
                     vertical={false}
                   />
                   <XAxis
                     dataKey="formattedDate"
-                    stroke={isDark ? '#64748b' : '#94a3b8'}
-                    tick={{ fontSize: 10, fill: isDark ? '#64748b' : '#475569' }}
+                    stroke="#64748b"
+                    tick={{ fontSize: 10, fill: '#64748b' }}
                     tickLine={false}
-                    axisLine={{ stroke: isDark ? '#334155' : '#cbd5e1' }}
+                    axisLine={{ stroke: '#334155' }}
                     dy={5}
                   />
                   <YAxis
-                    stroke={isDark ? '#64748b' : '#94a3b8'}
-                    tick={{ fontSize: 10, fill: isDark ? '#64748b' : '#475569' }}
+                    stroke="#64748b"
+                    tick={{ fontSize: 10, fill: '#64748b' }}
                     tickLine={false}
                     axisLine={false}
                     tickFormatter={(val: number) => {
@@ -1136,14 +1133,14 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
             </div>
 
             {/* Min / Max Range Footprint */}
-            <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px]">
-              <div className="p-2 rounded-xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80">
-                <span className="text-slate-500 dark:text-slate-400 block text-[10px]">{t?.minBalanceLabel || 'Minimo nel periodo'}</span>
-                <span className="font-bold text-slate-800 dark:text-slate-200 tabular-nums">{formatCurrency(minBalance, true, baseCurrency)}</span>
+            <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-slate-800 text-[11px]">
+              <div className="p-2 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                <span className="text-slate-400 block text-[10px]">{t?.minBalanceLabel || 'Minimo nel periodo'}</span>
+                <span className="font-bold text-slate-200 tabular-nums">{formatCurrency(minBalance, true, baseCurrency)}</span>
               </div>
-              <div className="p-2 rounded-xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80">
-                <span className="text-slate-500 dark:text-slate-400 block text-[10px]">{t?.maxBalanceLabel || 'Massimo nel periodo'}</span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">{formatCurrency(maxBalance, true, baseCurrency)}</span>
+              <div className="p-2 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                <span className="text-slate-400 block text-[10px]">{t?.maxBalanceLabel || 'Massimo nel periodo'}</span>
+                <span className="font-bold text-emerald-400 tabular-nums">{formatCurrency(maxBalance, true, baseCurrency)}</span>
               </div>
             </div>
           </div>
@@ -1152,19 +1149,19 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
       {/* VIEW B: Dedicated Recharts Pie Chart in Top View */}
       {chartType === 'pie' && (
-        <div className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
+        <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block">
+              <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold block">
                 {t?.expensesByCategory || (isDe ? 'Ausgaben-Diagramm' : isEn ? 'Expenses Breakdown' : 'Grafico a Torta Spese')} ({baseCurrency})
               </span>
-              <div className="text-xl font-black text-slate-900 dark:text-white mt-0.5 tabular-nums">
+              <div className="text-xl font-black text-white mt-0.5 tabular-nums">
                 {formatCurrency(categoryExpenses.totalExpense, true, baseCurrency)}
               </div>
             </div>
 
             {/* Expense Period Selector */}
-            <div className="flex flex-wrap items-center gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="flex flex-wrap items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800">
               {EXPENSE_PERIOD_OPTIONS.map((opt) => {
                 const active = expensePeriod === opt.id;
                 const periodLabels: Record<string, string> = {
@@ -1181,7 +1178,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                     className={`px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all ${
                       active
                         ? 'bg-indigo-600 text-white shadow-sm'
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
                     {periodLabels[opt.id] || opt.label}
@@ -1198,11 +1195,11 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
       {/* VIEW C & D: Chart.js Canvas (Doughnut Conti o Bar Chart Mesi) */}
       {(chartType === 'doughnut' || chartType === 'bar') && (
-        <div className="bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 flex flex-col items-center justify-center">
+        <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-4 flex flex-col items-center justify-center">
           <div className="relative h-64 w-full flex items-center justify-center">
             <canvas ref={canvasRef} />
           </div>
-          <p className="mt-3 text-xs text-slate-500 dark:text-slate-400 text-center">
+          <p className="mt-3 text-xs text-slate-400 text-center">
             {chartType === 'doughnut'
               ? t?.accountsBreakdown || (isDe ? 'Vermögensaufteilung nach Konten' : isEn ? 'Net worth breakdown by account' : 'Distribuzione dei fondi disponibili sui conti')
               : t?.monthlyExpensesIncomes || (isDe ? 'Einnahmen vs. Ausgaben (Letzte 6 Monate)' : isEn ? 'Income vs. Expenses (Last 6 Months)' : 'Entrate vs Uscite negli ultimi 6 mesi')}
@@ -1212,29 +1209,29 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
       {/* VIEW E: Month-over-Month Category Comparison (Questo mese vs Mese scorso) */}
       {chartType === 'mom' && (
-        <div className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
+        <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <span className="text-[10px] text-indigo-600 dark:text-indigo-400 uppercase tracking-wider font-bold block">
+              <span className="text-[10px] text-indigo-400 uppercase tracking-wider font-bold block">
                 {isDe
                   ? 'MONATSVERGLEICH NACH KATEGORIE'
                   : isEn
                     ? 'MONTH-OVER-MONTH COMPARISON'
                     : 'CONFRONTO MESE SU MESE PER CATEGORIA'}
               </span>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+              <h3 className="text-sm font-bold text-white mt-0.5">
                 {momComparison.curLabel} vs {momComparison.prevLabel}
               </h3>
             </div>
 
-            <div className="flex items-center gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 self-start sm:self-auto text-[11px] font-semibold">
+            <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto text-[11px] font-semibold">
               <button
                 type="button"
                 onClick={() => setMomSortMode('impact')}
                 className={`px-2.5 py-1 rounded-lg transition ${
                   momSortMode === 'impact'
                     ? 'bg-indigo-600 text-white'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {isDe ? 'Größte Diff.' : isEn ? 'Top Delta' : 'Maggior Scarto'}
@@ -1245,7 +1242,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                 className={`px-2.5 py-1 rounded-lg transition ${
                   momSortMode === 'current'
                     ? 'bg-indigo-600 text-white'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    : 'text-slate-400 hover:text-white'
                 }`}
               >
                 {isDe ? 'Aktuell' : isEn ? 'Current Spend' : 'Spesa Attuale'}
@@ -1255,29 +1252,29 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
           {/* MoM Totals Strip */}
           <div className="grid grid-cols-3 gap-2">
-            <div className="p-2.5 rounded-2xl bg-slate-100/90 dark:bg-slate-950/75 border border-slate-200 dark:border-slate-800">
-              <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+            <div className="p-2.5 rounded-2xl bg-slate-950/75 border border-slate-800">
+              <div className="text-[10px] text-slate-400 truncate">
                 {isDe ? 'Dieser Monat' : isEn ? 'This Month' : 'Questo Mese'}
               </div>
-              <div className="text-xs sm:text-sm font-black text-slate-900 dark:text-white tabular-nums mt-0.5 truncate">
+              <div className="text-xs sm:text-sm font-black text-white tabular-nums mt-0.5 truncate">
                 {formatCurrency(momComparison.curTotal, true, baseCurrency)}
               </div>
             </div>
-            <div className="p-2.5 rounded-2xl bg-slate-100/90 dark:bg-slate-950/75 border border-slate-200 dark:border-slate-800">
-              <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+            <div className="p-2.5 rounded-2xl bg-slate-950/75 border border-slate-800">
+              <div className="text-[10px] text-slate-400 truncate">
                 {isDe ? 'Letzter Monat' : isEn ? 'Last Month' : 'Mese Scorso'}
               </div>
-              <div className="text-xs sm:text-sm font-black text-slate-600 dark:text-slate-300 tabular-nums mt-0.5 truncate">
+              <div className="text-xs sm:text-sm font-black text-slate-300 tabular-nums mt-0.5 truncate">
                 {formatCurrency(momComparison.prevTotal, true, baseCurrency)}
               </div>
             </div>
-            <div className="p-2.5 rounded-2xl bg-slate-100/90 dark:bg-slate-950/75 border border-slate-200 dark:border-slate-800">
-              <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+            <div className="p-2.5 rounded-2xl bg-slate-950/75 border border-slate-800">
+              <div className="text-[10px] text-slate-400 truncate">
                 {isDe ? 'Veränderung' : isEn ? 'Change' : 'Variazione'}
               </div>
               <div
                 className={`text-xs sm:text-sm font-black tabular-nums mt-0.5 truncate ${
-                  momComparison.totalDiff <= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
+                  momComparison.totalDiff <= 0 ? 'text-emerald-400' : 'text-rose-400'
                 }`}
               >
                 {momComparison.totalDiff > 0 ? '+' : ''}
@@ -1287,7 +1284,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
           </div>
 
           {momComparison.rows.length === 0 ? (
-            <div className="p-6 text-center bg-slate-100/90 dark:bg-slate-950/60 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+            <div className="p-6 text-center bg-slate-950/60 rounded-2xl border border-dashed border-slate-800 text-xs text-slate-400">
               {isDe
                 ? 'Noch keine Ausgaben in diesem oder dem letzten Monat vorhanden.'
                 : isEn
@@ -1319,18 +1316,18 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                 return (
                   <div
                     key={row.category}
-                    className="p-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 space-y-2"
+                    className="p-3 rounded-2xl bg-slate-950/70 border border-slate-800/80 space-y-2"
                   >
                     <div className="flex items-center justify-between gap-2 text-xs">
-                      <span className="font-bold text-slate-900 dark:text-white truncate">{row.displayName}</span>
+                      <span className="font-bold text-white truncate">{row.displayName}</span>
                       <div className="flex items-center gap-1.5 flex-shrink-0">
                         <span
                           className={`text-[11px] font-bold tabular-nums ${
                             isIncrease
-                              ? 'text-rose-600 dark:text-rose-400'
+                              ? 'text-rose-400'
                               : isDecrease
-                                ? 'text-emerald-600 dark:text-emerald-400'
-                                : 'text-slate-500 dark:text-slate-400'
+                                ? 'text-emerald-400'
+                                : 'text-slate-400'
                           }`}
                         >
                           {row.diff > 0 ? '+' : ''}
@@ -1339,10 +1336,10 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                         <span
                           className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded-lg tabular-nums border ${
                             isIncrease
-                              ? 'bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/30'
+                              ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
                               : isDecrease
-                                ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30'
-                                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-700'
+                                ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                                : 'bg-slate-800 text-slate-300 border-slate-700'
                           }`}
                         >
                           {deltaBadgeText}
@@ -1353,10 +1350,10 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                     {/* Dual visual comparison bars */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 text-[10px]">
-                        <span className="w-16 text-indigo-700 dark:text-indigo-300 font-semibold truncate">
+                        <span className="w-16 text-indigo-300 font-semibold truncate">
                           {isDe ? 'Aktuell' : isEn ? 'Current' : 'Attuale'}
                         </span>
-                        <div className="flex-1 bg-slate-100/80 dark:bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
+                        <div className="flex-1 bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
                           <div
                             className={`h-full rounded-full ${
                               isIncrease ? 'bg-rose-500' : 'bg-indigo-500'
@@ -1364,22 +1361,22 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                             style={{ width: `${curBarW}%` }}
                           />
                         </div>
-                        <span className="w-20 text-right font-bold text-slate-900 dark:text-white tabular-nums">
+                        <span className="w-20 text-right font-bold text-white tabular-nums">
                           {formatCurrency(row.currentSpend, true, baseCurrency)}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-2 text-[10px]">
-                        <span className="w-16 text-slate-500 dark:text-slate-400 truncate">
+                        <span className="w-16 text-slate-400 truncate">
                           {isDe ? 'Vormonat' : isEn ? 'Previous' : 'Scorso'}
                         </span>
-                        <div className="flex-1 bg-slate-100/80 dark:bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
+                        <div className="flex-1 bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full bg-slate-500"
                             style={{ width: `${prevBarW}%` }}
                           />
                         </div>
-                        <span className="w-20 text-right text-slate-500 dark:text-slate-400 tabular-nums">
+                        <span className="w-20 text-right text-slate-400 tabular-nums">
                           {formatCurrency(row.prevSpend, true, baseCurrency)}
                         </span>
                       </div>
@@ -1394,17 +1391,17 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
       {/* VIEW F: #Tag Summary View (Riepilogo per #tag) */}
       {chartType === 'tags' && (
-        <div className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
+        <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <span className="text-[10px] text-cyan-600 dark:text-cyan-400 uppercase tracking-wider font-bold block">
+              <span className="text-[10px] text-cyan-400 uppercase tracking-wider font-bold block">
                 {isDe
                   ? 'AUSWERTUNG NACH #TAG'
                   : isEn
                     ? '#TAG EXPENSE & INCOME SUMMARY'
                     : 'RIEPILOGO SPESE & ENTRATE PER #TAG'}
               </span>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+              <h3 className="text-sm font-bold text-white mt-0.5">
                 {isDe
                   ? `${tagSummary.totalTagsCount} aktive #Tags`
                   : isEn
@@ -1413,7 +1410,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
               </h3>
             </div>
 
-            <div className="flex flex-wrap items-center gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="flex flex-wrap items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800">
               {EXPENSE_PERIOD_OPTIONS.map((opt) => {
                 const active = tagPeriod === opt.id;
                 const periodLabels: Record<string, string> = {
@@ -1431,7 +1428,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                     className={`px-2 py-1 text-[10px] font-bold rounded-lg transition-all ${
                       active
                         ? 'bg-cyan-600 text-white shadow-sm'
-                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        : 'text-slate-400 hover:text-white'
                     }`}
                   >
                     {periodLabels[opt.id] || opt.label}
@@ -1454,35 +1451,35 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                     ? 'Search #tag (e.g. #vacation, #tax)...'
                     : 'Cerca un #tag (es. #vacanza, #detrazioni)...'
               }
-              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500"
             />
             <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
           </div>
 
           {/* Summary KPI Strip */}
           <div className="grid grid-cols-2 gap-2">
-            <div className="p-2.5 rounded-2xl bg-slate-100/90 dark:bg-slate-950/75 border border-slate-200 dark:border-slate-800">
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">
+            <div className="p-2.5 rounded-2xl bg-slate-950/75 border border-slate-800">
+              <div className="text-[10px] text-slate-400">
                 {isDe ? 'Ausgaben mit #Tag' : isEn ? 'Tagged Expenses' : 'Totale Uscite con #Tag'}
               </div>
-              <div className="text-sm font-black text-rose-600 dark:text-rose-400 tabular-nums mt-0.5">
+              <div className="text-sm font-black text-rose-400 tabular-nums mt-0.5">
                 -{formatCurrency(tagSummary.grandExpense, true, baseCurrency)}
               </div>
             </div>
-            <div className="p-2.5 rounded-2xl bg-slate-100/90 dark:bg-slate-950/75 border border-slate-200 dark:border-slate-800">
-              <div className="text-[10px] text-slate-500 dark:text-slate-400">
+            <div className="p-2.5 rounded-2xl bg-slate-950/75 border border-slate-800">
+              <div className="text-[10px] text-slate-400">
                 {isDe ? 'Einnahmen mit #Tag' : isEn ? 'Tagged Income' : 'Totale Entrate con #Tag'}
               </div>
-              <div className="text-sm font-black text-emerald-600 dark:text-emerald-400 tabular-nums mt-0.5">
+              <div className="text-sm font-black text-emerald-400 tabular-nums mt-0.5">
                 +{formatCurrency(tagSummary.grandIncome, true, baseCurrency)}
               </div>
             </div>
           </div>
 
           {tagSummary.tags.length === 0 ? (
-            <div className="p-6 text-center bg-slate-100/90 dark:bg-slate-950/60 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800 space-y-1.5">
+            <div className="p-6 text-center bg-slate-950/60 rounded-2xl border border-dashed border-slate-800 space-y-1.5">
               <Hash className="w-7 h-7 text-slate-600 mx-auto" />
-              <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+              <p className="text-xs font-semibold text-slate-300">
                 {isDe
                   ? 'Keine Buchungen mit #Tags im gewählten Zeitraum.'
                   : isEn
@@ -1513,19 +1510,19 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                 return (
                   <div
                     key={item.tag}
-                    className="rounded-2xl bg-slate-100/90 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 overflow-hidden"
+                    className="rounded-2xl bg-slate-950/70 border border-slate-800/80 overflow-hidden"
                   >
                     <button
                       type="button"
                       onClick={() => setExpandedTag(isExpanded ? null : item.tag)}
-                      className="w-full p-3.5 text-left space-y-2 hover:bg-white/60 dark:hover:bg-slate-900/60 transition"
+                      className="w-full p-3.5 text-left space-y-2 hover:bg-slate-900/60 transition"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2 min-w-0">
-                          <span className="text-xs font-extrabold text-cyan-700 dark:text-cyan-300 truncate">
+                          <span className="text-xs font-extrabold text-cyan-300 truncate">
                             #{item.tag}
                           </span>
-                          <span className="text-[10px] text-slate-500 dark:text-slate-400 tabular-nums flex-shrink-0">
+                          <span className="text-[10px] text-slate-400 tabular-nums flex-shrink-0">
                             {item.txCount}{' '}
                             {isDe ? 'Buch.' : isEn ? 'tx' : item.txCount === 1 ? 'mov.' : 'mov.'}
                           </span>
@@ -1533,32 +1530,32 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
                         <div className="flex items-center gap-2 flex-shrink-0">
                           {item.expenseTotal > 0 && (
-                            <span className="text-xs font-black text-rose-600 dark:text-rose-400 tabular-nums">
+                            <span className="text-xs font-black text-rose-400 tabular-nums">
                               -{formatCurrency(item.expenseTotal, true, baseCurrency)}
                             </span>
                           )}
                           {item.incomeTotal > 0 && (
-                            <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 tabular-nums">
+                            <span className="text-xs font-black text-emerald-400 tabular-nums">
                               +{formatCurrency(item.incomeTotal, true, baseCurrency)}
                             </span>
                           )}
                           {isExpanded ? (
-                            <ChevronUp className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                            <ChevronUp className="w-4 h-4 text-slate-400" />
                           ) : (
-                            <ChevronDown className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                            <ChevronDown className="w-4 h-4 text-slate-400" />
                           )}
                         </div>
                       </div>
 
                       {item.expenseTotal > 0 && (
                         <div className="flex items-center gap-2">
-                          <div className="flex-1 bg-slate-100/80 dark:bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
+                          <div className="flex-1 bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
                             <div
                               className="h-full rounded-full bg-cyan-500 transition-all duration-500"
                               style={{ width: `${barPct}%` }}
                             />
                           </div>
-                          <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold tabular-nums w-8 text-right">
+                          <span className="text-[10px] text-slate-400 font-semibold tabular-nums w-8 text-right">
                             {sharePct}%
                           </span>
                         </div>
@@ -1566,7 +1563,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                     </button>
 
                     {isExpanded && (
-                      <div className="px-3.5 pb-3 pt-1 border-t border-slate-200/70 dark:border-slate-800/70 space-y-1.5 bg-white/40 dark:bg-slate-900/40">
+                      <div className="px-3.5 pb-3 pt-1 border-t border-slate-800/70 space-y-1.5 bg-slate-900/40">
                         {item.transactions.map((tx) => {
                           const acc = accounts.find(
                             (a) => a.id === tx.account || a.name === tx.account
@@ -1575,10 +1572,10 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                           return (
                             <div
                               key={`${item.tag}_${tx.id}`}
-                              className="flex items-center justify-between gap-2 text-[11px] py-1 border-b border-slate-200/40 dark:border-slate-800/40 last:border-b-0"
+                              className="flex items-center justify-between gap-2 text-[11px] py-1 border-b border-slate-800/40 last:border-b-0"
                             >
                               <div className="min-w-0 flex-1">
-                                <div className="text-slate-800 dark:text-slate-200 font-medium truncate">
+                                <div className="text-slate-200 font-medium truncate">
                                   {tx.description}
                                 </div>
                                 <div className="text-[10px] text-slate-500 truncate">
@@ -1588,7 +1585,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                               </div>
                               <span
                                 className={`font-bold tabular-nums flex-shrink-0 ${
-                                  isExp ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'
+                                  isExp ? 'text-rose-400' : 'text-emerald-400'
                                 }`}
                               >
                                 {isExp ? '-' : '+'}
@@ -1609,23 +1606,23 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
       {/* Category Breakdown Card with Recharts Pie Chart & Progress Breakdown */}
       {chartType !== 'mom' && chartType !== 'tags' && (
-      <div className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-200/80 dark:border-slate-800/80">
+      <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-4 shadow-xl space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-slate-800/80">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <PieChartIcon className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">
+              <PieChartIcon className="w-4 h-4 text-rose-400" />
               <span>{t?.expensesByCategory || 'Ripartizione Spese per Categoria'}</span>
             </h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-[11px] text-slate-400 mt-0.5">
               {t?.totalExpensesCount || 'Totale spese'}:{' '}
-              <span className="font-bold text-rose-600 dark:text-rose-400 tabular-nums">
+              <span className="font-bold text-rose-400 tabular-nums">
                 {formatCurrency(categoryExpenses.totalExpense, true, baseCurrency)}
               </span>
             </p>
           </div>
 
           {/* Period selector for Category Breakdown */}
-          <div className="flex flex-wrap items-center gap-1 bg-slate-50 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 self-start sm:self-auto">
+          <div className="flex flex-wrap items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
             {EXPENSE_PERIOD_OPTIONS.map((opt) => {
               const active = expensePeriod === opt.id;
               const periodLabels: Record<string, string> = {
@@ -1642,7 +1639,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                   className={`px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all ${
                     active
                       ? 'bg-rose-600 text-white shadow-sm'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   {periodLabels[opt.id] || opt.label}
@@ -1658,7 +1655,7 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
         {/* Detailed Category List with matching colors */}
         <div className="space-y-2 pt-1">
           {categoryExpenses.sortedCategories.length === 0 ? (
-            <div className="p-4 bg-slate-100/90 dark:bg-slate-950/50 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 text-center text-xs text-slate-500">
+            <div className="p-4 bg-slate-950/50 rounded-2xl border border-slate-800/80 text-center text-xs text-slate-500">
               {t?.noTransactionsFound || 'Nessuna uscita registrata per il periodo selezionato.'}
             </div>
           ) : (
@@ -1681,8 +1678,8 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                   }
                   className={`p-3 rounded-2xl border transition-all cursor-pointer ${
                     isHighlighted
-                      ? 'bg-slate-100/90 dark:bg-slate-800/90 border-slate-600 shadow-md scale-[1.01]'
-                      : 'bg-slate-100/90 dark:bg-slate-950/60 border-slate-200/80 dark:border-slate-800/80 hover:bg-slate-100/50 dark:hover:bg-slate-800/50'
+                      ? 'bg-slate-800/90 border-slate-600 shadow-md scale-[1.01]'
+                      : 'bg-slate-950/60 border-slate-800/80 hover:bg-slate-800/50'
                   }`}
                 >
                   <div className="flex justify-between items-center text-xs mb-1.5">
@@ -1691,18 +1688,18 @@ export const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
                         className="w-2.5 h-2.5 rounded-full shrink-0 shadow-sm"
                         style={{ backgroundColor: color }}
                       />
-                      <span className="font-semibold text-slate-900 dark:text-white truncate">{displayName}</span>
+                      <span className="font-semibold text-white truncate">{displayName}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="font-bold text-rose-600 dark:text-rose-400 tabular-nums">
+                      <span className="font-bold text-rose-400 tabular-nums">
                         {formatCurrency(amount, true, baseCurrency)}
                       </span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold w-8 text-right tabular-nums">
+                      <span className="text-[10px] text-slate-400 font-semibold w-8 text-right tabular-nums">
                         {pct}%
                       </span>
                     </div>
                   </div>
-                  <div className="w-full bg-slate-100/80 dark:bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{

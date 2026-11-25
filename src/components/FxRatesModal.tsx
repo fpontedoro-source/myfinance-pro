@@ -121,31 +121,31 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-300 dark:border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto">
-        <div className="w-12 h-1 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-3 sm:hidden" />
+    <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center no-print">
+      <div className="bg-slate-900 border-t sm:border border-slate-700 rounded-t-3xl sm:rounded-3xl max-w-md w-full p-5 shadow-2xl relative animate-slide-up max-h-[90vh] overflow-y-auto">
+        <div className="w-12 h-1 bg-slate-700 rounded-full mx-auto mb-3 sm:hidden" />
 
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl transition"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white min-h-[40px] min-w-[40px] flex items-center justify-center rounded-xl transition"
         >
           <X className="w-5 h-5" />
         </button>
 
         <div className="flex items-center gap-2.5 mb-3 pr-10">
-          <div className="p-2 bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 rounded-xl border border-cyan-500/30">
+          <div className="p-2 bg-cyan-500/15 text-cyan-300 rounded-xl border border-cyan-500/30">
             <Globe className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
+            <h3 className="text-base font-bold text-white leading-tight">
               {isDe
                 ? 'Basiswährung & Wechselkurse'
                 : isEn
                   ? 'Base Currency & FX Rates'
                   : 'Valuta Base & Tassi di Cambio'}
             </h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
+            <p className="text-[11px] text-slate-400">
               {isDe
                 ? 'Vereintes Gesamtvermögen in deiner Hauptwährung'
                 : isEn
@@ -158,7 +158,7 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Base Currency Selection */}
           <div>
-            <label className="block text-xs text-slate-500 dark:text-slate-400 font-semibold mb-1.5">
+            <label className="block text-xs text-slate-400 font-semibold mb-1.5">
               {isDe
                 ? 'Hauptwährung für Gesamtvermögen'
                 : isEn
@@ -176,7 +176,7 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
                     className={`min-h-[48px] p-1.5 rounded-xl border flex flex-col items-center justify-center transition active:scale-95 ${
                       selected
                         ? 'bg-indigo-600/25 border-indigo-500 text-white'
-                        : 'bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-white'
                     }`}
                   >
                     <span className="text-sm leading-none">{curr.flag}</span>
@@ -188,17 +188,17 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
           </div>
 
           {/* Exchange Rates Editor */}
-          <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3">
+          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
             <div className="flex items-center justify-between gap-2">
               <div>
-                <div className="text-xs font-bold text-slate-900 dark:text-white">
+                <div className="text-xs font-bold text-white">
                   {isDe
                     ? 'Kurse pro 1 EUR'
                     : isEn
                       ? 'Rates per 1 EUR'
                       : 'Tassi riferiti a 1 EUR'}
                 </div>
-                <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                <div className="text-[10px] text-slate-400">
                   {source === 'live'
                     ? isDe
                       ? `Live-Kurs · ${lastUpdatedAt || ''}`
@@ -223,7 +223,7 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
                 type="button"
                 disabled={isFetching}
                 onClick={handleRefreshLive}
-                className="min-h-[38px] px-3 py-1.5 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 disabled:opacity-50"
+                className="min-h-[38px] px-3 py-1.5 rounded-xl bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/30 text-cyan-300 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 disabled:opacity-50"
               >
                 {isFetching ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -241,7 +241,7 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
                 const info = SUPPORTED_CURRENCIES.find((c) => c.code === code);
                 return (
                   <div key={code}>
-                    <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                    <label className="block text-[10px] text-slate-400 mb-1">
                       {info?.flag} 1 EUR = {code}
                     </label>
                     <input
@@ -253,7 +253,7 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
                         setRateDrafts((prev) => ({ ...prev, [code]: e.target.value }));
                         setSource('manual');
                       }}
-                      className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl px-3 py-2 text-xs font-bold tabular-nums focus:outline-none focus:border-cyan-500"
+                      className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-3 py-2 text-xs font-bold tabular-nums focus:outline-none focus:border-cyan-500"
                     />
                   </div>
                 );
@@ -265,7 +265,7 @@ export const FxRatesModal: React.FC<FxRatesModalProps> = ({
             <button
               type="button"
               onClick={handleResetDefaults}
-              className="min-h-[44px] px-3.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition"
+              className="min-h-[44px] px-3.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>{isDe ? 'Reset' : isEn ? 'Reset' : 'Ripristina'}</span>

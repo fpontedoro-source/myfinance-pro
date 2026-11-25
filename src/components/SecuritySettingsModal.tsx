@@ -393,13 +393,13 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-slate-100/90 dark:bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
-      <div className="bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
+    <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 animate-slide-up">
+      <div className="bg-slate-900 border-t sm:border border-slate-800 rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 shadow-2xl relative max-h-[92vh] flex flex-col">
         {/* Close button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white p-2 rounded-xl transition hover:bg-slate-100 dark:hover:bg-slate-800"
+          className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl transition hover:bg-slate-800"
           aria-label={t?.cancel || 'Chiudi'}
         >
           <X className="w-5 h-5" />
@@ -411,7 +411,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
             {registered ? <ShieldCheck className="w-5 h-5" /> : <UserPlus className="w-5 h-5" />}
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">
+            <h3 className="text-base font-bold text-white">
               {registered
                 ? isDe
                   ? 'Benutzerprofil & Sicherheit'
@@ -424,7 +424,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     ? 'Register Your Account'
                     : 'Registrazione Account Utente'}
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs text-slate-400">
               {registered
                 ? isDe
                   ? 'Kontodaten, Passwortschutz & E-Mail-Wiederherstellung'
@@ -446,11 +446,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
           {!registered && (
             <form
               onSubmit={handleRegisterSubmit}
-              className="space-y-3 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-indigo-500/30"
+              className="space-y-3 p-4 rounded-2xl bg-slate-950 border border-indigo-500/30"
             >
               <div className="flex items-center justify-between">
-                <span className="font-bold text-xs text-slate-900 dark:text-white flex items-center gap-1.5">
-                  <UserPlus className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+                <span className="font-bold text-xs text-white flex items-center gap-1.5">
+                  <UserPlus className="w-4 h-4 text-cyan-400" />
                   <span>
                     {isDe
                       ? 'Neues Profil erstellen'
@@ -462,7 +462,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowPasswords(!showPasswords)}
-                  className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1"
+                  className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1"
                 >
                   {showPasswords ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                   <span>{showPasswords ? 'Nascondi' : 'Mostra'}</span>
@@ -471,7 +471,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
               <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                  <label className="block text-[10px] text-slate-400 font-semibold mb-1">
                     {isDe ? 'Vorname *' : isEn ? 'First Name *' : 'Nome *'}
                   </label>
                   <input
@@ -480,11 +480,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     onChange={(e) => setFirstName(e.target.value)}
                     required
                     placeholder="es. Mario"
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                  <label className="block text-[10px] text-slate-400 font-semibold mb-1">
                     {isDe ? 'Nachname *' : isEn ? 'Last Name *' : 'Cognome *'}
                   </label>
                   <input
@@ -493,13 +493,13 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     onChange={(e) => setLastName(e.target.value)}
                     required
                     placeholder="es. Rossi"
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                <label className="block text-[10px] text-slate-400 font-semibold mb-1">
                   {isDe ? 'E-Mail-Adresse *' : isEn ? 'Email Address *' : 'Email *'}
                 </label>
                 <div className="relative">
@@ -509,7 +509,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="es. nome@gmail.com"
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                   <Mail className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
                 </div>
@@ -520,7 +520,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
               <div className="grid grid-cols-2 gap-2.5">
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                  <label className="block text-[10px] text-slate-400 font-semibold mb-1">
                     {isDe ? 'Passwort *' : isEn ? 'Password *' : 'Password *'}
                   </label>
                   <input
@@ -529,11 +529,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     onChange={(e) => setRegPassword(e.target.value)}
                     required
                     placeholder="Min. 4 caratteri"
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                  <label className="block text-[10px] text-slate-400 font-semibold mb-1">
                     {isDe ? 'Bestätigen *' : isEn ? 'Confirm *' : 'Conferma *'}
                   </label>
                   <input
@@ -542,13 +542,13 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     onChange={(e) => setRegConfirmPassword(e.target.value)}
                     required
                     placeholder="Ripeti password"
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                <label className="block text-[10px] text-slate-400 font-semibold mb-1">
                   {t?.passwordHintLabel || 'Suggerimento Password (opzionale)'}
                 </label>
                 <input
@@ -556,13 +556,13 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   value={regHint}
                   onChange={(e) => setRegHint(e.target.value)}
                   placeholder="es. Anno di nascita, promemoria personale..."
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               {formError && (
-                <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-[11px] flex items-center gap-1.5">
-                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-rose-600 dark:text-rose-400" />
+                <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-[11px] flex items-center gap-1.5">
+                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-rose-400" />
                   <span>{formError}</span>
                 </div>
               )}
@@ -588,18 +588,18 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
           {/* Registered Profile Summary Card */}
           {registered && (
-            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-3">
+            <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
               {!isEditingProfile ? (
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600/30 to-cyan-500/30 border border-indigo-500/40 text-cyan-700 dark:text-cyan-300 font-black text-sm flex items-center justify-center flex-shrink-0 uppercase">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600/30 to-cyan-500/30 border border-indigo-500/40 text-cyan-300 font-black text-sm flex items-center justify-center flex-shrink-0 uppercase">
                       {(settings.firstName?.[0] || '') + (settings.lastName?.[0] || '') || <User className="w-4 h-4" />}
                     </div>
                     <div className="min-w-0">
-                      <span className="font-bold text-sm text-slate-900 dark:text-white block truncate">
+                      <span className="font-bold text-sm text-white block truncate">
                         {settings.firstName} {settings.lastName}
                       </span>
-                      <span className="text-[11px] text-cyan-700 dark:text-cyan-300 block truncate">
+                      <span className="text-[11px] text-cyan-300 block truncate">
                         {settings.email || settings.recoveryEmail}
                       </span>
                     </div>
@@ -607,7 +607,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setIsEditingProfile(true)}
-                    className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-indigo-700 dark:text-indigo-300 border border-slate-300 dark:border-slate-700 font-semibold text-[11px] flex items-center gap-1 flex-shrink-0"
+                    className="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-indigo-300 border border-slate-700 font-semibold text-[11px] flex items-center gap-1 flex-shrink-0"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                     <span>{isDe ? 'Ändern' : isEn ? 'Edit' : 'Modifica'}</span>
@@ -617,7 +617,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                 <form onSubmit={handleSaveProfileEdit} className="space-y-2.5">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                      <label className="block text-[10px] text-slate-400 mb-1">
                         {isDe ? 'Vorname' : isEn ? 'First Name' : 'Nome'}
                       </label>
                       <input
@@ -625,11 +625,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         required
-                        className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                      <label className="block text-[10px] text-slate-400 mb-1">
                         {isDe ? 'Nachname' : isEn ? 'Last Name' : 'Cognome'}
                       </label>
                       <input
@@ -637,12 +637,12 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
-                        className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                        className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] text-slate-500 dark:text-slate-400 mb-1">
+                    <label className="block text-[10px] text-slate-400 mb-1">
                       {isDe ? 'E-Mail' : isEn ? 'Email' : 'Email'}
                     </label>
                     <input
@@ -650,11 +650,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                     />
                   </div>
                   {formError && (
-                    <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-[11px]">
+                    <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-[11px]">
                       {formError}
                     </div>
                   )}
@@ -665,7 +665,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                         setIsEditingProfile(false);
                         setFormError(null);
                       }}
-                      className="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold text-xs"
+                      className="py-2 px-3 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs"
                     >
                       {isDe ? 'Abbrechen' : isEn ? 'Cancel' : 'Annulla'}
                     </button>
@@ -685,22 +685,22 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
           )}
 
           {/* Main Password Toggle Card */}
-          <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+          <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div
                 className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition ${
                   settings.enabled
-                    ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border border-slate-300 dark:border-slate-700'
+                    ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                    : 'bg-slate-800 text-slate-500 border border-slate-700'
                 }`}
               >
                 {settings.enabled ? <Lock className="w-5 h-5" /> : <Unlock className="w-5 h-5" />}
               </div>
               <div>
-                <span className="font-bold text-sm text-slate-900 dark:text-white block">
+                <span className="font-bold text-sm text-white block">
                   {t?.requirePasswordLabel || 'Richiedi Password all\'Avvio'}
                 </span>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5 leading-snug">
+                <span className="text-[11px] text-slate-400 block mt-0.5 leading-snug">
                   {isDe
                     ? 'Sperrt die App beim Beenden und verlangt das Passwort beim Öffnen'
                     : isEn
@@ -714,7 +714,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
               type="button"
               onClick={handleToggleRequirePassword}
               className={`w-12 h-7 rounded-full p-1 transition-colors flex items-center flex-shrink-0 ${
-                settings.enabled ? 'bg-indigo-600 justify-end' : 'bg-slate-100 dark:bg-slate-800 justify-start'
+                settings.enabled ? 'bg-indigo-600 justify-end' : 'bg-slate-800 justify-start'
               }`}
             >
               <div className="w-5 h-5 rounded-full bg-white shadow-md" />
@@ -723,21 +723,21 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
           {/* Fingerprint / Biometric Unlock Card */}
           {(registered || settings.passwordHash) && (
-            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2.5">
+            <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2.5">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
                   <div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition ${
                       settings.useFingerprint && settings.credentialId
-                        ? 'bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30'
-                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700'
+                        ? 'bg-cyan-500/15 text-cyan-400 border border-cyan-500/30'
+                        : 'bg-slate-800 text-slate-400 border border-slate-700'
                     }`}
                   >
                     <Fingerprint className="w-5 h-5" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
-                      <span className="font-bold text-sm text-slate-900 dark:text-white">
+                      <span className="font-bold text-sm text-white">
                         {isDe
                           ? 'Fingerabdruck / Biometrie'
                           : isEn
@@ -745,12 +745,12 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                             : 'Sblocco con Impronta (Fingerprint)'}
                       </span>
                       {settings.useFingerprint && settings.credentialId && (
-                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30">
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
                           {isDe ? 'Aktiv' : isEn ? 'Active' : 'Attivo'}
                         </span>
                       )}
                     </div>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5 leading-snug">
+                    <span className="text-[11px] text-slate-400 block mt-0.5 leading-snug">
                       {biometricAvailable === false
                         ? isDe
                           ? 'Sensor in diesem Browser/Kontext nicht verfügbar'
@@ -773,7 +773,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   className={`w-12 h-7 rounded-full p-1 transition-colors flex items-center flex-shrink-0 disabled:opacity-50 ${
                     settings.useFingerprint && settings.credentialId
                       ? 'bg-cyan-500 justify-end'
-                      : 'bg-slate-100 dark:bg-slate-800 justify-start'
+                      : 'bg-slate-800 justify-start'
                   }`}
                   aria-label="Toggle Fingerprint"
                 >
@@ -782,8 +782,8 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
               </div>
 
               {settings.useFingerprint && settings.credentialId && (
-                <div className="flex items-center justify-between pt-1 border-t border-slate-200/80 dark:border-slate-800/80 text-[11px]">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1">
+                <div className="flex items-center justify-between pt-1 border-t border-slate-800/80 text-[11px]">
+                  <span className="text-emerald-400 font-medium flex items-center gap-1">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>
                       {isDe
@@ -797,7 +797,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     type="button"
                     disabled={fingerprintBusy}
                     onClick={handleReRegisterFingerprint}
-                    className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-semibold underline disabled:opacity-50"
+                    className="text-cyan-400 hover:text-cyan-300 font-semibold underline disabled:opacity-50"
                   >
                     {isDe ? 'Neu verknüpfen' : isEn ? 'Re-link' : 'Aggiorna impronta'}
                   </button>
@@ -805,8 +805,8 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
               )}
 
               {fingerprintMsg && (
-                <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-200 text-[11px] flex items-start gap-1.5 leading-snug">
-                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-amber-600 dark:text-amber-400 mt-0.5" />
+                <div className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-[11px] flex items-start gap-1.5 leading-snug">
+                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-amber-400 mt-0.5" />
                   <span>{fingerprintMsg}</span>
                 </div>
               )}
@@ -815,9 +815,9 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
           {/* Auto-Lock Delay Options */}
           {settings.enabled && (
-            <div className="space-y-1.5 p-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800">
-              <div className="flex items-center gap-1.5 font-bold text-xs text-slate-800 dark:text-slate-200">
-                <Clock className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+            <div className="space-y-1.5 p-3 rounded-2xl bg-slate-950/60 border border-slate-800">
+              <div className="flex items-center gap-1.5 font-bold text-xs text-slate-200">
+                <Clock className="w-3.5 h-3.5 text-indigo-400" />
                 <span>{t?.autoLockDelayLabel || 'Blocco Automatico:'}</span>
               </div>
               <div className="grid grid-cols-2 gap-2 pt-1">
@@ -834,7 +834,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     className={`py-2 px-2.5 rounded-xl border text-left text-[11px] transition ${
                       settings.autoLockMinutes === opt.val
                         ? 'bg-indigo-600/15 border-indigo-500 text-white font-bold'
-                        : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                        : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     {opt.label}
@@ -846,16 +846,16 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
           {/* Change Password Form */}
           {isChangingPassword ? (
-            <form onSubmit={handleSavePassword} className="space-y-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-indigo-500/30">
+            <form onSubmit={handleSavePassword} className="space-y-3 p-3.5 rounded-2xl bg-slate-950 border border-indigo-500/30">
               <div className="flex items-center justify-between">
-                <span className="font-bold text-xs text-slate-900 dark:text-white flex items-center gap-1.5">
-                  <KeyRound className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span className="font-bold text-xs text-white flex items-center gap-1.5">
+                  <KeyRound className="w-4 h-4 text-indigo-400" />
                   <span>{settings.passwordHash ? t?.changePasswordBtn || 'Modifica Password' : t?.setPasswordBtn || 'Imposta Password'}</span>
                 </span>
                 <button
                   type="button"
                   onClick={() => setShowPasswords(!showPasswords)}
-                  className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1"
+                  className="text-[11px] text-slate-400 hover:text-white flex items-center gap-1"
                 >
                   {showPasswords ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                   <span>
@@ -876,7 +876,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
 
               {settings.passwordHash && (
                 <div>
-                  <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1">
+                  <label className="block text-[10px] text-slate-400 font-medium mb-1">
                     {t?.currentPasswordLabel || 'Password Attuale'}
                   </label>
                   <input
@@ -885,13 +885,13 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     onChange={(e) => setCurrentPassword(e.target.value)}
                     required
                     placeholder="••••"
-                    className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               )}
 
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1">
+                <label className="block text-[10px] text-slate-400 font-medium mb-1">
                   {t?.newPasswordLabel || 'Nuova Password o PIN (min 4 caratteri)'}
                 </label>
                 <input
@@ -900,12 +900,12 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   onChange={(e) => setNewPassword(e.target.value)}
                   required
                   placeholder={isDe ? 'Mind. 4 Zeichen oder Ziffern' : isEn ? 'Min. 4 chars or digits' : 'Min. 4 caratteri o cifre'}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1">
+                <label className="block text-[10px] text-slate-400 font-medium mb-1">
                   {t?.confirmPasswordLabel || 'Conferma Nuova Password'}
                 </label>
                 <input
@@ -914,12 +914,12 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   placeholder={isDe ? 'Passwort wiederholen' : isEn ? 'Repeat password' : 'Ripeti la password'}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] text-slate-500 dark:text-slate-400 font-medium mb-1">
+                <label className="block text-[10px] text-slate-400 font-medium mb-1">
                   {t?.passwordHintLabel || 'Suggerimento Password (opzionale)'}
                 </label>
                 <input
@@ -927,13 +927,13 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   value={passwordHint}
                   onChange={(e) => setPasswordHint(e.target.value)}
                   placeholder={isDe ? 'z. B. Geburtsjahr...' : isEn ? 'e.g. Birth year...' : 'es. Anno di nascita...'}
-                  className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               {formError && (
-                <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-[11px] flex items-center gap-1.5">
-                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-rose-600 dark:text-rose-400" />
+                <div className="p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-[11px] flex items-center gap-1.5">
+                  <AlertCircle className="w-3.5 h-3.5 flex-shrink-0 text-rose-400" />
                   <span>{formError}</span>
                 </div>
               )}
@@ -945,7 +945,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                     setIsChangingPassword(false);
                     setFormError(null);
                   }}
-                  className="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold text-xs"
+                  className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs"
                 >
                   {t?.cancel || (isDe ? 'Abbrechen' : isEn ? 'Cancel' : 'Annulla')}
                 </button>
@@ -974,11 +974,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                 {/* Recovery Email Quick Card */}
                 <form
                   onSubmit={handleSaveRecoveryEmailOnly}
-                  className="p-3 rounded-2xl bg-slate-100/90 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-2"
+                  className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-2"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-                      <Mail className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                    <span className="font-bold text-xs text-slate-200 flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-indigo-400" />
                       <span>
                         {isDe
                           ? 'Wiederherstellungs-E-Mail (OTP)'
@@ -988,7 +988,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                       </span>
                     </span>
                     {(settings.email || settings.recoveryEmail) && (
-                      <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-1.5 py-0.5 rounded">
+                      <span className="text-[10px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-1.5 py-0.5 rounded">
                         {isDe ? 'Gespeichert' : isEn ? 'Saved' : 'Configurata'}
                       </span>
                     )}
@@ -999,7 +999,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                       value={recoveryEmail}
                       onChange={(e) => setRecoveryEmail(e.target.value)}
                       placeholder="es. nome@gmail.com"
-                      className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                      className="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                     />
                     <button
                       type="submit"
@@ -1015,7 +1015,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setIsChangingPassword(true)}
-                    className="flex-1 py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-750 text-indigo-700 dark:text-indigo-300 border border-slate-300 dark:border-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
+                    className="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-indigo-300 border border-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
                   >
                     <KeyRound className="w-3.5 h-3.5" />
                     <span>{t?.changePasswordBtn || 'Modifica Password'}</span>
@@ -1027,7 +1027,7 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
                         onClose();
                         onLockNow();
                       }}
-                      className="flex-1 py-2.5 px-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-700 dark:text-indigo-300 border border-indigo-500/40 font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
+                      className="flex-1 py-2.5 px-3 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-98"
                     >
                       <Lock className="w-3.5 h-3.5" />
                       <span>{t?.lockNowBtn || 'Blocca App Ora'}</span>
@@ -1040,11 +1040,11 @@ export const SecuritySettingsModal: React.FC<SecuritySettingsModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="pt-3 border-t border-slate-200 dark:border-slate-800 mt-3 flex justify-end">
+        <div className="pt-3 border-t border-slate-800 mt-3 flex justify-end">
           <button
             type="button"
             onClick={onClose}
-            className="py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold text-xs transition"
+            className="py-2 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition"
           >
             {t?.close || 'Chiudi'}
           </button>
