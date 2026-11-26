@@ -113,6 +113,7 @@ export default defineConfig(() => {
             '**/standalone.html',
             '**/assets/aistudio/**',
             '**/screenshots/**',
+            '**/google-play-banner-*.png',
             '**/.well-known/**',
           ],
           navigateFallback: '/index.html',
