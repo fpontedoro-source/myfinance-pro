@@ -49,5 +49,42 @@
       "url": "/?action=transfer",
       "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192", "type": "image/png" }]
     }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/01-home.jpg",
+      "sizes": "1080x2034",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Home: Patrimonio Totale, Liquidita Reale e Conti"
+    },
+    {
+      "src": "/screenshots/02-movimenti.jpg",
+      "sizes": "1080x2041",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Movimenti: Filtri per Data, Conto, Categoria e Tag"
+    },
+    {
+      "src": "/screenshots/03-budget.jpg",
+      "sizes": "1080x2055",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Budget Mensili e Obiettivi di Risparmio"
+    },
+    {
+      "src": "/screenshots/04-analisi-andamento.jpg",
+      "sizes": "1080x2012",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Analisi e Andamento Saldo nel Tempo"
+    },
+    {
+      "src": "/screenshots/05-analisi-categorie.jpg",
+      "sizes": "1080x2113",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Grafico Spese per Categoria"
+    }
   ]
 }
