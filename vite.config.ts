@@ -117,7 +117,12 @@ export default defineConfig(() => {
             '**/.well-known/**',
           ],
           navigateFallback: '/index.html',
-          navigateFallbackDenylist: [/^\/api/, /^\/privacy/, /^\/\.well-known/],
+          navigateFallbackDenylist: [
+            /^\/api/,
+            /^\/privacy/,
+            /^\/\.well-known/,
+            /\.(?:png|jpe?g|svg|webp|gif|ico|pdf|zip|json|webmanifest|html|txt|xml|css|js)$/i,
+          ],
           cleanupOutdatedCaches: true,
           clientsClaim: true,
           skipWaiting: true,
