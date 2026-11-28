@@ -5,6 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.pontedoro.myfinancepro",
       "sha256_cert_fingerprints": [
+        "B6:F7:DD:3F:78:EF:06:E6:AF:B9:C8:63:0A:28:C4:BF:69:41:21:4E:F7:39:4B:43:B6:AE:A4:73:E6:84:93:2A",
+        "24:19:0F:D4:45:EF:39:11:FC:9A:86:AE:62:E8:EA:21:35:2A:BF:3C:99:3B:F5:71:5C:57:1E:FF:09:15:0C:8C",
         "35:81:B5:B4:DF:45:94:87:6B:AE:40:C2:85:87:94:70:9E:A2:F6:55:BD:02:CD:DF:AA:27:CC:DC:7F:F9:AB:DA",
         "30:7B:7C:F4:DF:B3:05:11:EF:03:56:01:9D:EB:2D:44:08:69:4D:19:39:B1:B6:C0:2E:82:FD:56:2B:93:38:2D"
       ]
